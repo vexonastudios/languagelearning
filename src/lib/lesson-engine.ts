@@ -6,6 +6,7 @@ export type QuestionType =
   | 'picture_choose_es'
   | 'picture_choose_en'
   | 'sentence_match'
+  | 'sentence_build'
   | 'listen_repeat'
 
 export interface VocabItem {
@@ -140,8 +141,9 @@ export function buildQuestionSet(
 
   // Add sentence match questions
   for (const s of sentences) {
+    // Original Sentence Match
     questions.push({
-      id: `${s.id}_sentence`,
+      id: `${s.id}_sentence_match`,
       type: 'sentence_match',
       itemId: s.id,
       itemType: 'sentence',
@@ -155,8 +157,24 @@ export function buildQuestionSet(
       ),
       correctAnswer: s.english_text,
     })
+
+    // Phase 2: Sentence Builder
+    questions.push({
+      id: `${s.id}_sentence_build`,
+      type: 'sentence_build',
+      itemId: s.id,
+      itemType: 'sentence',
+      audioText: s.spanish_text,
+      audioLanguage: 'es',
+      promptText: `Translate this into English:`,
+      // For sentence builder, we store the full translated sentence in correctAnswer
+      // Choices can be individual words from the target sentence mixed with distractors.
+      choices: [], // Not used the same way for drag/drop
+      correctAnswer: s.english_text,
+    })
   }
 
   // Shuffle and return target count
   return shuffle(questions).slice(0, targetCount)
 }
+

@@ -42,6 +42,31 @@ export default function LessonPlayPage() {
   const [stars, setStars] = useState(0)
   const [xpEarned, setXpEarned] = useState(0)
 
+  // Phase 2: Sentence Builder state
+  const [builtSentence, setBuiltSentence] = useState<string[]>([])
+  const [wordBank, setWordBank] = useState<{ id: string; word: string }[]>([])
+
+  // Setup word bank when question changes
+  useEffect(() => {
+    if (!questions[currentIndex]) return
+    const q = questions[currentIndex]
+    
+    if (q.type === 'sentence_build') {
+      const words = q.correctAnswer.split(' ').filter(Boolean)
+      
+      // Add a couple of dummy distractors
+      const distractors = ['the', 'is', 'a', 'not', 'you'].filter(w => !words.map(x => x.toLowerCase()).includes(w))
+      const extra = distractors.slice(0, 2)
+      
+      const allWords = [...words, ...extra]
+      // Shuffle words
+      allWords.sort(() => Math.random() - 0.5)
+      
+      setWordBank(allWords.map((w, index) => ({ id: `${index}-${w}`, word: w })))
+      setBuiltSentence([])
+    }
+  }, [currentIndex, questions])
+
   useEffect(() => {
     const p = localStorage.getItem('spanishkids_active_profile')
     if (p) setProfile(JSON.parse(p))
@@ -260,30 +285,82 @@ export default function LessonPlayPage() {
         <p className={styles.promptText}>{currentQuestion.promptText}</p>
       </div>
 
-      {/* Answer choices */}
-      <div className={styles.choicesGrid}>
-        {currentQuestion.choices.map((choice, i) => {
-          let choiceState = ''
-          if (answerState !== 'idle' && selectedChoice === choice.label) {
-            choiceState = answerState === 'correct' ? styles.choiceCorrect : styles.choiceWrong
-          } else if (answerState === 'wrong' && choice.isCorrect) {
-            choiceState = styles.choiceReveal
-          }
+      {currentQuestion.type === 'sentence_build' ? (
+        <div className={styles.sentenceBuilderArea}>
+          <div className={styles.dropZone}>
+            {builtSentence.length === 0 && <span className={styles.dropPlaceholder}>Tap words below to build the sentence...</span>}
+            {builtSentence.map((word, i) => (
+              <button 
+                key={i} 
+                className={`${styles.wordTile} ${styles.wordTileSelected}`}
+                onClick={() => {
+                  if (answerState !== 'idle') return
+                  // Remove from built string, put back in bank
+                  setBuiltSentence(prev => prev.filter((_, index) => index !== i))
+                  setWordBank(prev => [...prev, { id: `returned-${Date.now()}-${word}`, word }])
+                }}
+              >
+                {word}
+              </button>
+            ))}
+          </div>
+          
+          <div className={styles.wordBank}>
+            {wordBank.map((item) => (
+              <button
+                key={item.id}
+                className={styles.wordTile}
+                onClick={() => {
+                  if (answerState !== 'idle') return
+                  // Add to built string, remove from bank
+                  setBuiltSentence(prev => [...prev, item.word])
+                  setWordBank(prev => prev.filter(w => w.id !== item.id))
+                }}
+              >
+                {item.word}
+              </button>
+            ))}
+          </div>
 
-          return (
-            <button
-              key={i}
-              id={`choice-${i}`}
-              className={`${styles.choiceBtn} ${choiceState} ${answerState !== 'idle' && !choiceState ? styles.choiceDimmed : ''}`}
-              style={{ animationDelay: `${i * 0.07}s` }}
-              onClick={() => handleAnswer(choice)}
-              disabled={answerState !== 'idle'}
-            >
-              {choice.label}
-            </button>
-          )
-        })}
-      </div>
+          <button 
+            className={`btn btn-primary ${styles.checkBtn}`}
+            style={{ marginTop: '1rem', width: '100%' }}
+            disabled={builtSentence.length === 0 || answerState !== 'idle'}
+            onClick={() => handleAnswer({
+              label: builtSentence.join(' '), 
+              isCorrect: builtSentence.join(' ').toLowerCase().replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ") === 
+                         currentQuestion.correctAnswer.toLowerCase().replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ")
+            })}
+          >
+            Check Answer
+          </button>
+        </div>
+      ) : (
+        <div className={styles.choicesGrid}>
+          {currentQuestion.choices.map((choice, i) => {
+            let choiceState = ''
+            if (answerState !== 'idle' && selectedChoice === choice.label) {
+              choiceState = answerState === 'correct' ? styles.choiceCorrect : styles.choiceWrong
+            } else if (answerState === 'wrong' && choice.isCorrect) {
+              choiceState = styles.choiceReveal
+            }
+
+            return (
+              <button
+                key={i}
+                id={`choice-${i}`}
+                className={`${styles.choiceBtn} ${choiceState} ${answerState !== 'idle' && !choiceState ? styles.choiceDimmed : ''}`}
+                style={{ animationDelay: `${i * 0.07}s` }}
+                onClick={() => handleAnswer(choice)}
+                disabled={answerState !== 'idle'}
+              >
+                {choice.label}
+              </button>
+            )
+          })}
+        </div>
+      )}
+
 
       {/* Feedback banner */}
       {feedbackMsg && (
