@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Basics 1 — First Words",
+    "order": 1,
+    "category": "Basics",
+    "difficulty": 1
+  },
+  {
+    "title": "Basics 2 — More Words",
+    "order": 2,
+    "category": "Basics",
+    "difficulty": 1
+  },
+  {
+    "title": "Animals",
+    "order": 3,
+    "category": "Animals",
+    "difficulty": 1
+  },
+  {
+    "title": "Food",
+    "order": 4,
+    "category": "Food",
+    "difficulty": 1
+  },
+  {
+    "title": "Colors",
+    "order": 5,
+    "category": "Colors",
+    "difficulty": 1
+  },
+  {
+    "title": "Family",
+    "order": 6,
+    "category": "Family",
+    "difficulty": 1
+  },
+  {
+    "title": "Body",
+    "order": 7,
+    "category": "Body",
+    "difficulty": 2
+  },
+  {
+    "title": "Simple Verbs",
+    "order": 8,
+    "category": "Verbs",
+    "difficulty": 2
+  },
+  {
+    "title": "Tiny Sentences",
+    "order": 9,
+    "category": "Sentences",
+    "difficulty": 2
+  },
+  {
+    "title": "Review — All Words",
+    "order": 10,
+    "category": "Review",
+    "difficulty": 2
+  }
+]

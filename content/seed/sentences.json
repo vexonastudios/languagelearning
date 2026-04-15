@@ -1,0 +1,212 @@
+[
+  {
+    "english_text": "The dog runs.",
+    "spanish_text": "El perro corre.",
+    "lesson": "Tiny Sentences",
+    "category": "Animals",
+    "grammar_focus": "present tense"
+  },
+  {
+    "english_text": "The cat is here.",
+    "spanish_text": "El gato está aquí.",
+    "lesson": "Tiny Sentences",
+    "category": "Animals",
+    "grammar_focus": "estar"
+  },
+  {
+    "english_text": "I want water.",
+    "spanish_text": "Yo quiero agua.",
+    "lesson": "Tiny Sentences",
+    "category": "Food",
+    "grammar_focus": "querer"
+  },
+  {
+    "english_text": "The apple is red.",
+    "spanish_text": "La manzana es roja.",
+    "lesson": "Tiny Sentences",
+    "category": "Food",
+    "grammar_focus": "ser + adjective"
+  },
+  {
+    "english_text": "I see the dog.",
+    "spanish_text": "Yo veo al perro.",
+    "lesson": "Tiny Sentences",
+    "category": "Animals",
+    "grammar_focus": "ver"
+  },
+  {
+    "english_text": "The bird is blue.",
+    "spanish_text": "El pájaro es azul.",
+    "lesson": "Tiny Sentences",
+    "category": "Animals",
+    "grammar_focus": "ser + adjective"
+  },
+  {
+    "english_text": "I eat bread.",
+    "spanish_text": "Yo como pan.",
+    "lesson": "Tiny Sentences",
+    "category": "Food",
+    "grammar_focus": "comer"
+  },
+  {
+    "english_text": "She drinks milk.",
+    "spanish_text": "Ella bebe leche.",
+    "lesson": "Tiny Sentences",
+    "category": "Food",
+    "grammar_focus": "beber"
+  },
+  {
+    "english_text": "The ball is big.",
+    "spanish_text": "La pelota es grande.",
+    "lesson": "Tiny Sentences",
+    "category": "Basics",
+    "grammar_focus": "ser + adjective"
+  },
+  {
+    "english_text": "Mom is here.",
+    "spanish_text": "Mamá está aquí.",
+    "lesson": "Tiny Sentences",
+    "category": "Family",
+    "grammar_focus": "estar"
+  },
+  {
+    "english_text": "The dog is black.",
+    "spanish_text": "El perro es negro.",
+    "lesson": "Tiny Sentences",
+    "category": "Animals",
+    "grammar_focus": "ser + adjective"
+  },
+  {
+    "english_text": "I want an apple.",
+    "spanish_text": "Yo quiero una manzana.",
+    "lesson": "Tiny Sentences",
+    "category": "Food",
+    "grammar_focus": "querer + noun"
+  },
+  {
+    "english_text": "The house is big.",
+    "spanish_text": "La casa es grande.",
+    "lesson": "Tiny Sentences",
+    "category": "Home",
+    "grammar_focus": "ser + adjective"
+  },
+  {
+    "english_text": "He sleeps.",
+    "spanish_text": "Él duerme.",
+    "lesson": "Tiny Sentences",
+    "category": "Verbs",
+    "grammar_focus": "dormir"
+  },
+  {
+    "english_text": "We play.",
+    "spanish_text": "Nosotros jugamos.",
+    "lesson": "Tiny Sentences",
+    "category": "Verbs",
+    "grammar_focus": "jugar"
+  },
+  {
+    "english_text": "The cat eats fish.",
+    "spanish_text": "El gato come pescado.",
+    "lesson": "Tiny Sentences",
+    "category": "Animals",
+    "grammar_focus": "comer"
+  },
+  {
+    "english_text": "The water is cold.",
+    "spanish_text": "El agua está fría.",
+    "lesson": "Tiny Sentences",
+    "category": "Food",
+    "grammar_focus": "estar + adjective"
+  },
+  {
+    "english_text": "I have a book.",
+    "spanish_text": "Yo tengo un libro.",
+    "lesson": "Tiny Sentences",
+    "category": "Basics",
+    "grammar_focus": "tener"
+  },
+  {
+    "english_text": "Dad runs fast.",
+    "spanish_text": "Papá corre rápido.",
+    "lesson": "Tiny Sentences",
+    "category": "Family",
+    "grammar_focus": "correr + adverb"
+  },
+  {
+    "english_text": "The horse is big.",
+    "spanish_text": "El caballo es grande.",
+    "lesson": "Tiny Sentences",
+    "category": "Animals",
+    "grammar_focus": "ser + adjective"
+  },
+  {
+    "english_text": "This is a cat.",
+    "spanish_text": "Esto es un gato.",
+    "lesson": "Tiny Sentences",
+    "category": "Animals",
+    "grammar_focus": "esto es"
+  },
+  {
+    "english_text": "This is a book.",
+    "spanish_text": "Esto es un libro.",
+    "lesson": "Tiny Sentences",
+    "category": "Basics",
+    "grammar_focus": "esto es"
+  },
+  {
+    "english_text": "The sun is hot.",
+    "spanish_text": "El sol está caliente.",
+    "lesson": "Tiny Sentences",
+    "category": "Nature",
+    "grammar_focus": "estar + adjective"
+  },
+  {
+    "english_text": "I see the moon.",
+    "spanish_text": "Yo veo la luna.",
+    "lesson": "Tiny Sentences",
+    "category": "Nature",
+    "grammar_focus": "ver"
+  },
+  {
+    "english_text": "The milk is white.",
+    "spanish_text": "La leche es blanca.",
+    "lesson": "Tiny Sentences",
+    "category": "Food",
+    "grammar_focus": "ser + adjective"
+  },
+  {
+    "english_text": "She sings.",
+    "spanish_text": "Ella canta.",
+    "lesson": "Tiny Sentences",
+    "category": "Verbs",
+    "grammar_focus": "cantar"
+  },
+  {
+    "english_text": "We eat together.",
+    "spanish_text": "Nosotros comemos juntos.",
+    "lesson": "Tiny Sentences",
+    "category": "Family",
+    "grammar_focus": "comer + adverb"
+  },
+  {
+    "english_text": "The door is open.",
+    "spanish_text": "La puerta está abierta.",
+    "lesson": "Tiny Sentences",
+    "category": "Home",
+    "grammar_focus": "estar + adjective"
+  },
+  {
+    "english_text": "I am happy.",
+    "spanish_text": "Yo estoy feliz.",
+    "lesson": "Tiny Sentences",
+    "category": "Feelings",
+    "grammar_focus": "estar + adjective"
+  },
+  {
+    "english_text": "The flower is pink.",
+    "spanish_text": "La flor es rosada.",
+    "lesson": "Tiny Sentences",
+    "category": "Nature",
+    "grammar_focus": "ser + adjective"
+  }
+]

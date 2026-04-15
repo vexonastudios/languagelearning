@@ -1,0 +1,952 @@
+[
+  {
+    "english_text": "apple",
+    "spanish_text": "manzana",
+    "lesson": "Basics 1 — First Words",
+    "category": "Food",
+    "tags": ["noun", "beginner", "food"],
+    "difficulty": 1,
+    "distractors_en": ["orange", "banana", "grape"],
+    "distractors_es": ["naranja", "plátano", "uva"]
+  },
+  {
+    "english_text": "water",
+    "spanish_text": "agua",
+    "lesson": "Basics 1 — First Words",
+    "category": "Food",
+    "tags": ["noun", "beginner", "drink"],
+    "difficulty": 1,
+    "distractors_en": ["juice", "milk", "tea"],
+    "distractors_es": ["jugo", "leche", "té"]
+  },
+  {
+    "english_text": "ball",
+    "spanish_text": "pelota",
+    "lesson": "Basics 1 — First Words",
+    "category": "Toys",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["book", "toy", "shoe"],
+    "distractors_es": ["libro", "juguete", "zapato"]
+  },
+  {
+    "english_text": "book",
+    "spanish_text": "libro",
+    "lesson": "Basics 1 — First Words",
+    "category": "School",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["pen", "bag", "desk"],
+    "distractors_es": ["pluma", "bolsa", "escritorio"]
+  },
+  {
+    "english_text": "house",
+    "spanish_text": "casa",
+    "lesson": "Basics 1 — First Words",
+    "category": "Home",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["school", "park", "store"],
+    "distractors_es": ["escuela", "parque", "tienda"]
+  },
+  {
+    "english_text": "door",
+    "spanish_text": "puerta",
+    "lesson": "Basics 2 — More Words",
+    "category": "Home",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["window", "wall", "floor"],
+    "distractors_es": ["ventana", "pared", "piso"]
+  },
+  {
+    "english_text": "table",
+    "spanish_text": "mesa",
+    "lesson": "Basics 2 — More Words",
+    "category": "Home",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["chair", "bed", "sofa"],
+    "distractors_es": ["silla", "cama", "sofá"]
+  },
+  {
+    "english_text": "chair",
+    "spanish_text": "silla",
+    "lesson": "Basics 2 — More Words",
+    "category": "Home",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["table", "desk", "bench"],
+    "distractors_es": ["mesa", "escritorio", "banco"]
+  },
+  {
+    "english_text": "sun",
+    "spanish_text": "sol",
+    "lesson": "Basics 2 — More Words",
+    "category": "Nature",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["moon", "star", "cloud"],
+    "distractors_es": ["luna", "estrella", "nube"]
+  },
+  {
+    "english_text": "tree",
+    "spanish_text": "árbol",
+    "lesson": "Basics 2 — More Words",
+    "category": "Nature",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["flower", "grass", "bush"],
+    "distractors_es": ["flor", "hierba", "arbusto"]
+  },
+  {
+    "english_text": "dog",
+    "spanish_text": "perro",
+    "lesson": "Animals",
+    "category": "Animals",
+    "tags": ["noun", "beginner", "animal"],
+    "difficulty": 1,
+    "distractors_en": ["cat", "bird", "fish"],
+    "distractors_es": ["gato", "pájaro", "pez"]
+  },
+  {
+    "english_text": "cat",
+    "spanish_text": "gato",
+    "lesson": "Animals",
+    "category": "Animals",
+    "tags": ["noun", "beginner", "animal"],
+    "difficulty": 1,
+    "distractors_en": ["dog", "rabbit", "mouse"],
+    "distractors_es": ["perro", "conejo", "ratón"]
+  },
+  {
+    "english_text": "bird",
+    "spanish_text": "pájaro",
+    "lesson": "Animals",
+    "category": "Animals",
+    "tags": ["noun", "beginner", "animal"],
+    "difficulty": 1,
+    "distractors_en": ["fish", "frog", "turtle"],
+    "distractors_es": ["pez", "rana", "tortuga"]
+  },
+  {
+    "english_text": "fish",
+    "spanish_text": "pez",
+    "lesson": "Animals",
+    "category": "Animals",
+    "tags": ["noun", "beginner", "animal"],
+    "difficulty": 1,
+    "distractors_en": ["bird", "snake", "lizard"],
+    "distractors_es": ["pájaro", "serpiente", "lagarto"]
+  },
+  {
+    "english_text": "horse",
+    "spanish_text": "caballo",
+    "lesson": "Animals",
+    "category": "Animals",
+    "tags": ["noun", "beginner", "animal"],
+    "difficulty": 1,
+    "distractors_en": ["cow", "pig", "sheep"],
+    "distractors_es": ["vaca", "cerdo", "oveja"]
+  },
+  {
+    "english_text": "cow",
+    "spanish_text": "vaca",
+    "lesson": "Animals",
+    "category": "Animals",
+    "tags": ["noun", "beginner", "animal"],
+    "difficulty": 1,
+    "distractors_en": ["horse", "goat", "pig"],
+    "distractors_es": ["caballo", "cabra", "cerdo"]
+  },
+  {
+    "english_text": "rabbit",
+    "spanish_text": "conejo",
+    "lesson": "Animals",
+    "category": "Animals",
+    "tags": ["noun", "beginner", "animal"],
+    "difficulty": 1,
+    "distractors_en": ["cat", "hamster", "mouse"],
+    "distractors_es": ["gato", "hámster", "ratón"]
+  },
+  {
+    "english_text": "lion",
+    "spanish_text": "león",
+    "lesson": "Animals",
+    "category": "Animals",
+    "tags": ["noun", "beginner", "animal"],
+    "difficulty": 1,
+    "distractors_en": ["tiger", "bear", "wolf"],
+    "distractors_es": ["tigre", "oso", "lobo"]
+  },
+  {
+    "english_text": "milk",
+    "spanish_text": "leche",
+    "lesson": "Food",
+    "category": "Food",
+    "tags": ["noun", "beginner", "food"],
+    "difficulty": 1,
+    "distractors_en": ["water", "juice", "soda"],
+    "distractors_es": ["agua", "jugo", "refresco"]
+  },
+  {
+    "english_text": "bread",
+    "spanish_text": "pan",
+    "lesson": "Food",
+    "category": "Food",
+    "tags": ["noun", "beginner", "food"],
+    "difficulty": 1,
+    "distractors_en": ["rice", "pasta", "corn"],
+    "distractors_es": ["arroz", "pasta", "maíz"]
+  },
+  {
+    "english_text": "egg",
+    "spanish_text": "huevo",
+    "lesson": "Food",
+    "category": "Food",
+    "tags": ["noun", "beginner", "food"],
+    "difficulty": 1,
+    "distractors_en": ["cheese", "butter", "yogurt"],
+    "distractors_es": ["queso", "mantequilla", "yogur"]
+  },
+  {
+    "english_text": "orange",
+    "spanish_text": "naranja",
+    "lesson": "Food",
+    "category": "Food",
+    "tags": ["noun", "beginner", "food", "fruit"],
+    "difficulty": 1,
+    "distractors_en": ["apple", "mango", "peach"],
+    "distractors_es": ["manzana", "mango", "durazno"]
+  },
+  {
+    "english_text": "banana",
+    "spanish_text": "plátano",
+    "lesson": "Food",
+    "category": "Food",
+    "tags": ["noun", "beginner", "food", "fruit"],
+    "difficulty": 1,
+    "distractors_en": ["grape", "pear", "cherry"],
+    "distractors_es": ["uva", "pera", "cereza"]
+  },
+  {
+    "english_text": "rice",
+    "spanish_text": "arroz",
+    "lesson": "Food",
+    "category": "Food",
+    "tags": ["noun", "beginner", "food"],
+    "difficulty": 1,
+    "distractors_en": ["bread", "pasta", "potato"],
+    "distractors_es": ["pan", "pasta", "papa"]
+  },
+  {
+    "english_text": "chicken",
+    "spanish_text": "pollo",
+    "lesson": "Food",
+    "category": "Food",
+    "tags": ["noun", "beginner", "food"],
+    "difficulty": 1,
+    "distractors_en": ["beef", "pork", "fish"],
+    "distractors_es": ["carne", "cerdo", "pescado"]
+  },
+  {
+    "english_text": "red",
+    "spanish_text": "rojo",
+    "lesson": "Colors",
+    "category": "Colors",
+    "tags": ["adjective", "beginner", "color"],
+    "difficulty": 1,
+    "distractors_en": ["blue", "green", "yellow"],
+    "distractors_es": ["azul", "verde", "amarillo"]
+  },
+  {
+    "english_text": "blue",
+    "spanish_text": "azul",
+    "lesson": "Colors",
+    "category": "Colors",
+    "tags": ["adjective", "beginner", "color"],
+    "difficulty": 1,
+    "distractors_en": ["red", "purple", "green"],
+    "distractors_es": ["rojo", "morado", "verde"]
+  },
+  {
+    "english_text": "green",
+    "spanish_text": "verde",
+    "lesson": "Colors",
+    "category": "Colors",
+    "tags": ["adjective", "beginner", "color"],
+    "difficulty": 1,
+    "distractors_en": ["blue", "yellow", "brown"],
+    "distractors_es": ["azul", "amarillo", "café"]
+  },
+  {
+    "english_text": "yellow",
+    "spanish_text": "amarillo",
+    "lesson": "Colors",
+    "category": "Colors",
+    "tags": ["adjective", "beginner", "color"],
+    "difficulty": 1,
+    "distractors_en": ["orange", "red", "white"],
+    "distractors_es": ["anaranjado", "rojo", "blanco"]
+  },
+  {
+    "english_text": "black",
+    "spanish_text": "negro",
+    "lesson": "Colors",
+    "category": "Colors",
+    "tags": ["adjective", "beginner", "color"],
+    "difficulty": 1,
+    "distractors_en": ["white", "gray", "brown"],
+    "distractors_es": ["blanco", "gris", "café"]
+  },
+  {
+    "english_text": "white",
+    "spanish_text": "blanco",
+    "lesson": "Colors",
+    "category": "Colors",
+    "tags": ["adjective", "beginner", "color"],
+    "difficulty": 1,
+    "distractors_en": ["black", "gray", "pink"],
+    "distractors_es": ["negro", "gris", "rosado"]
+  },
+  {
+    "english_text": "pink",
+    "spanish_text": "rosado",
+    "lesson": "Colors",
+    "category": "Colors",
+    "tags": ["adjective", "beginner", "color"],
+    "difficulty": 1,
+    "distractors_en": ["purple", "red", "orange"],
+    "distractors_es": ["morado", "rojo", "anaranjado"]
+  },
+  {
+    "english_text": "mom",
+    "spanish_text": "mamá",
+    "lesson": "Family",
+    "category": "Family",
+    "tags": ["noun", "beginner", "family"],
+    "difficulty": 1,
+    "distractors_en": ["dad", "sister", "aunt"],
+    "distractors_es": ["papá", "hermana", "tía"]
+  },
+  {
+    "english_text": "dad",
+    "spanish_text": "papá",
+    "lesson": "Family",
+    "category": "Family",
+    "tags": ["noun", "beginner", "family"],
+    "difficulty": 1,
+    "distractors_en": ["mom", "brother", "uncle"],
+    "distractors_es": ["mamá", "hermano", "tío"]
+  },
+  {
+    "english_text": "sister",
+    "spanish_text": "hermana",
+    "lesson": "Family",
+    "category": "Family",
+    "tags": ["noun", "beginner", "family"],
+    "difficulty": 1,
+    "distractors_en": ["brother", "mom", "cousin"],
+    "distractors_es": ["hermano", "mamá", "prima"]
+  },
+  {
+    "english_text": "brother",
+    "spanish_text": "hermano",
+    "lesson": "Family",
+    "category": "Family",
+    "tags": ["noun", "beginner", "family"],
+    "difficulty": 1,
+    "distractors_en": ["sister", "dad", "cousin"],
+    "distractors_es": ["hermana", "papá", "primo"]
+  },
+  {
+    "english_text": "grandma",
+    "spanish_text": "abuela",
+    "lesson": "Family",
+    "category": "Family",
+    "tags": ["noun", "beginner", "family"],
+    "difficulty": 1,
+    "distractors_en": ["grandpa", "aunt", "mom"],
+    "distractors_es": ["abuelo", "tía", "mamá"]
+  },
+  {
+    "english_text": "grandpa",
+    "spanish_text": "abuelo",
+    "lesson": "Family",
+    "category": "Family",
+    "tags": ["noun", "beginner", "family"],
+    "difficulty": 1,
+    "distractors_en": ["grandma", "uncle", "dad"],
+    "distractors_es": ["abuela", "tío", "papá"]
+  },
+  {
+    "english_text": "baby",
+    "spanish_text": "bebé",
+    "lesson": "Family",
+    "category": "Family",
+    "tags": ["noun", "beginner", "family"],
+    "difficulty": 1,
+    "distractors_en": ["child", "boy", "girl"],
+    "distractors_es": ["niño", "chico", "chica"]
+  },
+  {
+    "english_text": "head",
+    "spanish_text": "cabeza",
+    "lesson": "Body",
+    "category": "Body",
+    "tags": ["noun", "beginner", "body"],
+    "difficulty": 1,
+    "distractors_en": ["hand", "foot", "arm"],
+    "distractors_es": ["mano", "pie", "brazo"]
+  },
+  {
+    "english_text": "hand",
+    "spanish_text": "mano",
+    "lesson": "Body",
+    "category": "Body",
+    "tags": ["noun", "beginner", "body"],
+    "difficulty": 1,
+    "distractors_en": ["foot", "arm", "leg"],
+    "distractors_es": ["pie", "brazo", "pierna"]
+  },
+  {
+    "english_text": "foot",
+    "spanish_text": "pie",
+    "lesson": "Body",
+    "category": "Body",
+    "tags": ["noun", "beginner", "body"],
+    "difficulty": 1,
+    "distractors_en": ["hand", "leg", "knee"],
+    "distractors_es": ["mano", "pierna", "rodilla"]
+  },
+  {
+    "english_text": "eye",
+    "spanish_text": "ojo",
+    "lesson": "Body",
+    "category": "Body",
+    "tags": ["noun", "beginner", "body"],
+    "difficulty": 1,
+    "distractors_en": ["ear", "nose", "mouth"],
+    "distractors_es": ["oreja", "nariz", "boca"]
+  },
+  {
+    "english_text": "ear",
+    "spanish_text": "oreja",
+    "lesson": "Body",
+    "category": "Body",
+    "tags": ["noun", "beginner", "body"],
+    "difficulty": 1,
+    "distractors_en": ["eye", "nose", "mouth"],
+    "distractors_es": ["ojo", "nariz", "boca"]
+  },
+  {
+    "english_text": "nose",
+    "spanish_text": "nariz",
+    "lesson": "Body",
+    "category": "Body",
+    "tags": ["noun", "beginner", "body"],
+    "difficulty": 1,
+    "distractors_en": ["mouth", "ear", "eye"],
+    "distractors_es": ["boca", "oreja", "ojo"]
+  },
+  {
+    "english_text": "mouth",
+    "spanish_text": "boca",
+    "lesson": "Body",
+    "category": "Body",
+    "tags": ["noun", "beginner", "body"],
+    "difficulty": 1,
+    "distractors_en": ["nose", "eye", "teeth"],
+    "distractors_es": ["nariz", "ojo", "dientes"]
+  },
+  {
+    "english_text": "run",
+    "spanish_text": "correr",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["jump", "walk", "swim"],
+    "distractors_es": ["saltar", "caminar", "nadar"]
+  },
+  {
+    "english_text": "eat",
+    "spanish_text": "comer",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["drink", "cook", "taste"],
+    "distractors_es": ["beber", "cocinar", "probar"]
+  },
+  {
+    "english_text": "drink",
+    "spanish_text": "beber",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["eat", "pour", "taste"],
+    "distractors_es": ["comer", "verter", "probar"]
+  },
+  {
+    "english_text": "sleep",
+    "spanish_text": "dormir",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["wake", "rest", "dream"],
+    "distractors_es": ["despertar", "descansar", "soñar"]
+  },
+  {
+    "english_text": "jump",
+    "spanish_text": "saltar",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["run", "hop", "fly"],
+    "distractors_es": ["correr", "brincar", "volar"]
+  },
+  {
+    "english_text": "see",
+    "spanish_text": "ver",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["look", "watch", "find"],
+    "distractors_es": ["mirar", "observar", "encontrar"]
+  },
+  {
+    "english_text": "walk",
+    "spanish_text": "caminar",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["run", "skip", "march"],
+    "distractors_es": ["correr", "brincar", "marchar"]
+  },
+  {
+    "english_text": "play",
+    "spanish_text": "jugar",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["work", "sing", "dance"],
+    "distractors_es": ["trabajar", "cantar", "bailar"]
+  },
+  {
+    "english_text": "big",
+    "spanish_text": "grande",
+    "lesson": "Review — All Words",
+    "category": "Adjectives",
+    "tags": ["adjective", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["small", "tall", "long"],
+    "distractors_es": ["pequeño", "alto", "largo"]
+  },
+  {
+    "english_text": "small",
+    "spanish_text": "pequeño",
+    "lesson": "Review — All Words",
+    "category": "Adjectives",
+    "tags": ["adjective", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["big", "tiny", "short"],
+    "distractors_es": ["grande", "diminuto", "corto"]
+  },
+  {
+    "english_text": "hot",
+    "spanish_text": "caliente",
+    "lesson": "Review — All Words",
+    "category": "Adjectives",
+    "tags": ["adjective", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["cold", "warm", "cool"],
+    "distractors_es": ["frío", "tibio", "fresco"]
+  },
+  {
+    "english_text": "cold",
+    "spanish_text": "frío",
+    "lesson": "Review — All Words",
+    "category": "Adjectives",
+    "tags": ["adjective", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["hot", "warm", "cool"],
+    "distractors_es": ["caliente", "tibio", "fresco"]
+  },
+  {
+    "english_text": "happy",
+    "spanish_text": "feliz",
+    "lesson": "Review — All Words",
+    "category": "Feelings",
+    "tags": ["adjective", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["sad", "angry", "scared"],
+    "distractors_es": ["triste", "enojado", "asustado"]
+  },
+  {
+    "english_text": "school",
+    "spanish_text": "escuela",
+    "lesson": "Basics 2 — More Words",
+    "category": "Places",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["home", "store", "park"],
+    "distractors_es": ["casa", "tienda", "parque"]
+  },
+  {
+    "english_text": "friend",
+    "spanish_text": "amigo",
+    "lesson": "Basics 2 — More Words",
+    "category": "People",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["teacher", "student", "boy"],
+    "distractors_es": ["maestro", "estudiante", "chico"]
+  },
+  {
+    "english_text": "yes",
+    "spanish_text": "sí",
+    "lesson": "Basics 1 — First Words",
+    "category": "Basics",
+    "tags": ["word", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["no", "maybe", "ok"],
+    "distractors_es": ["no", "tal vez", "está bien"]
+  },
+  {
+    "english_text": "no",
+    "spanish_text": "no",
+    "lesson": "Basics 1 — First Words",
+    "category": "Basics",
+    "tags": ["word", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["yes", "stop", "go"],
+    "distractors_es": ["sí", "para", "ve"]
+  },
+  {
+    "english_text": "hello",
+    "spanish_text": "hola",
+    "lesson": "Basics 1 — First Words",
+    "category": "Basics",
+    "tags": ["phrase", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["goodbye", "hi", "hey"],
+    "distractors_es": ["adiós", "buenos días", "buenas"]
+  },
+  {
+    "english_text": "goodbye",
+    "spanish_text": "adiós",
+    "lesson": "Basics 1 — First Words",
+    "category": "Basics",
+    "tags": ["phrase", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["hello", "bye", "see you"],
+    "distractors_es": ["hola", "hasta luego", "chao"]
+  },
+  {
+    "english_text": "thank you",
+    "spanish_text": "gracias",
+    "lesson": "Basics 2 — More Words",
+    "category": "Basics",
+    "tags": ["phrase", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["please", "sorry", "excuse me"],
+    "distractors_es": ["por favor", "lo siento", "con permiso"]
+  },
+  {
+    "english_text": "please",
+    "spanish_text": "por favor",
+    "lesson": "Basics 2 — More Words",
+    "category": "Basics",
+    "tags": ["phrase", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["thank you", "sorry", "help"],
+    "distractors_es": ["gracias", "lo siento", "ayuda"]
+  },
+  {
+    "english_text": "good morning",
+    "spanish_text": "buenos días",
+    "lesson": "Basics 2 — More Words",
+    "category": "Greetings",
+    "tags": ["phrase", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["good night", "good afternoon", "hello"],
+    "distractors_es": ["buenas noches", "buenas tardes", "hola"]
+  },
+  {
+    "english_text": "good night",
+    "spanish_text": "buenas noches",
+    "lesson": "Basics 2 — More Words",
+    "category": "Greetings",
+    "tags": ["phrase", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["good morning", "good afternoon", "goodbye"],
+    "distractors_es": ["buenos días", "buenas tardes", "adiós"]
+  },
+  {
+    "english_text": "one",
+    "spanish_text": "uno",
+    "lesson": "Basics 1 — First Words",
+    "category": "Numbers",
+    "tags": ["number", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["two", "three", "four"],
+    "distractors_es": ["dos", "tres", "cuatro"]
+  },
+  {
+    "english_text": "two",
+    "spanish_text": "dos",
+    "lesson": "Basics 1 — First Words",
+    "category": "Numbers",
+    "tags": ["number", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["one", "three", "five"],
+    "distractors_es": ["uno", "tres", "cinco"]
+  },
+  {
+    "english_text": "three",
+    "spanish_text": "tres",
+    "lesson": "Basics 1 — First Words",
+    "category": "Numbers",
+    "tags": ["number", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["two", "four", "six"],
+    "distractors_es": ["dos", "cuatro", "seis"]
+  },
+  {
+    "english_text": "four",
+    "spanish_text": "cuatro",
+    "lesson": "Basics 2 — More Words",
+    "category": "Numbers",
+    "tags": ["number", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["three", "five", "seven"],
+    "distractors_es": ["tres", "cinco", "siete"]
+  },
+  {
+    "english_text": "five",
+    "spanish_text": "cinco",
+    "lesson": "Basics 2 — More Words",
+    "category": "Numbers",
+    "tags": ["number", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["four", "six", "eight"],
+    "distractors_es": ["cuatro", "seis", "ocho"]
+  },
+  {
+    "english_text": "ten",
+    "spanish_text": "diez",
+    "lesson": "Basics 2 — More Words",
+    "category": "Numbers",
+    "tags": ["number", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["five", "nine", "twenty"],
+    "distractors_es": ["cinco", "nueve", "veinte"]
+  },
+  {
+    "english_text": "elephant",
+    "spanish_text": "elefante",
+    "lesson": "Animals",
+    "category": "Animals",
+    "tags": ["noun", "beginner", "animal"],
+    "difficulty": 1,
+    "distractors_en": ["giraffe", "hippo", "rhino"],
+    "distractors_es": ["jirafa", "hipopótamo", "rinoceronte"]
+  },
+  {
+    "english_text": "frog",
+    "spanish_text": "rana",
+    "lesson": "Animals",
+    "category": "Animals",
+    "tags": ["noun", "beginner", "animal"],
+    "difficulty": 1,
+    "distractors_en": ["toad", "lizard", "snake"],
+    "distractors_es": ["sapo", "lagarto", "serpiente"]
+  },
+  {
+    "english_text": "butterfly",
+    "spanish_text": "mariposa",
+    "lesson": "Animals",
+    "category": "Animals",
+    "tags": ["noun", "beginner", "animal"],
+    "difficulty": 1,
+    "distractors_en": ["bee", "ant", "dragonfly"],
+    "distractors_es": ["abeja", "hormiga", "libélula"]
+  },
+  {
+    "english_text": "soup",
+    "spanish_text": "sopa",
+    "lesson": "Food",
+    "category": "Food",
+    "tags": ["noun", "beginner", "food"],
+    "difficulty": 1,
+    "distractors_en": ["salad", "sandwich", "stew"],
+    "distractors_es": ["ensalada", "sándwich", "guiso"]
+  },
+  {
+    "english_text": "pizza",
+    "spanish_text": "pizza",
+    "lesson": "Food",
+    "category": "Food",
+    "tags": ["noun", "beginner", "food"],
+    "difficulty": 1,
+    "distractors_en": ["taco", "burger", "noodles"],
+    "distractors_es": ["taco", "hamburguesa", "fideos"]
+  },
+  {
+    "english_text": "cake",
+    "spanish_text": "pastel",
+    "lesson": "Food",
+    "category": "Food",
+    "tags": ["noun", "beginner", "food"],
+    "difficulty": 1,
+    "distractors_en": ["cookie", "candy", "pie"],
+    "distractors_es": ["galleta", "dulce", "tarta"]
+  },
+  {
+    "english_text": "purple",
+    "spanish_text": "morado",
+    "lesson": "Colors",
+    "category": "Colors",
+    "tags": ["adjective", "beginner", "color"],
+    "difficulty": 1,
+    "distractors_en": ["pink", "blue", "red"],
+    "distractors_es": ["rosado", "azul", "rojo"]
+  },
+  {
+    "english_text": "orange",
+    "spanish_text": "anaranjado",
+    "lesson": "Colors",
+    "category": "Colors",
+    "tags": ["adjective", "beginner", "color"],
+    "difficulty": 1,
+    "distractors_en": ["red", "yellow", "pink"],
+    "distractors_es": ["rojo", "amarillo", "rosado"]
+  },
+  {
+    "english_text": "arm",
+    "spanish_text": "brazo",
+    "lesson": "Body",
+    "category": "Body",
+    "tags": ["noun", "beginner", "body"],
+    "difficulty": 1,
+    "distractors_en": ["leg", "hand", "shoulder"],
+    "distractors_es": ["pierna", "mano", "hombro"]
+  },
+  {
+    "english_text": "leg",
+    "spanish_text": "pierna",
+    "lesson": "Body",
+    "category": "Body",
+    "tags": ["noun", "beginner", "body"],
+    "difficulty": 1,
+    "distractors_en": ["arm", "foot", "knee"],
+    "distractors_es": ["brazo", "pie", "rodilla"]
+  },
+  {
+    "english_text": "dance",
+    "spanish_text": "bailar",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["sing", "play", "clap"],
+    "distractors_es": ["cantar", "jugar", "aplaudir"]
+  },
+  {
+    "english_text": "sing",
+    "spanish_text": "cantar",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["dance", "hum", "shout"],
+    "distractors_es": ["bailar", "tararear", "gritar"]
+  },
+  {
+    "english_text": "open",
+    "spanish_text": "abrir",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["close", "lock", "push"],
+    "distractors_es": ["cerrar", "bloquear", "empujar"]
+  },
+  {
+    "english_text": "close",
+    "spanish_text": "cerrar",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["open", "lock", "shut"],
+    "distractors_es": ["abrir", "bloquear", "tapar"]
+  },
+  {
+    "english_text": "give",
+    "spanish_text": "dar",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["take", "share", "hold"],
+    "distractors_es": ["tomar", "compartir", "sostener"]
+  },
+  {
+    "english_text": "want",
+    "spanish_text": "querer",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["need", "have", "like"],
+    "distractors_es": ["necesitar", "tener", "gustar"]
+  },
+  {
+    "english_text": "have",
+    "spanish_text": "tener",
+    "lesson": "Simple Verbs",
+    "category": "Verbs",
+    "tags": ["verb", "beginner"],
+    "difficulty": 2,
+    "distractors_en": ["want", "need", "hold"],
+    "distractors_es": ["querer", "necesitar", "sostener"]
+  },
+  {
+    "english_text": "flower",
+    "spanish_text": "flor",
+    "lesson": "Basics 2 — More Words",
+    "category": "Nature",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["tree", "grass", "leaf"],
+    "distractors_es": ["árbol", "hierba", "hoja"]
+  },
+  {
+    "english_text": "star",
+    "spanish_text": "estrella",
+    "lesson": "Basics 2 — More Words",
+    "category": "Nature",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["moon", "sun", "cloud"],
+    "distractors_es": ["luna", "sol", "nube"]
+  },
+  {
+    "english_text": "moon",
+    "spanish_text": "luna",
+    "lesson": "Basics 2 — More Words",
+    "category": "Nature",
+    "tags": ["noun", "beginner"],
+    "difficulty": 1,
+    "distractors_en": ["sun", "star", "sky"],
+    "distractors_es": ["sol", "estrella", "cielo"]
+  }
+]

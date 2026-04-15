@@ -1,65 +1,157 @@
-import Image from "next/image";
+'use client'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import styles from './profiles.module.css'
 
-export default function Home() {
+const AVATARS = ['🦁', '🐼', '🦊', '🐸', '🦋', '🐧', '🦄', '🐯', '🐻', '🦅']
+
+interface Profile {
+  id: string
+  child_name: string
+  avatar: string
+  streak: number
+  total_xp: number
+}
+
+export default function ProfileSelectPage() {
+  const router = useRouter()
+  const [profiles, setProfiles] = useState<Profile[]>([])
+  const [creating, setCreating] = useState(false)
+  const [newName, setNewName] = useState('')
+  const [newAvatar, setNewAvatar] = useState('🦁')
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchProfiles()
+  }, [])
+
+  async function fetchProfiles() {
+    // Load from localStorage cache first (no auth needed for child profiles)
+    const local = localStorage.getItem('spanishkids_profiles')
+    if (local) {
+      setProfiles(JSON.parse(local))
+    }
+    setLoading(false)
+  }
+
+  async function createProfile() {
+    if (!newName.trim()) return
+    const res = await fetch('/api/profiles', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ child_name: newName.trim(), avatar: newAvatar }),
+    })
+    const profile = await res.json()
+    const updated = [...profiles, profile]
+    setProfiles(updated)
+    localStorage.setItem('spanishkids_profiles', JSON.stringify(updated))
+    setCreating(false)
+    setNewName('')
+  }
+
+  function selectProfile(profile: Profile) {
+    localStorage.setItem('spanishkids_active_profile', JSON.stringify(profile))
+    router.push('/learn')
+  }
+
+  if (loading) {
+    return (
+      <div className={styles.loadingScreen}>
+        <div className={styles.loadingEmoji}>🌟</div>
+        <p>Loading...</p>
+      </div>
+    )
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className={styles.page}>
+      {/* Background decorations */}
+      <div className={styles.bgDecor}>
+        <span className={styles.cloud} style={{ top: '8%', left: '5%', fontSize: '3rem', opacity: 0.15 }}>☁️</span>
+        <span className={styles.cloud} style={{ top: '15%', right: '8%', fontSize: '2rem', opacity: 0.12 }}>☁️</span>
+        <span className={styles.cloud} style={{ top: '60%', left: '2%', fontSize: '2.5rem', opacity: 0.1 }}>⭐</span>
+        <span className={styles.cloud} style={{ top: '80%', right: '5%', fontSize: '2rem', opacity: 0.12 }}>🌙</span>
+      </div>
+
+      <div className={styles.header}>
+        <div className={styles.logo}>
+          <span className={styles.logoEmoji}>🌎</span>
+          <h1 className={styles.logoText}>SpanishKids</h1>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <p className={styles.subtitle}>¡Hola! Who is learning today?</p>
+      </div>
+
+      <div className={styles.profileGrid}>
+        {profiles.map((profile, i) => (
+          <button
+            key={profile.id}
+            className={styles.profileCard}
+            onClick={() => selectProfile(profile)}
+            style={{ animationDelay: `${i * 0.08}s` }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            <div className={styles.profileAvatar}>{profile.avatar}</div>
+            <div className={styles.profileName}>{profile.child_name}</div>
+            {profile.streak > 0 && (
+              <div className={styles.profileStreak}>🔥 {profile.streak}</div>
+            )}
+          </button>
+        ))}
+
+        {/* Add profile button */}
+        {!creating && (
+          <button
+            className={styles.addProfileCard}
+            onClick={() => setCreating(true)}
+          >
+            <div className={styles.addIcon}>+</div>
+            <div className={styles.addText}>Add Learner</div>
+          </button>
+        )}
+      </div>
+
+      {/* Create profile modal */}
+      {creating && (
+        <div className={styles.modalOverlay} onClick={() => setCreating(false)}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <h2 className={styles.modalTitle}>New Learner 🌟</h2>
+
+            <input
+              id="newLearnerName"
+              className={styles.nameInput}
+              placeholder="What's your name?"
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && createProfile()}
+              autoFocus
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+            <p className={styles.pickAvatarLabel}>Pick your avatar:</p>
+            <div className={styles.avatarPicker}>
+              {AVATARS.map((emoji) => (
+                <button
+                  key={emoji}
+                  className={`${styles.avatarOption} ${newAvatar === emoji ? styles.avatarSelected : ''}`}
+                  onClick={() => setNewAvatar(emoji)}
+                >
+                  {emoji}
+                </button>
+              ))}
+            </div>
+
+            <div className={styles.modalActions}>
+              <button className={`btn btn-success ${styles.createBtn}`} onClick={createProfile}>
+                Let's Go! 🚀
+              </button>
+              <button className={styles.cancelBtn} onClick={() => setCreating(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
         </div>
-      </main>
+      )}
+
+      {/* Admin link */}
+      <a href="/admin" className={styles.adminLink}>Parent / Admin →</a>
     </div>
-  );
+  )
 }

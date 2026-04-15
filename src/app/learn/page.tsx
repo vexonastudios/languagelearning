@@ -1,0 +1,146 @@
+'use client'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import styles from './learn.module.css'
+
+interface Lesson {
+  id: string
+  title: string
+  order: number
+  category: string
+  difficulty: number
+  status: string
+}
+
+interface Profile {
+  id: string
+  child_name: string
+  avatar: string
+  streak: number
+  total_xp: number
+}
+
+const CATEGORY_COLORS: Record<string, string> = {
+  Basics: '#38bdf8',
+  Animals: '#4ade80',
+  Food: '#fbbf24',
+  Colors: '#a78bfa',
+  Family: '#fb7185',
+  Body: '#fb923c',
+  Verbs: '#34d399',
+  Sentences: '#60a5fa',
+  Review: '#f472b6',
+  General: '#94a3b8',
+}
+
+const CATEGORY_EMOJIS: Record<string, string> = {
+  Basics: '⭐',
+  Animals: '🦁',
+  Food: '🍎',
+  Colors: '🌈',
+  Family: '👨‍👩‍👧',
+  Body: '✋',
+  Verbs: '🏃',
+  Sentences: '💬',
+  Review: '🔄',
+  General: '📚',
+}
+
+export default function LearnPage() {
+  const router = useRouter()
+  const [lessons, setLessons] = useState<Lesson[]>([])
+  const [profile, setProfile] = useState<Profile | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const p = localStorage.getItem('spanishkids_active_profile')
+    if (!p) { router.push('/'); return }
+    setProfile(JSON.parse(p))
+    fetchLessons()
+  }, [])
+
+  async function fetchLessons() {
+    const res = await fetch('/api/lessons')
+    const data = await res.json()
+    setLessons(Array.isArray(data) ? data : [])
+    setLoading(false)
+  }
+
+  if (loading || !profile) {
+    return (
+      <div className={styles.loading}>
+        <div className={styles.loadingEmoji}>🦁</div>
+        <p>Getting your lessons ready...</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className={styles.page}>
+      {/* Header */}
+      <div className={styles.header}>
+        <button className={styles.backBtn} onClick={() => router.push('/')}>
+          ←
+        </button>
+        <div className={styles.profileBadge}>
+          <span>{profile.avatar}</span>
+          <span>{profile.child_name}</span>
+        </div>
+        <div className={styles.xpBadge}>
+          ⭐ {profile.total_xp ?? 0}
+        </div>
+      </div>
+
+      {/* Streak banner */}
+      {(profile.streak ?? 0) > 0 && (
+        <div className={styles.streakBanner}>
+          🔥 {profile.streak} day streak! Keep it up!
+        </div>
+      )}
+
+      <h2 className={styles.pageTitle}>Choose a Lesson</h2>
+
+      {lessons.length === 0 && (
+        <div className={styles.emptyState}>
+          <div className={styles.emptyEmoji}>📚</div>
+          <p>No lessons published yet.</p>
+          <p style={{ fontSize: '0.9rem', color: '#94a3b8' }}>Ask a parent to add lessons in the admin panel.</p>
+        </div>
+      )}
+
+      <div className={styles.lessonList}>
+        {lessons.map((lesson, i) => {
+          const color = CATEGORY_COLORS[lesson.category] ?? '#94a3b8'
+          const emoji = CATEGORY_EMOJIS[lesson.category] ?? '📚'
+          return (
+            <button
+              key={lesson.id}
+              id={`lesson-${lesson.id}`}
+              className={styles.lessonCard}
+              style={{
+                '--lesson-color': color,
+                animationDelay: `${i * 0.06}s`,
+              } as React.CSSProperties}
+              onClick={() => router.push(`/learn/${lesson.id}`)}
+            >
+              <div className={styles.lessonNumber}>{lesson.order}</div>
+              <div className={styles.lessonIcon}>{emoji}</div>
+              <div className={styles.lessonInfo}>
+                <div className={styles.lessonTitle}>{lesson.title}</div>
+                <div className={styles.lessonMeta}>
+                  <span className={styles.categoryTag} style={{ background: color + '22', color }}>
+                    {lesson.category}
+                  </span>
+                  <span className={styles.difficulty}>
+                    {'⭐'.repeat(lesson.difficulty)}
+                  </span>
+                </div>
+              </div>
+              <div className={styles.lessonArrow}>›</div>
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
