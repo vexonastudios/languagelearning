@@ -43,8 +43,8 @@ export interface Question {
   choices: { label: string; isCorrect: boolean }[]
   // The correct answer text (for feedback)
   correctAnswer: string
-  exampleEn?: string
-  exampleEs?: string
+  exampleEn?: string | null
+  exampleEs?: string | null
 }
 
 function shuffle<T>(arr: T[]): T[] {
