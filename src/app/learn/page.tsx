@@ -148,6 +148,23 @@ export default function LearnPage() {
     )
   }
 
+  function playPop() {
+    try {
+      const ctx = new (window.AudioContext || (window as any).webkitAudioContext)()
+      const osc = ctx.createOscillator()
+      const gain = ctx.createGain()
+      osc.connect(gain)
+      gain.connect(ctx.destination)
+      osc.type = 'sine'
+      osc.frequency.setValueAtTime(500, ctx.currentTime)
+      osc.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + 0.1)
+      gain.gain.setValueAtTime(0.2, ctx.currentTime)
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1)
+      osc.start(ctx.currentTime)
+      osc.stop(ctx.currentTime + 0.1)
+    } catch (e) {}
+  }
+
   return (
     <div className={styles.page}>
       {/* Header */}
@@ -216,7 +233,10 @@ export default function LearnPage() {
         <button 
           className="btn" 
           style={{ background: '#f43f5e', color: 'white', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.8rem', fontWeight: 800, padding: '1rem', borderRadius: '1.5rem', boxShadow: '0 4px 14px rgba(244,63,94,0.4)', transition: 'transform 0.1s' }}
-          onClick={() => router.push('/learn/review')}
+          onClick={() => {
+            playPop();
+            setTimeout(() => router.push('/learn/review'), 100);
+          }}
         >
           <span style={{ fontSize: '1.5rem' }}>🏋️</span> Target Review Gym
         </button>
@@ -260,7 +280,10 @@ export default function LearnPage() {
                 animationDelay: `${i * 0.06}s`,
               } as React.CSSProperties}
               onClick={() => {
-                if (!isLocked) router.push(`/learn/${lesson.id}`)
+                if (!isLocked) {
+                  playPop();
+                  setTimeout(() => router.push(`/learn/${lesson.id}`), 100);
+                }
               }}
             >
               <div className={styles.lessonNumber}>
@@ -298,7 +321,10 @@ export default function LearnPage() {
                   key={story.id}
                   className={`${styles.lessonCard} ${isCompleted ? styles.lessonCompleted : ''}`}
                   style={{ '--lesson-color': '#10b981', animationDelay: `${i * 0.06}s` } as React.CSSProperties}
-                  onClick={() => router.push(`/story/${story.id}`)}
+                  onClick={() => {
+                    playPop();
+                    setTimeout(() => router.push(`/story/${story.id}`), 100);
+                  }}
                 >
                   <div className={styles.lessonNumber}>
                     {isCompleted ? <i className="fa-solid fa-check"></i> : '📖'}
