@@ -2,13 +2,12 @@ import { NextResponse } from 'next/server'
 import { getServiceClient } from '@/lib/supabase'
 import { isAdminAuth } from '@/lib/admin-auth'
 
-// GET all child profiles
+// GET all child profiles (Public so the login screen can sync deletions)
 export async function GET(req: Request) {
-  if (!isAdminAuth(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   const db = getServiceClient()
   const { data, error } = await db
     .from('child_profiles')
-    .select('*')
+    .select('id, child_name, avatar, streak, total_xp, last_active_at')
     .order('created_at', { ascending: true })
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })

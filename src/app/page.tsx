@@ -27,12 +27,24 @@ export default function ProfileSelectPage() {
   }, [])
 
   async function fetchProfiles() {
-    // Load from localStorage cache first (no auth needed for child profiles)
+    // Load from localStorage cache first for instant display
     const local = localStorage.getItem('spanishkids_profiles')
     if (local) {
       setProfiles(JSON.parse(local))
     }
     setLoading(false)
+
+    // Sync from server silently to catch admin deletions
+    try {
+      const res = await fetch('/api/profiles')
+      if (res.ok) {
+        const data = await res.json()
+        setProfiles(data)
+        localStorage.setItem('spanishkids_profiles', JSON.stringify(data))
+      }
+    } catch (e) {
+      // Offline fallback
+    }
   }
 
   async function createProfile() {
@@ -69,35 +81,7 @@ export default function ProfileSelectPage() {
   }
 
   function selectProfile(profile: Profile) {
-    const today = new Date().toISOString().split('T')[0]
-    let updatedProfile = { ...profile }
-
-    if (profile.last_active_at) {
-      const prevDate = new Date(today)
-      prevDate.setDate(prevDate.getDate() - 1)
-      const yesterdayStr = prevDate.toISOString().split('T')[0]
-
-      if (profile.last_active_at === yesterdayStr) {
-        // Increment streak!
-        updatedProfile.streak = (profile.streak || 0) + 1
-      } else if (profile.last_active_at !== today) {
-        // Missed a day! Reset streak.
-        updatedProfile.streak = 1
-      }
-      // If it IS today, do nothing (streak remains same)
-    } else {
-      // First time playing!
-      updatedProfile.streak = 1
-    }
-
-    updatedProfile.last_active_at = today
-
-    // Update the list of profiles in state + localStorage
-    const updatedProfiles = profiles.map(p => p.id === updatedProfile.id ? updatedProfile : p)
-    setProfiles(updatedProfiles)
-    localStorage.setItem('spanishkids_profiles', JSON.stringify(updatedProfiles))
-    
-    localStorage.setItem('spanishkids_active_profile', JSON.stringify(updatedProfile))
+    localStorage.setItem('spanishkids_active_profile', JSON.stringify(profile))
     router.push('/learn')
   }
 

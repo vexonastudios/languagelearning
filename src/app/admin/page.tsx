@@ -178,6 +178,17 @@ export default function AdminPage() {
     }
   }
 
+  async function regenerateFlaggedAudio() {
+    showStatus('Regenerating flagged audio...')
+    const res = await fetch('/api/admin/audio/retry', { method: 'POST', headers: getAuthHeader() })
+    if (res.ok) {
+      const { fixed } = await res.json()
+      showStatus(`Fixed ${fixed} flagged audio files ✅`)
+    } else {
+      showStatus('Failed to regenerate audio ❌')
+    }
+  }
+
   async function createReward() {
     if (!newReward.title.trim()) return
     const res = await fetch('/api/admin/rewards', {
@@ -438,6 +449,13 @@ export default function AdminPage() {
             <p className={styles.audioHint}>
               Use the Publish button on each lesson to pre-render all audio. Audio is cached in Supabase Storage.
             </p>
+
+            <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+              <button className="btn btn-primary" onClick={regenerateFlaggedAudio}>
+                🔄 Regenerate User-Flagged Audio
+              </button>
+            </div>
+
             <div className={styles.itemList}>
               {lessons.map((lesson) => (
                 <div key={lesson.id} className={styles.audioCard}>

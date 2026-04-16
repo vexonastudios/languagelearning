@@ -105,7 +105,7 @@ export default function LessonPlayPage() {
   const [totalAnswered, setTotalAnswered] = useState(0)
   const [finished, setFinished] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [profile, setProfile] = useState<{ id: string; child_name: string; avatar: string } | null>(null)
+  const [profile, setProfile] = useState<{ id: string; child_name: string; avatar: string; streak?: number; total_xp?: number; last_active_at?: string } | null>(null)
   const [stars, setStars] = useState(0)
   const [xpEarned, setXpEarned] = useState(0)
 
@@ -158,6 +158,20 @@ export default function LessonPlayPage() {
       }, 300)
     }
   }, [isStarted, currentIndex, questions, answerState])
+
+  async function reportBadAudio() {
+    if (!currentQuestion) return
+    if (!confirm('Mark this pronunciation as incorrect so developers can fix it?')) return
+    await fetch('/api/audio/flag', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        text: currentQuestion.audioText, 
+        language: currentQuestion.audioLanguage 
+      })
+    })
+    alert('Thank you! The audio has been flagged for regeneration.')
+  }
 
   async function handleAnswer(choice: { label: string; isCorrect: boolean }) {
     if (answerState === 'correct') return
@@ -262,14 +276,39 @@ export default function LessonPlayPage() {
           return p
         })
         localStorage.setItem('spanishkids_profiles', JSON.stringify(updatedList))
-      }
-      
-      if (profile) {
-        const key = `spanishkids_completed_${profile.id}`
-        const done = JSON.parse(localStorage.getItem(key) || '[]')
-        if (!done.includes(lessonId)) {
-          localStorage.setItem(key, JSON.stringify([...done, lessonId]))
+        
+        // Save completion
+        const completedKey = `spanishkids_completed_${profile.id}`
+        const completed = JSON.parse(localStorage.getItem(completedKey) || '[]')
+        if (lesson && !completed.includes(lesson.id)) {
+          completed.push(lesson.id)
+          localStorage.setItem(completedKey, JSON.stringify(completed))
         }
+
+        // Apply Streak Logic (Only triggers on FULL LESSON COMPLETION)
+        const today = new Date().toISOString().split('T')[0]
+        let updatedProfile = { ...profile }
+
+        if (profile.last_active_at) {
+          const prevDate = new Date(today)
+          prevDate.setDate(prevDate.getDate() - 1)
+          const yesterdayStr = prevDate.toISOString().split('T')[0]
+
+          if (profile.last_active_at === yesterdayStr) {
+            updatedProfile.streak = (profile.streak || 0) + 1
+          } else if (profile.last_active_at !== today) {
+            updatedProfile.streak = 1
+          }
+        } else {
+          updatedProfile.streak = 1
+        }
+        updatedProfile.last_active_at = today
+        
+        // Save back to sync
+        localStorage.setItem('spanishkids_active_profile', JSON.stringify(updatedProfile))
+        const allProfiles = JSON.parse(localStorage.getItem('spanishkids_profiles') || '[]')
+        const newAll = allProfiles.map((p: any) => p.id === updatedProfile.id ? updatedProfile : p)
+        localStorage.setItem('spanishkids_profiles', JSON.stringify(newAll))
       }
       
       setFinished(true)
@@ -397,16 +436,25 @@ export default function LessonPlayPage() {
         </div>
       </div>
 
-      {/* Question card */}
-      <div className={styles.questionArea} key={currentIndex}>
+      {/* Question Area */}
+      <div className={styles.questionArea}>
         {/* Audio prompt button */}
-        <button
-          id="playAudioBtn"
-          className={`${styles.audioBtn} ${answerState === 'idle' ? 'animate-pulse-glow' : ''}`}
-          onClick={replayAudio}
-        >
-          🔊
-        </button>
+        <div style={{ position: 'relative' }}>
+          <button
+            id="playAudioBtn"
+            className={`${styles.audioBtn} ${answerState === 'correct' ? styles.audioBtnPulse : ''}`}
+            onClick={replayAudio}
+          >
+            🔊
+          </button>
+          <button 
+            onClick={reportBadAudio} 
+            title="Report bad audio pronunciation"
+            className={styles.reportAudioBtn}
+          >
+            ⚠️
+          </button>
+        </div>
 
         {/* Image if picture question */}
         {currentQuestion.imageUrl && (
