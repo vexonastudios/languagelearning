@@ -127,39 +127,42 @@ export default function StoryPage({ params }: { params: Promise<{ id: string }> 
 
   return (
     <div className={styles.page}>
-      <div className={styles.lessonHeader}>
-        <button className={styles.backBtn} onClick={() => router.push('/learn')}>×</button>
-        <div style={{ fontWeight: 800, color: '#334155' }}>{story.title}</div>
+      <div className={styles.header}>
+        <button className={styles.backBtn} onClick={() => router.push('/learn')}>
+          ←
+        </button>
+        <div style={{ fontWeight: 800, color: '#334155', fontSize: '1.2rem', textAlign: 'center', flex: 1, paddingRight: '3rem' }}>
+          📖 {story.title}
+        </div>
       </div>
 
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '2rem', maxWidth: '800px', margin: '0 auto', width: '100%' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '1rem', maxWidth: '600px', margin: '0 auto', width: '100%' }}>
         
         {phase === 'reading' && (
-          <div style={{ animation: 'slideIn 0.4s ease' }}>
-            <div style={{ background: 'white', padding: '3rem', borderRadius: '2rem', boxShadow: '0 20px 40px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0', marginBottom: '2rem' }}>
-              <div 
-                style={{ fontSize: '1.8rem', lineHeight: '1.6', color: '#1e293b', fontWeight: 600, fontFamily: 'serif' }}
-              >
+          <div style={{ animation: 'slideIn 0.4s ease', display: 'flex', flexDirection: 'column', height: '100%' }}>
+            <div style={{ flex: 1, background: 'white', padding: '2rem', borderRadius: '1.5rem', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', border: '2px solid #e2e8f0', marginBottom: '2rem', display: 'flex', alignItems: 'center' }}>
+              <div style={{ fontSize: '1.6rem', lineHeight: '1.6', color: '#1e293b', fontWeight: 700, textAlign: 'center' }}>
                 {story.content_es}
               </div>
             </div>
             
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: 'auto', paddingBottom: '2rem' }}>
               <button 
-                className="btn btn-primary" 
-                style={{ fontSize: '1.4rem', padding: '1rem 3rem', background: isPlaying ? '#94a3b8' : '#3b82f6', display: 'flex', alignItems: 'center', gap: '0.8rem' }}
+                className={`btn btn-primary`}
+                style={{ fontSize: '1.3rem', padding: '1rem', background: isPlaying ? '#94a3b8' : '#3b82f6', borderColor: isPlaying ? '#64748b' : '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.8rem', width: '100%' }}
                 onClick={handlePlayAudio}
                 disabled={isPlaying}
               >
-                {isPlaying ? '🔊 Listening...' : '▶️ Play Audio'}
+                <i className={`fa-solid ${isPlaying ? 'fa-spinner fa-spin' : 'fa-volume-up'}`}></i>
+                {isPlaying ? 'Listening...' : 'Play Audio'}
               </button>
               
               <button 
-                className="btn" 
-                style={{ fontSize: '1.4rem', padding: '1rem 3rem', background: '#22c55e', color: 'white' }}
+                className="btn btn-success" 
+                style={{ fontSize: '1.3rem', padding: '1rem', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.8rem' }}
                 onClick={() => setPhase('question')}
               >
-                I'm Ready ➔
+                I'm Ready <i className="fa-solid fa-arrow-right"></i>
               </button>
             </div>
           </div>
@@ -167,24 +170,40 @@ export default function StoryPage({ params }: { params: Promise<{ id: string }> 
 
         {phase === 'question' && (
           <div style={{ animation: 'slideIn 0.4s ease' }}>
-            <button className="btn" style={{ background: '#f1f5f9', color: '#64748b', marginBottom: '2rem' }} onClick={() => setPhase('reading')}>
-              ← Back to story
+            <button className="btn" style={{ background: '#f1f5f9', color: '#64748b', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }} onClick={() => setPhase('reading')}>
+              <i className="fa-solid fa-arrow-left"></i> Read story again
             </button>
-            <h2 style={{ fontSize: '2rem', color: '#1e293b', marginBottom: '2rem', textAlign: 'center' }}>
-              {story.question_es}
-            </h2>
-            <div style={{ color: '#64748b', textAlign: 'center', marginBottom: '2rem' }}>{story.question_en}</div>
+            
+            <div style={{ background: 'white', padding: '2rem', borderRadius: '1.5rem', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', border: '2px solid #e2e8f0', marginBottom: '2rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', justifyContent: 'center' }}>
+                <h2 style={{ fontSize: '1.8rem', color: '#1e293b', textAlign: 'center', margin: 0, fontWeight: 800 }}>
+                  {story.question_es}
+                </h2>
+                <button 
+                  className="btn" 
+                  style={{ background: '#e0f2fe', color: '#0369a1', padding: '0.6rem', borderRadius: '50%', width: '3rem', height: '3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
+                  onClick={() => play(story.question_es, 'es')}
+                  title="Listen to question"
+                >
+                  <i className="fa-solid fa-volume-up"></i>
+                </button>
+              </div>
+              <div style={{ color: '#64748b', textAlign: 'center', marginTop: '0.5rem', fontWeight: 600 }}>{story.question_en}</div>
+            </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', gap: '1rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
               {answers.map(ans => (
                 <button
                   key={ans}
                   className={`btn ${selectedAnswer === ans ? (isCorrect ? 'btn-success' : 'btn-danger') : 'btn-outline'}`}
-                  style={{ padding: '1.5rem', fontSize: '1.3rem', border: selectedAnswer === ans ? undefined : '2px solid #e2e8f0' }}
+                  style={{ padding: '1.2rem', fontSize: '1.2rem', fontWeight: 700, border: selectedAnswer === ans ? undefined : '2px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                   onClick={() => handleChoice(ans)}
                   disabled={selectedAnswer !== null}
                 >
-                  {ans}
+                  <span>{ans}</span>
+                  {selectedAnswer === ans && (
+                    <i className={`fa-solid ${isCorrect ? 'fa-check' : 'fa-xmark'}`} style={{ fontSize: '1.4rem' }}></i>
+                  )}
                 </button>
               ))}
             </div>
