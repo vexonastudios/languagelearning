@@ -22,6 +22,37 @@ function randomPick<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
+function playDing() {
+  const ctx = new (window.AudioContext || (window as any).webkitAudioContext)()
+  const osc = ctx.createOscillator()
+  const gain = ctx.createGain()
+  osc.connect(gain)
+  gain.connect(ctx.destination)
+  osc.type = 'sine'
+  osc.frequency.setValueAtTime(800, ctx.currentTime)
+  osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1)
+  gain.gain.setValueAtTime(0, ctx.currentTime)
+  gain.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.05)
+  gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5)
+  osc.start(ctx.currentTime)
+  osc.stop(ctx.currentTime + 0.5)
+}
+
+function playBuzz() {
+  const ctx = new (window.AudioContext || (window as any).webkitAudioContext)()
+  const osc = ctx.createOscillator()
+  const gain = ctx.createGain()
+  osc.connect(gain)
+  gain.connect(ctx.destination)
+  osc.type = 'triangle'
+  osc.frequency.setValueAtTime(150, ctx.currentTime)
+  gain.gain.setValueAtTime(0, ctx.currentTime)
+  gain.gain.linearRampToValueAtTime(0.3, ctx.currentTime + 0.05)
+  gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3)
+  osc.start(ctx.currentTime)
+  osc.stop(ctx.currentTime + 0.3)
+}
+
 export default function LessonPlayPage() {
   const router = useRouter()
   const params = useParams()
@@ -110,13 +141,27 @@ export default function LessonPlayPage() {
       setXpEarned((n) => n + 10)
       setFeedbackMsg(randomPick(FEEDBACK_MESSAGES.correct))
       
-      // Request audio in sequence: praise + the Spanish target word!
-      await play('Great job!', 'en')
-      // If the question prompt was English, the correct answer was Spanish. We should hear it!
-      if (currentQuestion.audioLanguage === 'en' && currentQuestion.type !== 'picture_choose_en') {
-        setTimeout(() => play(currentQuestion.correctAnswer, 'es'), 800)
-      } else if (currentQuestion.audioLanguage === 'es') {
-        setTimeout(() => play(currentQuestion.audioText, 'es'), 800)
+      // Play ding immediately
+      playDing()
+      
+      // Play context audio
+      if (currentQuestion.type !== 'sentence_build' && currentQuestion.type !== 'sentence_match') {
+        setTimeout(() => {
+          if (currentQuestion.audioLanguage === 'en') {
+            // They heard english, tapped spanish. Say English again, then Spanish context.
+            play(currentQuestion.audioText, 'en')
+            setTimeout(() => play(currentQuestion.correctAnswer, 'es'), 1100)
+          } else {
+            // Heard spanish, tapped english. Say English context, then Spanish target.
+            play(currentQuestion.correctAnswer, 'en')
+            setTimeout(() => play(currentQuestion.audioText, 'es'), 1100)
+          }
+        }, 500)
+        setTimeout(advance, 3500) // Wait longer for both clips
+      } else {
+        // Just play the target sentence for sentence builders
+        setTimeout(() => play(currentQuestion.correctAnswer, 'es'), 500)
+        setTimeout(advance, 2500)
       }
 
       // Record progress
@@ -133,14 +178,11 @@ export default function LessonPlayPage() {
           }),
         })
       }
-
-      // Auto-advance after giving them time to hear the audio
-      setTimeout(advance, 2500)
     } else {
       // It's wrong! Let them try again.
       setWrongChoices((prev) => [...prev, choice.label])
       setFeedbackMsg(randomPick(FEEDBACK_MESSAGES.wrong))
-      play('Try again.', 'en')
+      playBuzz()
 
       // Record wrong
       if (profile && currentQuestion && wrongChoices.length === 0) {
@@ -180,6 +222,14 @@ export default function LessonPlayPage() {
           return p
         })
         localStorage.setItem('spanishkids_profiles', JSON.stringify(updatedList))
+      }
+      
+      if (profile) {
+        const key = `spanishkids_completed_${profile.id}`
+        const done = JSON.parse(localStorage.getItem(key) || '[]')
+        if (!done.includes(lessonId)) {
+          localStorage.setItem(key, JSON.stringify([...done, lessonId]))
+        }
       }
       
       setFinished(true)
