@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './admin.module.css'
 
-type Tab = 'lessons' | 'vocab' | 'audio' | 'learners'
+type Tab = 'lessons' | 'vocab' | 'audio' | 'learners' | 'rewards'
 
 interface Lesson {
   id: string
@@ -34,6 +34,11 @@ export default function AdminPage() {
   const [vocab, setVocab] = useState<VocabItem[]>([])
   const [learners, setLearners] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
+
+  // Rewards & Purchases
+  const [rewards, setRewards] = useState<any[]>([])
+  const [purchases, setPurchases] = useState<any[]>([])
+  const [newReward, setNewReward] = useState({ title: '', cost: 50, icon: '🎁' })
 
   // Lesson form
   const [newLesson, setNewLesson] = useState({ title: '', category: 'Basics', difficulty: 1 })
@@ -84,9 +89,19 @@ export default function AdminPage() {
     if (res.ok) setLearners(await res.json())
   }
 
+  async function fetchRewards() {
+    const res = await fetch('/api/admin/rewards', { headers: getAuthHeader() })
+    if (res.ok) {
+      const data = await res.json()
+      setRewards(data.rewards)
+      setPurchases(data.purchases)
+    }
+  }
+
   useEffect(() => {
     if (authed && tab === 'vocab') fetchVocab()
     if (authed && tab === 'learners') fetchLearners()
+    if (authed && tab === 'rewards') fetchRewards()
   }, [authed, tab])
 
   async function createLesson() {
@@ -163,6 +178,38 @@ export default function AdminPage() {
     }
   }
 
+  async function createReward() {
+    if (!newReward.title.trim()) return
+    const res = await fetch('/api/admin/rewards', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify(newReward)
+    })
+    if (res.ok) {
+      setNewReward({ title: '', cost: 50, icon: '🎁' })
+      await fetchRewards()
+      showStatus('Reward added ✅')
+    }
+  }
+
+  async function deleteReward(id: string) {
+    if (!confirm('Delete this reward?')) return
+    await fetch(`/api/admin/rewards/${id}`, { method: 'DELETE', headers: getAuthHeader() })
+    await fetchRewards()
+    showStatus('Reward deleted ✅')
+  }
+
+  async function fulfillPurchase(id: string) {
+    if (!confirm('Mark this reward as given/fulfilled?')) return
+    await fetch(`/api/admin/purchases/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify({ status: 'fulfilled' })
+    })
+    await fetchRewards()
+    showStatus('Purchase fulfilled ✅')
+  }
+
   function showStatus(msg: string) {
     setStatusMsg(msg)
     setTimeout(() => setStatusMsg(''), 4000)
@@ -213,14 +260,14 @@ export default function AdminPage() {
 
       {/* Tab nav */}
       <div className={styles.tabNav}>
-        {(['lessons', 'vocab', 'audio', 'learners'] as Tab[]).map((t) => (
+        {(['lessons', 'vocab', 'audio', 'learners', 'rewards'] as Tab[]).map((t) => (
           <button
             key={t}
             id={`tab-${t}`}
             className={`${styles.tabBtn} ${tab === t ? styles.tabActive : ''}`}
             onClick={() => setTab(t)}
           >
-            {t === 'lessons' ? '📚 Lessons' : t === 'vocab' ? '📝 Vocab' : t === 'audio' ? '🔊 Audio' : '👤 Learners'}
+            {t === 'lessons' ? '📚 Lessons' : t === 'vocab' ? '📝 Vocab' : t === 'audio' ? '🔊 Audio' : t === 'learners' ? '👤 Learners' : '🎁 Rewards'}
           </button>
         ))}
       </div>
@@ -437,6 +484,78 @@ export default function AdminPage() {
                     title="Delete Learner"
                   >
                     🗑️
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── REWARDS TAB ── */}
+        {tab === 'rewards' && (
+          <div>
+            <h2 className={styles.sectionTitle}>Store & Rewards</h2>
+            <p className={styles.audioHint}>Add items for your children to buy with their XP stars!</p>
+            
+            <div className={styles.formCard}>
+              <h3 className={styles.formTitle}>Add Reward</h3>
+              <div className={styles.formRow}>
+                <input
+                  className={styles.input}
+                  style={{ width: '4rem' }}
+                  placeholder="Emoji"
+                  value={newReward.icon}
+                  onChange={(e) => setNewReward({ ...newReward, icon: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  placeholder="Reward Title"
+                  value={newReward.title}
+                  onChange={(e) => setNewReward({ ...newReward, title: e.target.value })}
+                />
+                <input
+                  type="number"
+                  className={styles.input}
+                  style={{ width: '6rem' }}
+                  placeholder="XP"
+                  value={newReward.cost}
+                  onChange={(e) => setNewReward({ ...newReward, cost: parseInt(e.target.value) || 0 })}
+                />
+                <button className={`btn btn-primary ${styles.addBtn}`} onClick={createReward}>Add</button>
+              </div>
+            </div>
+
+            <h3 style={{ marginTop: '2rem', marginBottom: '1rem', color: '#1e293b' }}>Pending Purchases</h3>
+            <div className={styles.itemList}>
+              {purchases.filter(p => p.status === 'pending').length === 0 && <p style={{ color: '#94a3b8' }}>No pending purchases.</p>}
+              {purchases.filter(p => p.status === 'pending').map((p) => (
+                <div key={p.id} className={styles.vocabCard} style={{ background: '#fefce8', borderColor: '#fde047' }}>
+                  <div className={styles.vocabPair}>
+                    <span className={styles.vocabEs} style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>{p.profile.avatar}</span>
+                    <span className={styles.vocabEn}>
+                      {p.profile.child_name} bought <strong>{p.reward.icon} {p.reward.title}</strong>
+                    </span>
+                  </div>
+                  <button className="btn btn-success" onClick={() => fulfillPurchase(p.id)}>
+                    Fulfill ✅
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <h3 style={{ marginTop: '2rem', marginBottom: '1rem', color: '#1e293b' }}>Available Store Items</h3>
+            <div className={styles.itemList}>
+              {rewards.map((reward) => (
+                <div key={reward.id} className={styles.vocabCard}>
+                  <div className={styles.vocabPair}>
+                    <span className={styles.vocabEs} style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>{reward.icon}</span>
+                    <span className={styles.vocabEn}>{reward.title}</span>
+                  </div>
+                  <div className={styles.vocabMeta}>
+                    Cost: ⭐ {reward.cost}
+                  </div>
+                  <button className={styles.deleteBtn} onClick={() => deleteReward(reward.id)} title="Delete Reward">
+                    ✕
                   </button>
                 </div>
               ))}

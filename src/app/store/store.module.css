@@ -1,0 +1,155 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(160deg, #fefce8 0%, #fef9c3 100%);
+  max-width: 480px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background: rgba(254,252,232,0.95);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.titleBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.storeEmoji {
+  font-size: 2.5rem;
+}
+
+.titleText {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ca8a04;
+}
+
+.backBtn {
+  background: #fef08a;
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #a16207;
+  cursor: pointer;
+}
+
+.xpBadge {
+  background: white;
+  border: 2px solid #fef08a;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: #a16207;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.rewardCard {
+  background: white;
+  border: 4px solid #fef08a;
+  border-radius: 1.5rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+  animation: pop-in 0.3s ease forwards;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.rewardCard:hover {
+  transform: translateY(-4px);
+  border-color: #fde047;
+}
+
+.icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+}
+
+.cost {
+  background: #fef9c3;
+  color: #ca8a04;
+  font-weight: 900;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #a16207;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background: white;
+  border-radius: 2rem;
+  padding: 2rem;
+  width: 90%;
+  max-width: 320px;
+  text-align: center;
+  animation: pop-in 0.3s forwards;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ca8a04;
+  margin-bottom: 1rem;
+}
+
+.modalActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+@keyframes pop-in {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}

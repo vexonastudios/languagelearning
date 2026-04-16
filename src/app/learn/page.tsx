@@ -91,8 +91,8 @@ export default function LearnPage() {
           <span>{profile.avatar}</span>
           <span>{profile.child_name}</span>
         </div>
-        <div className={styles.xpBadge}>
-          ⭐ {profile.total_xp ?? 0}
+        <div className={styles.xpBadge} onClick={() => router.push('/store')} style={{ cursor: 'pointer', outline: '2px solid #ca8a04', background: '#fef9c3', color: '#a16207' }} title="Go to Rewards Store">
+          🏪 ⭐ {profile.total_xp ?? 0}
         </div>
       </div>
 

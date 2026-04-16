@@ -150,3 +150,29 @@ create policy "anon_read_published_lessons" on lessons for select using (status 
 create policy "anon_read_vocab" on vocabulary_items for select using (true);
 create policy "anon_read_sentences" on sentences for select using (true);
 create policy "anon_read_audio" on audio_cache for select using (status = 'ready');
+
+-- ============================================================
+-- REWARDS
+-- ============================================================
+create table if not exists rewards (
+  id uuid primary key default uuid_generate_v4(),
+  title text not null,
+  cost int not null default 50,
+  icon text not null default '🎁',
+  created_at timestamptz not null default now()
+);
+
+create table if not exists reward_purchases (
+  id uuid primary key default uuid_generate_v4(),
+  profile_id uuid references child_profiles(id) on delete cascade,
+  reward_id uuid references rewards(id) on delete cascade,
+  status text not null default 'pending',
+  created_at timestamptz not null default now()
+);
+
+alter table rewards enable row level security;
+alter table reward_purchases enable row level security;
+
+create policy "service_role_all_rewards" on rewards for all using (true);
+create policy "service_role_all_purchases" on reward_purchases for all using (true);
+create policy "anon_read_rewards" on rewards for select using (true);
