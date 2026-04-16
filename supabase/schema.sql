@@ -176,3 +176,28 @@ alter table reward_purchases enable row level security;
 create policy "service_role_all_rewards" on rewards for all using (true);
 create policy "service_role_all_purchases" on reward_purchases for all using (true);
 create policy "anon_read_rewards" on rewards for select using (true);
+
+-- ============================================================
+-- VERBS (Conjugation Engine)
+-- ============================================================
+create table if not exists verbs (
+  id uuid primary key default uuid_generate_v4(),
+  infinitive_es text not null,
+  infinitive_en text not null,
+  lesson_id uuid references lessons(id) on delete cascade,
+  
+  -- Present Tense Conjugations
+  yo text not null,
+  tu text not null,
+  el text not null, -- él/ella/usted
+  nosotros text not null,
+  ellos text not null, -- ellos/ellas/ustedes
+  
+  category text not null default 'General',
+  difficulty int not null default 1,
+  created_at timestamptz not null default now()
+);
+
+alter table verbs enable row level security;
+create policy "service_role_all_verbs" on verbs for all using (true);
+create policy "anon_read_verbs" on verbs for select using (true);

@@ -11,10 +11,11 @@ export async function GET(
   const { searchParams } = new URL(req.url)
   const userId = searchParams.get('userId')
 
-  const [lessonRes, vocabRes, sentenceRes] = await Promise.all([
+  const [lessonRes, vocabRes, sentenceRes, verbsRes] = await Promise.all([
     db.from('lessons').select('*').eq('id', lessonId).single(),
     db.from('vocabulary_items').select('*').eq('lesson_id', lessonId).order('sort_order'),
     db.from('sentences').select('*').eq('lesson_id', lessonId).order('sort_order'),
+    db.from('verbs').select('*').eq('lesson_id', lessonId),
   ])
 
   if (lessonRes.error || !lessonRes.data) {
@@ -31,6 +32,7 @@ export async function GET(
   const questions = buildQuestionSet(
     vocabRes.data ?? [],
     sentenceRes.data ?? [],
+    verbsRes.data ?? [],
     10,
     progressMap
   )
@@ -39,6 +41,7 @@ export async function GET(
     lesson: lessonRes.data,
     vocabulary: vocabRes.data ?? [],
     sentences: sentenceRes.data ?? [],
+    verbs: verbsRes.data ?? [],
     questions,
   })
 }

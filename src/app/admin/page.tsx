@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './admin.module.css'
 
-type Tab = 'lessons' | 'vocab' | 'audio' | 'learners' | 'rewards'
+type Tab = 'lessons' | 'vocab' | 'verbs' | 'audio' | 'learners' | 'rewards'
 
 interface Lesson {
   id: string
@@ -32,6 +32,7 @@ export default function AdminPage() {
   const [tab, setTab] = useState<Tab>('lessons')
   const [lessons, setLessons] = useState<Lesson[]>([])
   const [vocab, setVocab] = useState<VocabItem[]>([])
+  const [verbs, setVerbs] = useState<any[]>([])
   const [learners, setLearners] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
 
@@ -43,7 +44,6 @@ export default function AdminPage() {
   // Lesson form
   const [newLesson, setNewLesson] = useState({ title: '', category: 'Basics', difficulty: 1 })
   
-  // Vocab form
   const [newVocab, setNewVocab] = useState({
     english_text: '',
     spanish_text: '',
@@ -52,6 +52,20 @@ export default function AdminPage() {
     difficulty: 1,
     distractors_en: '',
     distractors_es: '',
+  })
+
+  // Verb form
+  const [newVerb, setNewVerb] = useState({
+    infinitive_es: '',
+    infinitive_en: '',
+    lesson_id: '',
+    category: 'General',
+    difficulty: 1,
+    yo: '',
+    tu: '',
+    el: '',
+    nosotros: '',
+    ellos: '',
   })
 
   const [statusMsg, setStatusMsg] = useState('')
@@ -84,6 +98,11 @@ export default function AdminPage() {
     if (res.ok) setVocab(await res.json())
   }
 
+  async function fetchVerbs() {
+    const res = await fetch('/api/admin/verbs', { headers: getAuthHeader() })
+    if (res.ok) setVerbs(await res.json())
+  }
+
   async function fetchLearners() {
     const res = await fetch('/api/profiles', { headers: getAuthHeader() })
     if (res.ok) setLearners(await res.json())
@@ -105,6 +124,7 @@ export default function AdminPage() {
 
   useEffect(() => {
     if (authed && tab === 'vocab') fetchVocab()
+    if (authed && tab === 'verbs') fetchVerbs()
     if (authed && tab === 'learners') fetchLearners()
     if (authed && tab === 'rewards') fetchRewards()
     if (authed && tab === 'audio') { fetchLessons(); fetchFlaggedAudio() }
@@ -170,6 +190,28 @@ export default function AdminPage() {
     if (!confirm('Delete this word?')) return
     await fetch(`/api/admin/vocab/${id}`, { method: 'DELETE', headers: getAuthHeader() })
     await fetchVocab()
+    showStatus('Deleted ✅')
+  }
+
+  async function createVerb() {
+    if (!newVerb.infinitive_es.trim()) return
+    const payload = { ...newVerb, lesson_id: newVerb.lesson_id || null }
+    const res = await fetch('/api/admin/verbs', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify(payload),
+    })
+    if (res.ok) {
+      setNewVerb({ infinitive_es: '', infinitive_en: '', lesson_id: '', category: 'General', difficulty: 1, yo: '', tu: '', el: '', nosotros: '', ellos: '' })
+      await fetchVerbs()
+      showStatus('Verb added ✅')
+    }
+  }
+
+  async function deleteVerb(id: string) {
+    if (!confirm('Delete this verb?')) return
+    await fetch(`/api/admin/verbs/${id}`, { method: 'DELETE', headers: getAuthHeader() })
+    await fetchVerbs()
     showStatus('Deleted ✅')
   }
 
@@ -291,15 +333,16 @@ export default function AdminPage() {
       </div>
 
       {/* Tab nav */}
-      <div className={styles.tabNav}>
-        {(['lessons', 'vocab', 'audio', 'learners', 'rewards'] as Tab[]).map((t) => (
+      <div className={styles.tabNav} style={{ overflowX: 'auto', display: 'flex' }}>
+        {(['lessons', 'vocab', 'verbs', 'audio', 'learners', 'rewards'] as Tab[]).map((t) => (
           <button
             key={t}
             id={`tab-${t}`}
             className={`${styles.tabBtn} ${tab === t ? styles.tabActive : ''}`}
             onClick={() => setTab(t)}
+            style={{ whiteSpace: 'nowrap' }}
           >
-            {t === 'lessons' ? '📚 Lessons' : t === 'vocab' ? '📝 Vocab' : t === 'audio' ? '🔊 Audio' : t === 'learners' ? '👤 Learners' : '🎁 Rewards'}
+            {t === 'lessons' ? '📚 Lessons' : t === 'vocab' ? '📝 Vocab' : t === 'verbs' ? '🏃 Verbs' : t === 'audio' ? '🔊 Audio' : t === 'learners' ? '👤 Learners' : '🎁 Rewards'}
           </button>
         ))}
       </div>
@@ -457,6 +500,92 @@ export default function AdminPage() {
                   >
                     ✕
                   </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── VERBS TAB ── */}
+        {tab === 'verbs' && (
+          <div>
+            <h2 className={styles.sectionTitle}>Verb Conjugations</h2>
+            
+            <div className={styles.formCard}>
+              <h3 className={styles.formTitle}>Add Verb</h3>
+              <div className={styles.vocabFormGrid}>
+                <input
+                  className={styles.input}
+                  placeholder="Infinitive (Spanish e.g. hablar)"
+                  value={newVerb.infinitive_es}
+                  onChange={(e) => setNewVerb({ ...newVerb, infinitive_es: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  placeholder="Meaning (English e.g. to speak)"
+                  value={newVerb.infinitive_en}
+                  onChange={(e) => setNewVerb({ ...newVerb, infinitive_en: e.target.value })}
+                />
+                <select
+                  className={styles.select}
+                  value={newVerb.lesson_id}
+                  onChange={(e) => setNewVerb({ ...newVerb, lesson_id: e.target.value })}
+                >
+                  <option value="">No lesson</option>
+                  {lessons.map((l) => <option key={l.id} value={l.id}>{l.title}</option>)}
+                </select>
+                <input
+                  className={styles.input}
+                  placeholder="yo (I)"
+                  value={newVerb.yo}
+                  onChange={(e) => setNewVerb({ ...newVerb, yo: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  placeholder="tú (you)"
+                  value={newVerb.tu}
+                  onChange={(e) => setNewVerb({ ...newVerb, tu: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  placeholder="él/ella (he/she)"
+                  value={newVerb.el}
+                  onChange={(e) => setNewVerb({ ...newVerb, el: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  placeholder="nosotros (we)"
+                  value={newVerb.nosotros}
+                  onChange={(e) => setNewVerb({ ...newVerb, nosotros: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  placeholder="ellos (they)"
+                  value={newVerb.ellos}
+                  onChange={(e) => setNewVerb({ ...newVerb, ellos: e.target.value })}
+                />
+              </div>
+              <button className={`btn btn-primary ${styles.addBtn}`} onClick={createVerb}>
+                Add Verb
+              </button>
+            </div>
+
+            <div className={styles.itemList}>
+              {verbs.map((verb) => (
+                <div key={verb.id} className={styles.vocabCard}>
+                  <div className={styles.vocabPair}>
+                    <span className={styles.vocabEn}>{verb.infinitive_en}</span>
+                    <span className={styles.vocabArrow}>→</span>
+                    <span className={styles.vocabEs} style={{ fontWeight: 800 }}>{verb.infinitive_es}</span>
+                  </div>
+                  <div className={styles.vocabMeta} style={{ marginTop: '0.5rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
+                    <div>👤 Yo {verb.yo}</div>
+                    <div>👉 Tú {verb.tu}</div>
+                    <div>🙋‍♂️ Él {verb.el}</div>
+                    <div>👥 Nosotros {verb.nosotros}</div>
+                    <div>👨‍👩‍👧‍👦 Ellos {verb.ellos}</div>
+                  </div>
+                  <button className={styles.deleteBtn} style={{ marginTop: '1rem' }} onClick={() => deleteVerb(verb.id)}>✕</button>
                 </div>
               ))}
             </div>

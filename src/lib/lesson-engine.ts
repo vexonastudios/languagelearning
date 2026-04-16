@@ -9,6 +9,18 @@ export type QuestionType =
   | 'sentence_match'
   | 'sentence_build'
   | 'listen_repeat'
+  | 'conjugate_verb'
+
+export interface VerbItem {
+  id: string
+  infinitive_es: string
+  infinitive_en: string
+  yo: string
+  tu: string
+  el: string
+  nosotros: string
+  ellos: string
+}
 
 export interface VocabItem {
   id: string
@@ -46,6 +58,10 @@ export interface Question {
   correctAnswer: string
   exampleEn?: string | null
   exampleEs?: string | null
+  
+  // For conjugation type
+  conjugationSubject?: string
+  conjugationInfinitive?: string
 }
 
 function shuffle<T>(arr: T[]): T[] {
@@ -77,6 +93,7 @@ function buildChoices(
 export function buildQuestionSet(
   vocab: VocabItem[],
   sentences: SentenceItem[],
+  verbs: VerbItem[],
   targetCount: number = 10,
   progressMap?: Map<string, number>
 ): Question[] {
@@ -186,6 +203,38 @@ export function buildQuestionSet(
       choices: [], // Not used the same way for drag/drop
       correctAnswer: s.english_text,
     })
+  }
+
+  // Adding Verb Conjugation Questions
+  for (const v of verbs) {
+    const subjects = [
+      { sub: 'Yo', answer: v.yo },
+      { sub: 'Tú', answer: v.tu },
+      { sub: 'Él/Ella', answer: v.el },
+      { sub: 'Nosotros', answer: v.nosotros },
+      { sub: 'Ellos', answer: v.ellos },
+    ]
+
+    for (const { sub, answer } of subjects) {
+      if (!answer) continue // skip if blank
+
+      // The distractor pool is the other conjugations for this same verb
+      const otherConjugations = subjects.map(s => s.answer).filter(s => s !== answer && s !== '')
+
+      questions.push({
+        id: `${v.id}_conj_${sub}`,
+        type: 'conjugate_verb',
+        itemId: v.id,
+        itemType: 'vocabulary', // treating verbs as vocab for progress tracking
+        audioText: `${sub} ${answer}`,
+        audioLanguage: 'es',
+        promptText: `Conjugate: ${v.infinitive_es} (${v.infinitive_en})`,
+        conjugationSubject: sub,
+        conjugationInfinitive: v.infinitive_es,
+        choices: buildChoices(answer, otherConjugations, []),
+        correctAnswer: answer,
+      })
+    }
   }
 
   // Spacer Repetition Logic: 

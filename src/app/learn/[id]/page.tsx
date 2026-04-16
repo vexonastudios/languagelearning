@@ -525,6 +525,53 @@ export default function LessonPlayPage() {
             Got it!
           </button>
         </div>
+      ) : currentQuestion.type === 'conjugate_verb' ? (
+        <div className={styles.conjugateArea} style={{ textAlign: 'center', background: '#f8fafc', padding: '2rem', borderRadius: '1.5rem', border: '2px solid #e2e8f0', marginTop: '1rem' }}>
+          <h3 style={{ color: '#64748b', fontSize: '1.1rem', marginBottom: '1.5rem', fontWeight: 600 }}>Fill in the blank missing verb:</h3>
+          <div style={{ fontSize: '2rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+            <span style={{ fontWeight: 800, color: '#334155' }}>{currentQuestion.conjugationSubject}</span>
+            <span style={{ 
+              display: 'inline-block', 
+              minWidth: '120px', 
+              borderBottom: `4px solid ${answerState === 'correct' ? '#22c55e' : selectedChoice ? '#f1f5f9' : '#cbd5e1'}`, 
+              padding: '0 1rem', 
+              color: answerState === 'correct' ? '#22c55e' : '#3b82f6',
+              fontWeight: 800
+            }}>
+              {selectedChoice || '?'}
+            </span>
+          </div>
+
+          <div className={styles.choicesGrid}>
+            {currentQuestion.choices.map((choice, i) => {
+              const isWrong = wrongChoices.includes(choice.label)
+              let choiceState = ''
+              
+              if (answerState === 'correct') {
+                 if (choice.isCorrect) choiceState = styles.choiceCorrect
+                 else choiceState = styles.choiceDimmed
+              } else if (isWrong) {
+                 choiceState = styles.choiceWrong
+              } else if (selectedChoice === choice.label) {
+                 // Technically it evaluates instantly, but just in case
+                 choiceState = styles.choiceSelected
+              }
+
+              return (
+                <button
+                  key={i}
+                  id={`choice-${i}`}
+                  className={`${styles.choiceBtn} ${choiceState}`}
+                  style={{ animationDelay: `${i * 0.07}s`, fontSize: '1.2rem', padding: '1rem' }}
+                  onClick={() => handleAnswer(choice)}
+                  disabled={answerState === 'correct' || isWrong}
+                >
+                  {choice.label}
+                </button>
+              )
+            })}
+          </div>
+        </div>
       ) : currentQuestion.type === 'sentence_build' ? (
         <div className={styles.sentenceBuilderArea}>
           <div className={styles.dropZone}>
