@@ -97,8 +97,13 @@ export default function LearnPage() {
           <span>{profile.avatar}</span>
           <span>{profile.child_name}</span>
         </div>
-        <div className={styles.xpBadge} onClick={() => router.push('/store')} style={{ cursor: 'pointer', outline: '2px solid #ca8a04', background: '#fef9c3', color: '#a16207' }} title="Go to Rewards Store">
-          🏪 ⭐ {profile.total_xp ?? 0}
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <button className={styles.xpBadge} onClick={() => setShowLeaderboard(true)} style={{ cursor: 'pointer', background: '#f8fafc', color: '#334155', border: '2px solid #e2e8f0', padding: '0.5rem' }} title="Family Leaderboard">
+            🏆
+          </button>
+          <div className={styles.xpBadge} onClick={() => router.push('/store')} style={{ cursor: 'pointer', outline: '2px solid #ca8a04', background: '#fef9c3', color: '#a16207' }} title="Go to Rewards Store">
+            🏪 ⭐ {profile.total_xp ?? 0}
+          </div>
         </div>
       </div>
 
@@ -109,12 +114,7 @@ export default function LearnPage() {
         </div>
       )}
 
-      {/* Leaderboard & Controls Row */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '1rem', width: '100%', maxWidth: '600px', margin: '1rem auto' }}>
-        <button className="btn" style={{ background: '#f8fafc', color: '#334155', border: '2px solid #e2e8f0', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: 700 }} onClick={() => setShowLeaderboard(true)}>
-          🏆 Leaderboard
-        </button>
-      </div>
+
 
       <h2 className={styles.pageTitle}>Choose a Lesson</h2>
 
