@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './admin.module.css'
 
-type Tab = 'lessons' | 'vocab' | 'verbs' | 'audio' | 'learners' | 'rewards'
+type Tab = 'lessons' | 'vocab' | 'verbs' | 'stories' | 'audio' | 'learners' | 'rewards'
 
 interface Lesson {
   id: string
@@ -33,6 +33,7 @@ export default function AdminPage() {
   const [lessons, setLessons] = useState<Lesson[]>([])
   const [vocab, setVocab] = useState<VocabItem[]>([])
   const [verbs, setVerbs] = useState<any[]>([])
+  const [stories, setStories] = useState<any[]>([])
   const [learners, setLearners] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
 
@@ -66,6 +67,11 @@ export default function AdminPage() {
     el: '',
     nosotros: '',
     ellos: '',
+  })
+
+  // Story form
+  const [newStory, setNewStory] = useState({
+    title: '', content_es: '', content_en: '', question_es: '', question_en: '', correct_answer: '', distractor_1: '', distractor_2: '', distractor_3: '', difficulty: 1
   })
 
   const [statusMsg, setStatusMsg] = useState('')
@@ -103,6 +109,11 @@ export default function AdminPage() {
     if (res.ok) setVerbs(await res.json())
   }
 
+  async function fetchStories() {
+    const res = await fetch('/api/admin/stories', { headers: getAuthHeader() })
+    if (res.ok) setStories(await res.json())
+  }
+
   async function fetchLearners() {
     const res = await fetch('/api/profiles', { headers: getAuthHeader() })
     if (res.ok) setLearners(await res.json())
@@ -125,6 +136,7 @@ export default function AdminPage() {
   useEffect(() => {
     if (authed && tab === 'vocab') fetchVocab()
     if (authed && tab === 'verbs') fetchVerbs()
+    if (authed && tab === 'stories') fetchStories()
     if (authed && tab === 'learners') fetchLearners()
     if (authed && tab === 'rewards') fetchRewards()
     if (authed && tab === 'audio') { fetchLessons(); fetchFlaggedAudio() }
@@ -213,6 +225,27 @@ export default function AdminPage() {
     await fetch(`/api/admin/verbs/${id}`, { method: 'DELETE', headers: getAuthHeader() })
     await fetchVerbs()
     showStatus('Deleted ✅')
+  }
+
+  async function createStory() {
+    if (!newStory.title.trim()) return
+    const res = await fetch('/api/admin/stories', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify(newStory),
+    })
+    if (res.ok) {
+      setNewStory({ title: '', content_es: '', content_en: '', question_es: '', question_en: '', correct_answer: '', distractor_1: '', distractor_2: '', distractor_3: '', difficulty: 1 })
+      await fetchStories()
+      showStatus('Story added ✅')
+    }
+  }
+
+  async function deleteStory(id: string) {
+    if (!confirm('Delete this story?')) return
+    await fetch(`/api/admin/stories/${id}`, { method: 'DELETE', headers: getAuthHeader() })
+    await fetchStories()
+    showStatus('Story deleted ✅')
   }
 
   async function deleteLearner(id: string) {
@@ -334,7 +367,7 @@ export default function AdminPage() {
 
       {/* Tab nav */}
       <div className={styles.tabNav} style={{ overflowX: 'auto', display: 'flex' }}>
-        {(['lessons', 'vocab', 'verbs', 'audio', 'learners', 'rewards'] as Tab[]).map((t) => (
+        {(['lessons', 'vocab', 'verbs', 'stories', 'audio', 'learners', 'rewards'] as Tab[]).map((t) => (
           <button
             key={t}
             id={`tab-${t}`}
@@ -342,7 +375,7 @@ export default function AdminPage() {
             onClick={() => setTab(t)}
             style={{ whiteSpace: 'nowrap' }}
           >
-            {t === 'lessons' ? '📚 Lessons' : t === 'vocab' ? '📝 Vocab' : t === 'verbs' ? '🏃 Verbs' : t === 'audio' ? '🔊 Audio' : t === 'learners' ? '👤 Learners' : '🎁 Rewards'}
+            {t === 'lessons' ? '📚 Lessons' : t === 'vocab' ? '📝 Vocab' : t === 'verbs' ? '🏃 Verbs' : t === 'stories' ? '📖 Stories' : t === 'audio' ? '🔊 Audio' : t === 'learners' ? '👤 Learners' : '🎁 Rewards'}
           </button>
         ))}
       </div>
@@ -586,6 +619,79 @@ export default function AdminPage() {
                     <div>👨‍👩‍👧‍👦 Ellos {verb.ellos}</div>
                   </div>
                   <button className={styles.deleteBtn} style={{ marginTop: '1rem' }} onClick={() => deleteVerb(verb.id)}>✕</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── STORIES TAB ── */}
+        {tab === 'stories' && (
+          <div>
+            <h2 className={styles.sectionTitle}>Story Mode (Listening Comp)</h2>
+            
+            <div className={styles.formCard}>
+              <h3 className={styles.formTitle}>Write a Story</h3>
+              <div className={styles.vocabFormGrid}>
+                <input
+                  className={styles.input} style={{ gridColumn: '1 / -1' }}
+                  placeholder="Title (e.g. El Perro Rojo)"
+                  value={newStory.title} onChange={(e) => setNewStory({ ...newStory, title: e.target.value })}
+                />
+                <textarea
+                  className={styles.input} style={{ gridColumn: '1 / -1', minHeight: '80px', fontFamily: 'monospace' }}
+                  placeholder="Spanish Paragraph..."
+                  value={newStory.content_es} onChange={(e) => setNewStory({ ...newStory, content_es: e.target.value })}
+                />
+                <textarea
+                  className={styles.input} style={{ gridColumn: '1 / -1', minHeight: '60px', fontFamily: 'monospace' }}
+                  placeholder="English Translation..."
+                  value={newStory.content_en} onChange={(e) => setNewStory({ ...newStory, content_en: e.target.value })}
+                />
+                <input
+                  className={styles.input} placeholder="Question (ES)"
+                  value={newStory.question_es} onChange={(e) => setNewStory({ ...newStory, question_es: e.target.value })}
+                />
+                <input
+                  className={styles.input} placeholder="Question (EN)"
+                  value={newStory.question_en} onChange={(e) => setNewStory({ ...newStory, question_en: e.target.value })}
+                />
+                <input
+                  className={styles.input} placeholder="Correct Answer (ES)" style={{ borderColor: '#4ade80' }}
+                  value={newStory.correct_answer} onChange={(e) => setNewStory({ ...newStory, correct_answer: e.target.value })}
+                />
+                <input
+                  className={styles.input} placeholder="Wrong Answer 1"
+                  value={newStory.distractor_1} onChange={(e) => setNewStory({ ...newStory, distractor_1: e.target.value })}
+                />
+                <input
+                  className={styles.input} placeholder="Wrong Answer 2"
+                  value={newStory.distractor_2} onChange={(e) => setNewStory({ ...newStory, distractor_2: e.target.value })}
+                />
+                <input
+                  className={styles.input} placeholder="Wrong Answer 3"
+                  value={newStory.distractor_3} onChange={(e) => setNewStory({ ...newStory, distractor_3: e.target.value })}
+                />
+              </div>
+              <button className={`btn btn-primary ${styles.addBtn}`} onClick={createStory}>
+                Save Story
+              </button>
+            </div>
+
+            <div className={styles.itemList}>
+              {stories.map((story) => (
+                <div key={story.id} className={styles.vocabCard}>
+                  <div className={styles.vocabPair}>
+                    <span className={styles.vocabEs} style={{ fontWeight: 800 }}>{story.title}</span>
+                  </div>
+                  <div style={{ marginTop: '0.8rem', padding: '0.8rem', background: '#f8fafc', borderRadius: '0.5rem', fontStyle: 'italic', color: '#475569' }}>
+                    {story.content_es}
+                  </div>
+                  <div className={styles.vocabMeta} style={{ marginTop: '0.8rem' }}>
+                    <strong>Q:</strong> {story.question_es}<br/>
+                    <strong>A:</strong> {story.correct_answer}
+                  </div>
+                  <button className={styles.deleteBtn} style={{ marginTop: '1rem' }} onClick={() => deleteStory(story.id)}>✕</button>
                 </div>
               ))}
             </div>

@@ -54,6 +54,7 @@ export default function LearnPage() {
   const [showLeaderboard, setShowLeaderboard] = useState(false)
   const [siblings, setSiblings] = useState<Profile[]>([])
   const [quests, setQuests] = useState<any[]>([])
+  const [stories, setStories] = useState<any[]>([])
 
   const QUEST_TEMPLATES = [
     { id: 'q_perfect', title: 'Perfect Round', icon: '🎯', desc: 'Score 100% on a lesson', goal: 1, reward: 50 },
@@ -97,6 +98,13 @@ export default function LearnPage() {
     const res = await fetch('/api/lessons')
     const data = await res.json()
     setLessons(Array.isArray(data) ? data : [])
+    
+    // Fetch stories too
+    try {
+      const sRes = await fetch('/api/stories')
+      if (sRes.ok) setStories(await sRes.json())
+    } catch(e) {}
+
     setLoading(false)
   }
 
@@ -277,6 +285,42 @@ export default function LearnPage() {
           )
         })}
       </div>
+
+      {stories.length > 0 && (
+        <>
+          <h2 className={styles.pageTitle} style={{ marginTop: '3rem' }}>📖 Story Mode</h2>
+          <div className={styles.lessonList}>
+            {stories.map((story, i) => {
+              const completedIds = profile ? JSON.parse(localStorage.getItem(`spanishkids_completed_stories_${profile.id}`) || '[]') : []
+              const isCompleted = completedIds.includes(story.id)
+              return (
+                <button
+                  key={story.id}
+                  className={`${styles.lessonCard} ${isCompleted ? styles.lessonCompleted : ''}`}
+                  style={{ '--lesson-color': '#10b981', animationDelay: `${i * 0.06}s` } as React.CSSProperties}
+                  onClick={() => router.push(`/story/${story.id}`)}
+                >
+                  <div className={styles.lessonNumber}>
+                    {isCompleted ? <i className="fa-solid fa-check"></i> : '📖'}
+                  </div>
+                  <div className={styles.lessonInfo}>
+                    <div className={styles.lessonTitle}>{story.title}</div>
+                    <div className={styles.lessonMeta}>
+                      <span className={styles.categoryTag} style={{ background: '#ecfdf5', color: '#059669' }}>
+                        Listening Comp
+                      </span>
+                      <span className={styles.difficulty}>
+                        {'⭐'.repeat(story.difficulty)}
+                      </span>
+                    </div>
+                  </div>
+                  <div className={styles.lessonArrow}>›</div>
+                </button>
+              )
+            })}
+          </div>
+        </>
+      )}
 
       {showLeaderboard && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', zIndex: 1000 }} onClick={() => setShowLeaderboard(false)}>

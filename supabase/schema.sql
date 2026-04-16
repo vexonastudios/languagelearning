@@ -198,6 +198,24 @@ create table if not exists verbs (
   created_at timestamptz not null default now()
 );
 
+-- Note: The rewards and reward_purchases tables were created via Supabase UI
+
+-- 11. stories (For reading comprehension mode)
+create table if not exists stories (
+  id uuid primary key default uuid_generate_v4(),
+  title varchar not null,
+  content_es text not null,       -- Full Spanish paragraph
+  content_en text not null,       -- English translation (for reference/parents)
+  question_es text not null,      -- e.g. "What color was the dog?"
+  question_en text not null,
+  correct_answer text not null,
+  distractor_1 text not null,
+  distractor_2 text not null,
+  distractor_3 text not null,
+  difficulty int not null default 1,
+  created_at timestamptz not null default now()
+);
+
 alter table verbs enable row level security;
 create policy "service_role_all_verbs" on verbs for all using (true);
 create policy "anon_read_verbs" on verbs for select using (true);
