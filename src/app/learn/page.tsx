@@ -55,7 +55,12 @@ export default function LearnPage() {
   useEffect(() => {
     const p = localStorage.getItem('spanishkids_active_profile')
     if (!p) { router.push('/'); return }
-    setProfile(JSON.parse(p))
+    const parsed = JSON.parse(p)
+    // Synchronize latest profile state from the full list so XP updates instantly
+    const all = JSON.parse(localStorage.getItem('spanishkids_profiles') || '[]')
+    const updated = all.find((x: any) => x.id === parsed.id) || parsed
+    setProfile(updated)
+    
     fetchLessons()
   }, [])
 
@@ -112,23 +117,41 @@ export default function LearnPage() {
         {lessons.map((lesson, i) => {
           const color = CATEGORY_COLORS[lesson.category] ?? '#94a3b8'
           const emoji = CATEGORY_EMOJIS[lesson.category] ?? '📚'
+          
+          const completedIds = profile ? JSON.parse(localStorage.getItem(`spanishkids_completed_${profile.id}`) || '[]') : []
+          const isCompleted = completedIds.includes(lesson.id)
+          
+          let isLocked = false
+          if (lesson.order > 1) {
+             // Find the IMMEDIATELY preceding lesson by order
+             const prevLesson = lessons.find(l => l.order === lesson.order - 1)
+             // If there is a previous lesson, and its ID is NOT in completedIds, lock this one.
+             if (prevLesson && !completedIds.includes(prevLesson.id)) {
+                isLocked = true
+             }
+          }
+
           return (
             <button
               key={lesson.id}
               id={`lesson-${lesson.id}`}
-              className={styles.lessonCard}
+              className={`${styles.lessonCard} ${isLocked ? styles.lessonLocked : ''} ${isCompleted ? styles.lessonCompleted : ''}`}
               style={{
-                '--lesson-color': color,
+                '--lesson-color': isLocked ? '#94a3b8' : color,
                 animationDelay: `${i * 0.06}s`,
               } as React.CSSProperties}
-              onClick={() => router.push(`/learn/${lesson.id}`)}
+              onClick={() => {
+                if (!isLocked) router.push(`/learn/${lesson.id}`)
+              }}
             >
-              <div className={styles.lessonNumber}>{lesson.order}</div>
-              <div className={styles.lessonIcon}>{emoji}</div>
+              <div className={styles.lessonNumber}>
+                 {isCompleted ? <i className="fa-solid fa-check"></i> : lesson.order}
+              </div>
+              <div className={styles.lessonIcon}>{isLocked ? '🔒' : emoji}</div>
               <div className={styles.lessonInfo}>
                 <div className={styles.lessonTitle}>{lesson.title}</div>
                 <div className={styles.lessonMeta}>
-                  <span className={styles.categoryTag} style={{ background: color + '22', color }}>
+                  <span className={styles.categoryTag} style={{ background: (isLocked ? '#94a3b8' : color) + '22', color: isLocked ? '#64748b' : color }}>
                     {lesson.category}
                   </span>
                   <span className={styles.difficulty}>
@@ -136,7 +159,9 @@ export default function LearnPage() {
                   </span>
                 </div>
               </div>
-              <div className={styles.lessonArrow}>›</div>
+              <div className={styles.lessonArrow}>
+                {isLocked ? <i className="fa-solid fa-lock" style={{ fontSize: '1.2rem'}}></i> : '›'}
+              </div>
             </button>
           )
         })}

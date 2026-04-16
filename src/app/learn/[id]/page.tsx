@@ -32,6 +32,7 @@ export default function LessonPlayPage() {
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answerState, setAnswerState] = useState<AnswerState>('idle')
+  const [wrongChoices, setWrongChoices] = useState<string[]>([])
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null)
   const [feedbackMsg, setFeedbackMsg] = useState('')
   const [score, setScore] = useState(0)
@@ -93,17 +94,30 @@ export default function LessonPlayPage() {
   }, [currentIndex, questions, answerState])
 
   async function handleAnswer(choice: { label: string; isCorrect: boolean }) {
-    if (answerState !== 'idle') return
+    if (answerState === 'correct') return
+    if (wrongChoices.includes(choice.label)) return // Don't allow clicking the same wrong answer twice
 
     setSelectedChoice(choice.label)
-    setTotalAnswered((n) => n + 1)
 
     if (choice.isCorrect) {
       setAnswerState('correct')
-      setScore((n) => n + 1)
+      
+      // Calculate score only if they answered right on the very first try
+      if (wrongChoices.length === 0) {
+        setScore((n) => n + 1)
+      }
+      setTotalAnswered((n) => n + 1)
       setXpEarned((n) => n + 10)
       setFeedbackMsg(randomPick(FEEDBACK_MESSAGES.correct))
+      
+      // Request audio in sequence: praise + the Spanish target word!
       await play('Great job!', 'en')
+      // If the question prompt was English, the correct answer was Spanish. We should hear it!
+      if (currentQuestion.audioLanguage === 'en' && currentQuestion.type !== 'picture_choose_en') {
+        setTimeout(() => play(currentQuestion.correctAnswer, 'es'), 800)
+      } else if (currentQuestion.audioLanguage === 'es') {
+        setTimeout(() => play(currentQuestion.audioText, 'es'), 800)
+      }
 
       // Record progress
       if (profile && currentQuestion) {
@@ -114,21 +128,23 @@ export default function LessonPlayPage() {
             userId: profile.id,
             itemId: currentQuestion.itemId,
             itemType: currentQuestion.itemType,
-            correct: true,
+            correct: wrongChoices.length === 0, // Only count as correct mastery if they got it first try
             lessonId,
           }),
         })
       }
 
-      // Auto-advance after 1.2s
-      setTimeout(advance, 1200)
+      // Auto-advance after giving them time to hear the audio
+      setTimeout(advance, 2500)
     } else {
-      setAnswerState('wrong')
+      // It's wrong! Let them try again.
+      setWrongChoices((prev) => [...prev, choice.label])
       setFeedbackMsg(randomPick(FEEDBACK_MESSAGES.wrong))
-      await play('Try again.', 'en')
+      play('Try again.', 'en')
 
       // Record wrong
-      if (profile && currentQuestion) {
+      if (profile && currentQuestion && wrongChoices.length === 0) {
+        // Only record the FIRST wrong attempt to drop their mastery score
         fetch('/api/progress/update', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -141,22 +157,36 @@ export default function LessonPlayPage() {
           }),
         })
       }
-
-      // Show correct answer, then advance after 2s
-      setTimeout(advance, 2000)
     }
   }
 
   function advance() {
     if (currentIndex + 1 >= questions.length) {
-      // Calculate stars
+      // Calculate stars based on FIRST-TRY correct answers
       const accuracy = score / questions.length
       const earned = accuracy >= 0.9 ? 3 : accuracy >= 0.7 ? 2 : 1
       setStars(earned)
+      
+      // Also update total XP for the profile
+      const stored = localStorage.getItem('spanishkids_profiles')
+      if (profile && stored) {
+        const list = JSON.parse(stored)
+        const updatedList = list.map((p: any) => {
+          if (p.id === profile.id) {
+            const newTotal = (p.total_xp || 0) + xpEarned
+            setProfile({ ...p, total_xp: newTotal })
+            return { ...p, total_xp: newTotal }
+          }
+          return p
+        })
+        localStorage.setItem('spanishkids_profiles', JSON.stringify(updatedList))
+      }
+      
       setFinished(true)
     } else {
       setCurrentIndex((n) => n + 1)
       setAnswerState('idle')
+      setWrongChoices([])
       setSelectedChoice(null)
       setFeedbackMsg('')
     }
@@ -338,21 +368,24 @@ export default function LessonPlayPage() {
       ) : (
         <div className={styles.choicesGrid}>
           {currentQuestion.choices.map((choice, i) => {
+            const isWrong = wrongChoices.includes(choice.label)
             let choiceState = ''
-            if (answerState !== 'idle' && selectedChoice === choice.label) {
-              choiceState = answerState === 'correct' ? styles.choiceCorrect : styles.choiceWrong
-            } else if (answerState === 'wrong' && choice.isCorrect) {
-              choiceState = styles.choiceReveal
+            
+            if (answerState === 'correct') {
+               if (choice.isCorrect) choiceState = styles.choiceCorrect
+               else choiceState = styles.choiceDimmed
+            } else if (isWrong) {
+               choiceState = styles.choiceWrong
             }
 
             return (
               <button
                 key={i}
                 id={`choice-${i}`}
-                className={`${styles.choiceBtn} ${choiceState} ${answerState !== 'idle' && !choiceState ? styles.choiceDimmed : ''}`}
+                className={`${styles.choiceBtn} ${choiceState}`}
                 style={{ animationDelay: `${i * 0.07}s` }}
                 onClick={() => handleAnswer(choice)}
-                disabled={answerState !== 'idle'}
+                disabled={answerState === 'correct' || isWrong}
               >
                 {choice.label}
               </button>
