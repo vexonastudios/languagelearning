@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './admin.module.css'
 
-type Tab = 'lessons' | 'vocab' | 'audio'
+type Tab = 'lessons' | 'vocab' | 'audio' | 'learners'
 
 interface Lesson {
   id: string
@@ -32,6 +32,7 @@ export default function AdminPage() {
   const [tab, setTab] = useState<Tab>('lessons')
   const [lessons, setLessons] = useState<Lesson[]>([])
   const [vocab, setVocab] = useState<VocabItem[]>([])
+  const [learners, setLearners] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
 
   // Lesson form
@@ -78,8 +79,14 @@ export default function AdminPage() {
     if (res.ok) setVocab(await res.json())
   }
 
+  async function fetchLearners() {
+    const res = await fetch('/api/profiles', { headers: getAuthHeader() })
+    if (res.ok) setLearners(await res.json())
+  }
+
   useEffect(() => {
     if (authed && tab === 'vocab') fetchVocab()
+    if (authed && tab === 'learners') fetchLearners()
   }, [authed, tab])
 
   async function createLesson() {
@@ -145,6 +152,17 @@ export default function AdminPage() {
     showStatus('Deleted ✅')
   }
 
+  async function deleteLearner(id: string) {
+    if (!confirm('Permanently delete this learner profile and all their progress?')) return
+    const res = await fetch(`/api/profiles/${id}`, { method: 'DELETE', headers: getAuthHeader() })
+    if (res.ok) {
+      await fetchLearners()
+      showStatus('Learner deleted ✅')
+    } else {
+      showStatus('Failed to delete learner ❌')
+    }
+  }
+
   function showStatus(msg: string) {
     setStatusMsg(msg)
     setTimeout(() => setStatusMsg(''), 4000)
@@ -195,14 +213,14 @@ export default function AdminPage() {
 
       {/* Tab nav */}
       <div className={styles.tabNav}>
-        {(['lessons', 'vocab', 'audio'] as Tab[]).map((t) => (
+        {(['lessons', 'vocab', 'audio', 'learners'] as Tab[]).map((t) => (
           <button
             key={t}
             id={`tab-${t}`}
             className={`${styles.tabBtn} ${tab === t ? styles.tabActive : ''}`}
             onClick={() => setTab(t)}
           >
-            {t === 'lessons' ? '📚 Lessons' : t === 'vocab' ? '📝 Vocab' : '🔊 Audio'}
+            {t === 'lessons' ? '📚 Lessons' : t === 'vocab' ? '📝 Vocab' : t === 'audio' ? '🔊 Audio' : '👤 Learners'}
           </button>
         ))}
       </div>
@@ -388,6 +406,37 @@ export default function AdminPage() {
                     disabled={publishingId === lesson.id}
                   >
                     {publishingId === lesson.id ? '⏳ Rendering...' : '🔊 Render Audio'}
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── LEARNERS TAB ── */}
+        {tab === 'learners' && (
+          <div>
+            <h2 className={styles.sectionTitle}>Manage Learners</h2>
+            <p className={styles.audioHint}>
+              View and delete child profiles. Note: deleting a profile deletes all their progress.
+            </p>
+            <div className={styles.itemList}>
+              {learners.length === 0 && <p style={{ color: '#94a3b8' }}>No learners found.</p>}
+              {learners.map((learner) => (
+                <div key={learner.id} className={styles.vocabCard}>
+                  <div className={styles.vocabPair}>
+                    <span className={styles.vocabEs} style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>{learner.avatar}</span>
+                    <span className={styles.vocabEn}>{learner.child_name}</span>
+                  </div>
+                  <div className={styles.vocabMeta}>
+                    XP: {learner.total_xp} · Streak: {learner.streak}
+                  </div>
+                  <button
+                    className={styles.deleteBtn}
+                    onClick={() => deleteLearner(learner.id)}
+                    title="Delete Learner"
+                  >
+                    🗑️
                   </button>
                 </div>
               ))}
