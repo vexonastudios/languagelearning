@@ -35,9 +35,9 @@ export default function AdminPage() {
   const [learners, setLearners] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
 
-  // Rewards & Purchases
   const [rewards, setRewards] = useState<any[]>([])
   const [purchases, setPurchases] = useState<any[]>([])
+  const [flaggedAudio, setFlaggedAudio] = useState<any[]>([])
   const [newReward, setNewReward] = useState({ title: '', cost: 50, icon: '🎁' })
 
   // Lesson form
@@ -98,10 +98,16 @@ export default function AdminPage() {
     }
   }
 
+  async function fetchFlaggedAudio() {
+    const res = await fetch('/api/admin/audio/flagged', { headers: getAuthHeader() })
+    if (res.ok) setFlaggedAudio(await res.json())
+  }
+
   useEffect(() => {
     if (authed && tab === 'vocab') fetchVocab()
     if (authed && tab === 'learners') fetchLearners()
     if (authed && tab === 'rewards') fetchRewards()
+    if (authed && tab === 'audio') { fetchLessons(); fetchFlaggedAudio() }
   }, [authed, tab])
 
   async function createLesson() {
@@ -178,12 +184,27 @@ export default function AdminPage() {
     }
   }
 
-  async function regenerateFlaggedAudio() {
-    showStatus('Regenerating flagged audio...')
-    const res = await fetch('/api/admin/audio/retry', { method: 'POST', headers: getAuthHeader() })
+  async function playFlaggedAudio(url: string) {
+    const a = new window.Audio(url)
+    a.play()
+  }
+
+  async function approveFlaggedAudio(id: string) {
+    const res = await fetch(`/api/admin/audio/flagged/${id}`, { method: 'DELETE', headers: getAuthHeader() })
     if (res.ok) {
-      const { fixed } = await res.json()
-      showStatus(`Fixed ${fixed} flagged audio files ✅`)
+      fetchFlaggedAudio()
+      showStatus('Flag dismissed/approved ✅')
+    }
+  }
+
+  async function regenerateSpecificAudio(id: string) {
+    showStatus('Regenerating audio snippet...')
+    const res = await fetch(`/api/admin/audio/flagged/${id}`, { method: 'POST', headers: getAuthHeader() })
+    if (res.ok) {
+      const { url } = await res.json()
+      fetchFlaggedAudio()
+      showStatus('Audio fully re-generated! You can test it now.')
+      setTimeout(() => playFlaggedAudio(url), 500)
     } else {
       showStatus('Failed to regenerate audio ❌')
     }
@@ -445,16 +466,40 @@ export default function AdminPage() {
         {/* ── AUDIO TAB ── */}
         {tab === 'audio' && (
           <div>
-            <h2 className={styles.sectionTitle}>Audio Status</h2>
+            <h2 className={styles.sectionTitle}>Audio Status & Reporting</h2>
             <p className={styles.audioHint}>
-              Use the Publish button on each lesson to pre-render all audio. Audio is cached in Supabase Storage.
+              When users report bad pronunciations, they appear here. Test them, click Regenerate to draw a fresh read from ElevenLabs, and click Approve once it sounds right.
             </p>
 
-            <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
-              <button className="btn btn-primary" onClick={regenerateFlaggedAudio}>
-                🔄 Regenerate User-Flagged Audio
-              </button>
-            </div>
+            {flaggedAudio.length > 0 && (
+              <div style={{ marginBottom: '2rem', background: '#fef2f2', border: '2px solid #fecaca', padding: '1rem', borderRadius: '1rem' }}>
+                <h3 style={{ color: '#991b1b', marginBottom: '1rem' }}>⚠️ Action Required: Flagged Audio</h3>
+                <div className={styles.itemList}>
+                  {flaggedAudio.map((item) => (
+                    <div key={item.id} className={styles.vocabCard}>
+                      <div className={styles.vocabPair}>
+                        <span className={styles.vocabEn} style={{ fontWeight: 'normal' }}>"{item.raw_text}"</span>
+                        <span className={styles.vocabMeta} style={{ marginLeft: '0.5rem' }}>[{item.language}]</span>
+                      </div>
+                      <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        <button className="btn" style={{ background: '#bfdbfe', color: '#1e3a8a' }} onClick={() => playFlaggedAudio(item.file_url)}>
+                          ▶️ Test Audio
+                        </button>
+                        <button className="btn btn-primary" onClick={() => regenerateSpecificAudio(item.id)}>
+                          🔄 Regenerate
+                        </button>
+                        <button className="btn btn-success" onClick={() => approveFlaggedAudio(item.id)}>
+                          ✅ Approve
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <h3 style={{ marginTop: '2rem', marginBottom: '1rem', color: '#1e293b' }}>Lesson Render Status</h3>
+            <p className={styles.audioHint}>Pre-render audio for entire lessons below.</p>
 
             <div className={styles.itemList}>
               {lessons.map((lesson) => (

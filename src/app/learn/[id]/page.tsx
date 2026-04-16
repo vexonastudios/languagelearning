@@ -108,6 +108,7 @@ export default function LessonPlayPage() {
   const [profile, setProfile] = useState<{ id: string; child_name: string; avatar: string; streak?: number; total_xp?: number; last_active_at?: string } | null>(null)
   const [stars, setStars] = useState(0)
   const [xpEarned, setXpEarned] = useState(0)
+  const [reportingAudio, setReportingAudio] = useState(false)
 
   // Phase 2: Sentence Builder state
   const [builtSentence, setBuiltSentence] = useState<string[]>([])
@@ -141,7 +142,10 @@ export default function LessonPlayPage() {
   }, [lessonId])
 
   async function loadLesson() {
-    const res = await fetch(`/api/lessons/${lessonId}`)
+    const p = localStorage.getItem('spanishkids_active_profile')
+    const parsed = p ? JSON.parse(p) : null
+    const url = parsed ? `/api/lessons/${lessonId}?userId=${parsed.id}` : `/api/lessons/${lessonId}`
+    const res = await fetch(url)
     const data = await res.json()
     setLesson(data.lesson)
     setQuestions(data.questions ?? [])
@@ -159,9 +163,13 @@ export default function LessonPlayPage() {
     }
   }, [isStarted, currentIndex, questions, answerState])
 
-  async function reportBadAudio() {
+  function reportBadAudio() {
+    setReportingAudio(true)
+  }
+
+  async function confirmReportAudio() {
     if (!currentQuestion) return
-    if (!confirm('Mark this pronunciation as incorrect so developers can fix it?')) return
+    setReportingAudio(false)
     await fetch('/api/audio/flag', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -170,7 +178,8 @@ export default function LessonPlayPage() {
         language: currentQuestion.audioLanguage 
       })
     })
-    alert('Thank you! The audio has been flagged for regeneration.')
+    setFeedbackMsg('⚠️ Audio flagged for developers to fix!')
+    setTimeout(() => { if (feedbackMsg === '⚠️ Audio flagged for developers to fix!') setFeedbackMsg('') }, 3000)
   }
 
   async function handleAnswer(choice: { label: string; isCorrect: boolean }) {
@@ -320,6 +329,7 @@ export default function LessonPlayPage() {
       setSelectedChoice(null)
       setFeedbackMsg('')
       setShowExample(false)
+      setReportingAudio(false)
     }
   }
 
@@ -471,6 +481,17 @@ export default function LessonPlayPage() {
           <div className={styles.exampleSentenceBox}>
             <p className={styles.exampleEs}>{currentQuestion.exampleEs}</p>
             <p className={styles.exampleEn}>{currentQuestion.exampleEn}</p>
+          </div>
+        )}
+
+        {/* Reporting inline box */}
+        {reportingAudio && (
+          <div style={{ background: '#fef2f2', border: '2px solid #fecaca', padding: '1rem', borderRadius: '1rem', textAlign: 'center', marginTop: '1rem', animation: 'pop-in 0.2s' }}>
+            <p style={{ fontWeight: 800, color: '#991b1b', marginBottom: '0.75rem' }}>Flag this pronunciation as incorrect?</p>
+            <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
+              <button className="btn btn-primary" onClick={confirmReportAudio} style={{ background: '#ef4444', borderColor: '#b91c1c' }}>Yes, it's bad</button>
+              <button className="btn" onClick={() => setReportingAudio(false)} style={{ background: '#e2e8f0', color: '#64748b' }}>Cancel</button>
+            </div>
           </div>
         )}
       </div>

@@ -51,6 +51,8 @@ export default function LearnPage() {
   const [lessons, setLessons] = useState<Lesson[]>([])
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState(true)
+  const [showLeaderboard, setShowLeaderboard] = useState(false)
+  const [siblings, setSiblings] = useState<Profile[]>([])
 
   useEffect(() => {
     const p = localStorage.getItem('spanishkids_active_profile')
@@ -58,6 +60,10 @@ export default function LearnPage() {
     const parsed = JSON.parse(p)
     // Synchronize latest profile state from the full list so XP updates instantly
     const all = JSON.parse(localStorage.getItem('spanishkids_profiles') || '[]')
+    
+    // Setup sibling leaderboard
+    setSiblings([...all].sort((a: any, b: any) => (b.total_xp || 0) - (a.total_xp || 0)))
+
     const updated = all.find((x: any) => x.id === parsed.id) || parsed
     setProfile(updated)
     
@@ -102,6 +108,13 @@ export default function LearnPage() {
           🔥 {profile.streak} day streak! Keep it up!
         </div>
       )}
+
+      {/* Leaderboard & Controls Row */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '1rem', width: '100%', maxWidth: '600px', margin: '1rem auto' }}>
+        <button className="btn" style={{ background: '#f8fafc', color: '#334155', border: '2px solid #e2e8f0', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: 700 }} onClick={() => setShowLeaderboard(true)}>
+          🏆 Leaderboard
+        </button>
+      </div>
 
       <h2 className={styles.pageTitle}>Choose a Lesson</h2>
 
@@ -166,6 +179,31 @@ export default function LearnPage() {
           )
         })}
       </div>
+
+      {showLeaderboard && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', zIndex: 1000 }} onClick={() => setShowLeaderboard(false)}>
+          <div style={{ background: 'white', padding: '2rem', borderRadius: '1.5rem', width: '90%', maxWidth: '400px', margin: '0 auto', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }} onClick={e => e.stopPropagation()}>
+            <h2 style={{ textAlign: 'center', fontSize: '1.8rem', marginBottom: '1.5rem', color: '#1e293b' }}>🏆 Family Leaderboard</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+              {siblings.map((sib, idx) => (
+                <div key={sib.id} style={{ display: 'flex', alignItems: 'center', padding: '1rem', background: sib.id === profile?.id ? '#fefce8' : '#f8fafc', borderRadius: '1rem', border: `2px solid ${sib.id === profile?.id ? '#fde047' : '#e2e8f0'}` }}>
+                  <div style={{ fontSize: '1.5rem', fontWeight: 800, color: idx === 0 ? '#eab308' : idx === 1 ? '#94a3b8' : idx === 2 ? '#b45309' : '#cbd5e1', width: '2rem', textAlign: 'center' }}>
+                    #{idx + 1}
+                  </div>
+                  <div style={{ fontSize: '2rem', margin: '0 1rem' }}>{sib.avatar}</div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: 700, color: '#334155', fontSize: '1.1rem' }}>{sib.child_name}</div>
+                  </div>
+                  <div style={{ fontWeight: 800, color: '#ca8a04', background: '#fef9c3', padding: '0.3rem 0.8rem', borderRadius: '2rem' }}>
+                    ⭐ {sib.total_xp || 0}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button className="btn btn-primary" style={{ width: '100%', marginTop: '2rem' }} onClick={() => setShowLeaderboard(false)}>Awesome!</button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

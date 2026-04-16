@@ -77,7 +77,8 @@ function buildChoices(
 export function buildQuestionSet(
   vocab: VocabItem[],
   sentences: SentenceItem[],
-  targetCount: number = 10
+  targetCount: number = 10,
+  progressMap?: Map<string, number>
 ): Question[] {
   const allEnglish = vocab.map((v) => v.english_text)
   const allSpanish = vocab.map((v) => v.spanish_text)
@@ -187,8 +188,16 @@ export function buildQuestionSet(
     })
   }
 
-  // Shuffle and pick target count
-  const selected = shuffle(questions).slice(0, targetCount)
+  // Spacer Repetition Logic: 
+  // Base shuffle but weighted. Lower mastery items bubble to the top. Items with mastery > 3 get strongly penalized.
+  const mapped = questions.map((q) => {
+    let m = progressMap?.get(q.itemId) ?? 0
+    if (m >= 3) m += 5 // Penalize heavily if already mastered 3+ times
+    return { q, sortWeight: m + (Math.random() * 2) } 
+  })
+
+  mapped.sort((a, b) => a.sortWeight - b.sortWeight)
+  const selected = shuffle(mapped.slice(0, targetCount).map(x => x.q)) // shuffle the chosen handful to mix types up
 
   // Gather unique vocab items used in the selection to introduce them first
   const usedVocabIds = new Set(selected.filter((q) => q.itemType === 'vocabulary').map((q) => q.itemId))
