@@ -53,6 +53,13 @@ export default function LearnPage() {
   const [loading, setLoading] = useState(true)
   const [showLeaderboard, setShowLeaderboard] = useState(false)
   const [siblings, setSiblings] = useState<Profile[]>([])
+  const [quests, setQuests] = useState<any[]>([])
+
+  const QUEST_TEMPLATES = [
+    { id: 'q_perfect', title: 'Perfect Round', icon: '🎯', desc: 'Score 100% on a lesson', goal: 1, reward: 50 },
+    { id: 'q_gym', title: 'Target Gym', icon: '🏋️', desc: 'Complete a Gym session', goal: 1, reward: 40 },
+    { id: 'q_volume', title: 'Brain Power', icon: '🧠', desc: 'Get 20 correct answers', goal: 20, reward: 30 }
+  ]
 
   useEffect(() => {
     const p = localStorage.getItem('spanishkids_active_profile')
@@ -67,6 +74,22 @@ export default function LearnPage() {
     const updated = all.find((x: any) => x.id === parsed.id) || parsed
     setProfile(updated)
     
+    // Initialize Quests
+    const todayStr = new Date().toISOString().split('T')[0]
+    const questKey = `spanishkids_quests_${updated.id}`
+    const storedQuests = JSON.parse(localStorage.getItem(questKey) || 'null')
+    
+    if (!storedQuests || storedQuests.date !== todayStr) {
+      const freshQuests = {
+        date: todayStr,
+        quests: QUEST_TEMPLATES.map(t => ({ ...t, current: 0, claimed: false }))
+      }
+      localStorage.setItem(questKey, JSON.stringify(freshQuests))
+      setQuests(freshQuests.quests)
+    } else {
+      setQuests(storedQuests.quests)
+    }
+
     fetchLessons()
   }, [])
 
@@ -75,6 +98,37 @@ export default function LearnPage() {
     const data = await res.json()
     setLessons(Array.isArray(data) ? data : [])
     setLoading(false)
+  }
+
+  function claimQuest(questId: string) {
+    if (!profile) return
+    const questInfo = quests.find(q => q.id === questId)
+    if (!questInfo) return
+
+    const updatedQuests = quests.map(q => {
+      if (q.id === questId && q.current >= q.goal && !q.claimed) {
+        return { ...q, claimed: true }
+      }
+      return q
+    })
+    
+    setQuests(updatedQuests)
+    const todayStr = new Date().toISOString().split('T')[0]
+    localStorage.setItem(`spanishkids_quests_${profile.id}`, JSON.stringify({ date: todayStr, quests: updatedQuests }))
+    
+    const newProfile = { ...profile, total_xp: (profile.total_xp || 0) + questInfo.reward }
+    setProfile(newProfile)
+    localStorage.setItem('spanishkids_active_profile', JSON.stringify(newProfile))
+    
+    const allProfiles = JSON.parse(localStorage.getItem('spanishkids_profiles') || '[]')
+    localStorage.setItem('spanishkids_profiles', JSON.stringify(allProfiles.map((p: any) => p.id === newProfile.id ? newProfile : p)))
+    
+    // Sync the XP
+    fetch('/api/profiles/sync', { 
+      method: 'POST', 
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: newProfile.id, total_xp: newProfile.total_xp }) 
+    })
   }
 
   if (loading || !profile) {
@@ -113,6 +167,40 @@ export default function LearnPage() {
           🔥 {profile.streak} day streak! Keep it up!
         </div>
       )}
+
+      {/* Daily Quests Box */}
+      <div style={{ maxWidth: '600px', margin: '1rem auto', padding: '1.5rem', background: 'white', borderRadius: '1.5rem', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', border: '2px solid #e2e8f0' }}>
+        <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#334155', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <span>📜</span> Daily Quests
+        </h3>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+          {quests.map(q => {
+             const progress = Math.min((q.current / q.goal) * 100, 100)
+             const isComplete = q.current >= q.goal
+             
+             return (
+               <div key={q.id} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', background: q.claimed ? '#f8fafc' : isComplete ? '#f0fdf4' : '#f8fafc', borderRadius: '1rem', border: `2px solid ${q.claimed ? '#e2e8f0' : isComplete ? '#4ade80' : '#e2e8f0'}` }}>
+                 <div style={{ fontSize: '2rem' }}>{q.icon}</div>
+                 <div style={{ flex: 1 }}>
+                   <div style={{ fontWeight: 700, color: '#334155' }}>{q.title} <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 500, display: 'block' }}>{q.desc}</span></div>
+                   <div style={{ width: '100%', height: '8px', background: '#e2e8f0', borderRadius: '4px', marginTop: '0.5rem', overflow: 'hidden' }}>
+                     <div style={{ width: `${progress}%`, height: '100%', background: isComplete ? '#22c55e' : '#3b82f6', transition: 'width 0.3s' }} />
+                   </div>
+                   <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.2rem', fontWeight: 600 }}>{q.current} / {q.goal}</div>
+                 </div>
+                 {isComplete && !q.claimed && (
+                   <button className="btn btn-primary" style={{ background: '#ca8a04', borderColor: '#a16207', padding: '0.5rem 1rem' }} onClick={() => claimQuest(q.id)}>
+                     Claim ⭐{q.reward}
+                   </button>
+                 )}
+                 {q.claimed && (
+                   <div style={{ color: '#94a3b8', fontWeight: 800 }}>✅ Checked Out</div>
+                 )}
+               </div>
+             )
+          })}
+        </div>
+      </div>
 
 
       {/* Gym Banner */}

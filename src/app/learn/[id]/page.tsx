@@ -314,6 +314,20 @@ export default function LessonPlayPage() {
         // Apply Streak Logic (Only triggers on FULL LESSON COMPLETION)
         const todayStr = new Date().toISOString().split('T')[0]
         const todayDate = new Date(todayStr)
+        
+        // Update Quests
+        const questKey = `spanishkids_quests_${profile.id}`
+        const activeQuests = JSON.parse(localStorage.getItem(questKey) || 'null')
+        if (activeQuests && activeQuests.date === todayStr) {
+          activeQuests.quests.forEach((q: any) => {
+             if (q.id === 'q_perfect' && accuracy === 1) q.current += 1
+             if (q.id === 'q_gym' && lessonId === 'review') q.current += 1
+             if (q.id === 'q_volume') q.current += score
+             if (q.current > q.goal) q.current = q.goal
+          })
+          localStorage.setItem(questKey, JSON.stringify(activeQuests))
+        }
+
         let updatedProfile = { ...profile }
 
         // If today is Sunday (0), we freeze streak logic. Don't increment, don't break.
@@ -355,6 +369,18 @@ export default function LessonPlayPage() {
         const allProfiles = JSON.parse(localStorage.getItem('spanishkids_profiles') || '[]')
         const newAll = allProfiles.map((p: any) => p.id === updatedProfile.id ? updatedProfile : p)
         localStorage.setItem('spanishkids_profiles', JSON.stringify(newAll))
+
+        // Backend Sync
+        fetch('/api/profiles/sync', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            id: updatedProfile.id,
+            total_xp: updatedProfile.total_xp,
+            streak: updatedProfile.streak,
+            last_active_at: updatedProfile.last_active_at
+          })
+        })
       }
       
       setFinished(true)
