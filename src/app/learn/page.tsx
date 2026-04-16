@@ -115,6 +115,16 @@ export default function LearnPage() {
       )}
 
 
+      {/* Gym Banner */}
+      <div style={{ display: 'flex', justifyContent: 'center', width: '100%', maxWidth: '600px', margin: '1rem auto 0 auto' }}>
+        <button 
+          className="btn" 
+          style={{ background: '#f43f5e', color: 'white', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.8rem', fontWeight: 800, padding: '1rem', borderRadius: '1.5rem', boxShadow: '0 4px 14px rgba(244,63,94,0.4)', transition: 'transform 0.1s' }}
+          onClick={() => router.push('/learn/review')}
+        >
+          <span style={{ fontSize: '1.5rem' }}>🏋️</span> Target Review Gym
+        </button>
+      </div>
 
       <h2 className={styles.pageTitle}>Choose a Lesson</h2>
 

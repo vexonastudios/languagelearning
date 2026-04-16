@@ -144,9 +144,24 @@ export default function LessonPlayPage() {
   async function loadLesson() {
     const p = localStorage.getItem('spanishkids_active_profile')
     const parsed = p ? JSON.parse(p) : null
-    const url = parsed ? `/api/lessons/${lessonId}?userId=${parsed.id}` : `/api/lessons/${lessonId}`
+    
+    let url = `/api/lessons/${lessonId}`
+    if (parsed) url += `?userId=${parsed.id}`
+    
+    if (lessonId === 'review') {
+      url = `/api/lessons/review`
+      if (parsed) url += `?userId=${parsed.id}`
+    }
     const res = await fetch(url)
     const data = await res.json()
+    if (!res.ok) {
+       if (lessonId === 'review' && res.status === 404) {
+           alert('You need to publish some lessons first before you can review!')
+           router.push('/learn')
+           return
+       }
+       throw new Error(data.error)
+    }
     setLesson(data.lesson)
     setQuestions(data.questions ?? [])
     setLoading(false)
@@ -287,11 +302,13 @@ export default function LessonPlayPage() {
         localStorage.setItem('spanishkids_profiles', JSON.stringify(updatedList))
         
         // Save completion
-        const completedKey = `spanishkids_completed_${profile.id}`
-        const completed = JSON.parse(localStorage.getItem(completedKey) || '[]')
-        if (lesson && !completed.includes(lesson.id)) {
-          completed.push(lesson.id)
-          localStorage.setItem(completedKey, JSON.stringify(completed))
+        if (lessonId !== 'review') {
+          const completedKey = `spanishkids_completed_${profile.id}`
+          const completed = JSON.parse(localStorage.getItem(completedKey) || '[]')
+          if (lesson && !completed.includes(lesson.id)) {
+            completed.push(lesson.id)
+            localStorage.setItem(completedKey, JSON.stringify(completed))
+          }
         }
 
         // Apply Streak Logic (Only triggers on FULL LESSON COMPLETION)
