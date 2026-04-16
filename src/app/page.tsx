@@ -11,6 +11,7 @@ interface Profile {
   avatar: string
   streak: number
   total_xp: number
+  last_active_at?: string
 }
 
 export default function ProfileSelectPage() {
@@ -68,7 +69,35 @@ export default function ProfileSelectPage() {
   }
 
   function selectProfile(profile: Profile) {
-    localStorage.setItem('spanishkids_active_profile', JSON.stringify(profile))
+    const today = new Date().toISOString().split('T')[0]
+    let updatedProfile = { ...profile }
+
+    if (profile.last_active_at) {
+      const prevDate = new Date(today)
+      prevDate.setDate(prevDate.getDate() - 1)
+      const yesterdayStr = prevDate.toISOString().split('T')[0]
+
+      if (profile.last_active_at === yesterdayStr) {
+        // Increment streak!
+        updatedProfile.streak = (profile.streak || 0) + 1
+      } else if (profile.last_active_at !== today) {
+        // Missed a day! Reset streak.
+        updatedProfile.streak = 1
+      }
+      // If it IS today, do nothing (streak remains same)
+    } else {
+      // First time playing!
+      updatedProfile.streak = 1
+    }
+
+    updatedProfile.last_active_at = today
+
+    // Update the list of profiles in state + localStorage
+    const updatedProfiles = profiles.map(p => p.id === updatedProfile.id ? updatedProfile : p)
+    setProfiles(updatedProfiles)
+    localStorage.setItem('spanishkids_profiles', JSON.stringify(updatedProfiles))
+    
+    localStorage.setItem('spanishkids_active_profile', JSON.stringify(updatedProfile))
     router.push('/learn')
   }
 
