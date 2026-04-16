@@ -244,8 +244,8 @@ export default function LessonPlayPage() {
       setWrongChoices((prev) => [...prev, choice.label])
       setFeedbackMsg(randomPick(FEEDBACK_MESSAGES.wrong))
       playBuzz()
-      // Synthesize immediate TTS error using English voice
-      setTimeout(() => play('Try again.', 'en'), 300)
+      // Synthesize immediate TTS error using Spanish voice
+      setTimeout(() => play('¡Inténtalo de nuevo!', 'es'), 300)
 
       // Record wrong
       if (profile && currentQuestion && wrongChoices.length === 0) {
@@ -295,23 +295,43 @@ export default function LessonPlayPage() {
         }
 
         // Apply Streak Logic (Only triggers on FULL LESSON COMPLETION)
-        const today = new Date().toISOString().split('T')[0]
+        const todayStr = new Date().toISOString().split('T')[0]
+        const todayDate = new Date(todayStr)
         let updatedProfile = { ...profile }
 
-        if (profile.last_active_at) {
-          const prevDate = new Date(today)
-          prevDate.setDate(prevDate.getDate() - 1)
-          const yesterdayStr = prevDate.toISOString().split('T')[0]
+        // If today is Sunday (0), we freeze streak logic. Don't increment, don't break.
+        if (todayDate.getDay() !== 0) {
+          if (profile.last_active_at) {
+            let reqPrevDate = new Date(todayStr)
+            reqPrevDate.setDate(reqPrevDate.getDate() - 1)
+            // If yesterday was Sunday, the "required previous day" is actually Saturday
+            if (reqPrevDate.getDay() === 0) {
+              reqPrevDate.setDate(reqPrevDate.getDate() - 1)
+            }
+            const requiredPrevStr = reqPrevDate.toISOString().split('T')[0]
 
-          if (profile.last_active_at === yesterdayStr) {
-            updatedProfile.streak = (profile.streak || 0) + 1
-          } else if (profile.last_active_at !== today) {
+            if (profile.last_active_at === requiredPrevStr || profile.last_active_at === todayStr) {
+               if (profile.last_active_at !== todayStr) {
+                 updatedProfile.streak = (profile.streak || 0) + 1
+               }
+            } else {
+              // Also check if they bought a streak freeze!
+              const inventory = JSON.parse(localStorage.getItem(`spanishkids_inventory_${profile.id}`) || '[]')
+              const freezeIndex = inventory.findIndex((id: string) => id === 'streak_freeze')
+              if (freezeIndex !== -1) {
+                // Consume freeze and maintain streak
+                inventory.splice(freezeIndex, 1)
+                localStorage.setItem(`spanishkids_inventory_${profile.id}`, JSON.stringify(inventory))
+                updatedProfile.streak = profile.streak || 0 // don't increment, just maintain
+              } else {
+                updatedProfile.streak = 1
+              }
+            }
+          } else {
             updatedProfile.streak = 1
           }
-        } else {
-          updatedProfile.streak = 1
+          updatedProfile.last_active_at = todayStr
         }
-        updatedProfile.last_active_at = today
         
         // Save back to sync
         localStorage.setItem('spanishkids_active_profile', JSON.stringify(updatedProfile))

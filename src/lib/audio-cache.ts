@@ -139,10 +139,10 @@ export async function prerenderLessonAudio(lessonId: string): Promise<{
 
   // Feedback phrases
   const feedback = [
-    { text: 'Great job!', language: 'en' as const },
-    { text: 'Try again.', language: 'en' as const },
-    { text: 'That is correct!', language: 'en' as const },
-    { text: "Almost! Let's try again.", language: 'en' as const },
+    { text: '¡Excelente!', language: 'es' as const },
+    { text: '¡Inténtalo de nuevo!', language: 'es' as const },
+    { text: '¡Correcto!', language: 'es' as const },
+    { text: "¡Casi!", language: 'es' as const },
   ]
   tasks.push(...feedback)
 

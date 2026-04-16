@@ -10,28 +10,37 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Missing parameters' }, { status: 400 })
   }
 
-  // Verify reward cost
-  const { data: reward, error: rErr } = await db.from('rewards').select('*').eq('id', rewardId).single()
-  if (rErr || !reward) return NextResponse.json({ error: 'Reward not found' }, { status: 404 })
+  let cost = 0
+
+  if (rewardId === 'streak_freeze') {
+    cost = 200
+  } else {
+    // Verify reward cost
+    const { data: reward, error: rErr } = await db.from('rewards').select('*').eq('id', rewardId).single()
+    if (rErr || !reward) return NextResponse.json({ error: 'Reward not found' }, { status: 404 })
+    cost = reward.cost
+  }
 
   // Check user XP
   const { data: profile, error: pErr } = await db.from('child_profiles').select('total_xp').eq('id', profileId).single()
   if (pErr || !profile) return NextResponse.json({ error: 'Profile not found' }, { status: 404 })
 
-  if (profile.total_xp < reward.cost) {
-    return NextResponse.json({ error: 'Not enough XP' }, { status: 400 })
+  if (profile.total_xp < cost) {
+    return NextResponse.json({ error: 'Not enough stars!' }, { status: 400 })
   }
 
   // Deduct XP
-  const newXp = profile.total_xp - reward.cost
+  const newXp = profile.total_xp - cost
   await db.from('child_profiles').update({ total_xp: newXp }).eq('id', profileId)
 
-  // Insert purchase log
-  await db.from('reward_purchases').insert({
-    profile_id: profileId,
-    reward_id: rewardId,
-    status: 'pending'
-  })
+  // Insert purchase log only if it's a real parent reward
+  if (rewardId !== 'streak_freeze') {
+    await db.from('reward_purchases').insert({
+      profile_id: profileId,
+      reward_id: rewardId,
+      status: 'pending'
+    })
+  }
 
   // We return the new XP so the client can update localStorage securely
   return NextResponse.json({ success: true, newXp })

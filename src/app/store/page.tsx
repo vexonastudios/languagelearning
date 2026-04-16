@@ -31,7 +31,11 @@ export default function RewardStorePage() {
     fetch('/api/store/rewards')
       .then(res => res.json())
       .then(data => {
-        setRewards(Array.isArray(data) ? data : [])
+        const parentRewards = Array.isArray(data) ? data : []
+        setRewards([
+          { id: 'streak_freeze', title: 'Streak Freeze', cost: 200, icon: '🧊' },
+          ...parentRewards
+        ])
         setLoading(false)
       })
   }, [])
@@ -65,7 +69,15 @@ export default function RewardStorePage() {
       const updatedAll = all.map((p: any) => p.id === profile.id ? newProfile : p)
       localStorage.setItem('spanishkids_profiles', JSON.stringify(updatedAll))
 
-      alert(`🎉 Woohoo! You bought ${buying.title}! Your parents will be notified!`)
+      if (buying.id === 'streak_freeze') {
+        const inventory = JSON.parse(localStorage.getItem(`spanishkids_inventory_${profile.id}`) || '[]')
+        inventory.push('streak_freeze')
+        localStorage.setItem(`spanishkids_inventory_${profile.id}`, JSON.stringify(inventory))
+        alert('🧊 Streak Freeze purchased! It will automatically save your streak if you miss a day.')
+      } else {
+        alert(`🎉 Woohoo! You bought ${buying.title}! Your parents will be notified!`)
+      }
+      
       setBuying(null)
     } catch (e: any) {
       alert("Error processing purchase!")
