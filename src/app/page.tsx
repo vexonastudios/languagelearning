@@ -35,18 +35,36 @@ export default function ProfileSelectPage() {
   }
 
   async function createProfile() {
-    if (!newName.trim()) return
-    const res = await fetch('/api/profiles', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ child_name: newName.trim(), avatar: newAvatar }),
-    })
-    const profile = await res.json()
-    const updated = [...profiles, profile]
-    setProfiles(updated)
-    localStorage.setItem('spanishkids_profiles', JSON.stringify(updated))
-    setCreating(false)
-    setNewName('')
+    if (!newName.trim()) {
+      alert("Please enter a name first!")
+      return
+    }
+    
+    try {
+      const res = await fetch('/api/profiles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ child_name: newName.trim(), avatar: newAvatar }),
+      })
+      
+      if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.error || 'Failed to create profile')
+      }
+      
+      const profile = await res.json()
+      const updated = [...profiles, profile]
+      setProfiles(updated)
+      localStorage.setItem('spanishkids_profiles', JSON.stringify(updated))
+      setCreating(false)
+      setNewName('')
+      
+      // Auto-jump to learning page right after creating!
+      selectProfile(profile)
+    } catch (e: any) {
+      console.error(e)
+      alert("Error creating profile: " + e.message)
+    }
   }
 
   function selectProfile(profile: Profile) {
