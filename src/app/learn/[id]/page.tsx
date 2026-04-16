@@ -66,6 +66,7 @@ export default function LessonPlayPage() {
   const [wrongChoices, setWrongChoices] = useState<string[]>([])
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null)
   const [feedbackMsg, setFeedbackMsg] = useState('')
+  const [showExample, setShowExample] = useState(false)
   const [score, setScore] = useState(0)
   const [totalAnswered, setTotalAnswered] = useState(0)
   const [finished, setFinished] = useState(false)
@@ -144,22 +145,25 @@ export default function LessonPlayPage() {
       // Play ding immediately
       playDing()
       
-      // Play context audio
-      if (currentQuestion.type !== 'sentence_build' && currentQuestion.type !== 'sentence_match') {
+      // Play context audio OR example sentence
+      if (currentQuestion.exampleEs && currentQuestion.exampleEn) {
+         setShowExample(true)
+         setTimeout(() => {
+           play(currentQuestion.exampleEs!, 'es')
+         }, 600)
+         setTimeout(advance, 4000)
+      } else if (currentQuestion.type !== 'sentence_build' && currentQuestion.type !== 'sentence_match') {
         setTimeout(() => {
           if (currentQuestion.audioLanguage === 'en') {
-            // They heard english, tapped spanish. Say English again, then Spanish context.
             play(currentQuestion.audioText, 'en')
             setTimeout(() => play(currentQuestion.correctAnswer, 'es'), 1100)
           } else {
-            // Heard spanish, tapped english. Say English context, then Spanish target.
             play(currentQuestion.correctAnswer, 'en')
             setTimeout(() => play(currentQuestion.audioText, 'es'), 1100)
           }
         }, 500)
-        setTimeout(advance, 3500) // Wait longer for both clips
+        setTimeout(advance, 3500)
       } else {
-        // Just play the target sentence for sentence builders
         setTimeout(() => play(currentQuestion.correctAnswer, 'es'), 500)
         setTimeout(advance, 2500)
       }
@@ -239,6 +243,7 @@ export default function LessonPlayPage() {
       setWrongChoices([])
       setSelectedChoice(null)
       setFeedbackMsg('')
+      setShowExample(false)
     }
   }
 
@@ -363,6 +368,14 @@ export default function LessonPlayPage() {
 
         {/* Prompt text */}
         <p className={styles.promptText}>{currentQuestion.promptText}</p>
+        
+        {/* Example sentence override display */}
+        {showExample && currentQuestion.exampleEs && (
+          <div className={styles.exampleSentenceBox}>
+            <p className={styles.exampleEs}>{currentQuestion.exampleEs}</p>
+            <p className={styles.exampleEn}>{currentQuestion.exampleEn}</p>
+          </div>
+        )}
       </div>
 
       {currentQuestion.type === 'sentence_build' ? (

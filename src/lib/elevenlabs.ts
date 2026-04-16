@@ -15,7 +15,9 @@ function getClient() {
  */
 export async function generateAudio(text: string, voiceId: string): Promise<Buffer> {
   const client = getClient()
-  const audioStream = await client.textToSpeech.convert(voiceId, {
+  // Force all audio to use the Spanish voice per user request, ignoring the passed voiceId
+  const forcedVoiceId = VOICE_ES
+  const audioStream = await client.textToSpeech.convert(forcedVoiceId, {
     text,
     modelId: 'eleven_multilingual_v2',
     voiceSettings: {

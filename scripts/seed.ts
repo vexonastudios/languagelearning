@@ -39,6 +39,8 @@ async function seed() {
     english_text: v.english_text,
     spanish_text: v.spanish_text,
     lesson_id: lessonMap[v.lesson] ?? null,
+    example_en: v.example_en,
+    example_es: v.example_es,
     category: v.category,
     tags: v.tags,
     difficulty: v.difficulty,

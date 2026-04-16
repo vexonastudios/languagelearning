@@ -29,6 +29,8 @@ create table if not exists vocabulary_items (
   lesson_id uuid references lessons(id) on delete cascade,
   category text not null default 'General',
   image_url text,
+  example_en text,
+  example_es text,
   tags text[] not null default '{}',
   difficulty int not null default 1 check (difficulty between 1 and 5),
   distractors_en text[] not null default '{}',

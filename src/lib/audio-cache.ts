@@ -118,6 +118,10 @@ export async function prerenderLessonAudio(lessonId: string): Promise<{
   for (const v of vocab) {
     tasks.push({ text: v.english_text, language: 'en' })
     tasks.push({ text: v.spanish_text, language: 'es' })
+    // If we have examples
+    if (v.example_en) tasks.push({ text: v.example_en, language: 'en' })
+    if (v.example_es) tasks.push({ text: v.example_es, language: 'es' })
+    
     tasks.push({ text: `What word is ${v.english_text}?`, language: 'en' })
     tasks.push({ text: `¿Qué palabra es ${v.spanish_text}?`, language: 'es' })
   }

@@ -4,949 +4,2234 @@
     "spanish_text": "manzana",
     "lesson": "Basics 1 — First Words",
     "category": "Food",
-    "tags": ["noun", "beginner", "food"],
+    "tags": [
+      "noun",
+      "beginner",
+      "food"
+    ],
     "difficulty": 1,
-    "distractors_en": ["orange", "banana", "grape"],
-    "distractors_es": ["naranja", "plátano", "uva"]
+    "distractors_en": [
+      "orange",
+      "banana",
+      "grape"
+    ],
+    "distractors_es": [
+      "naranja",
+      "plátano",
+      "uva"
+    ],
+    "example_en": "The apple is red.",
+    "example_es": "La manzana es roja."
   },
   {
     "english_text": "water",
     "spanish_text": "agua",
     "lesson": "Basics 1 — First Words",
     "category": "Food",
-    "tags": ["noun", "beginner", "drink"],
+    "tags": [
+      "noun",
+      "beginner",
+      "drink"
+    ],
     "difficulty": 1,
-    "distractors_en": ["juice", "milk", "tea"],
-    "distractors_es": ["jugo", "leche", "té"]
+    "distractors_en": [
+      "juice",
+      "milk",
+      "tea"
+    ],
+    "distractors_es": [
+      "jugo",
+      "leche",
+      "té"
+    ],
+    "example_en": "I drink water.",
+    "example_es": "Yo bebo agua."
   },
   {
     "english_text": "ball",
     "spanish_text": "pelota",
     "lesson": "Basics 1 — First Words",
     "category": "Toys",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["book", "toy", "shoe"],
-    "distractors_es": ["libro", "juguete", "zapato"]
+    "distractors_en": [
+      "book",
+      "toy",
+      "shoe"
+    ],
+    "distractors_es": [
+      "libro",
+      "juguete",
+      "zapato"
+    ],
+    "example_en": "The ball is round.",
+    "example_es": "La pelota es redonda."
   },
   {
     "english_text": "book",
     "spanish_text": "libro",
     "lesson": "Basics 1 — First Words",
     "category": "School",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["pen", "bag", "desk"],
-    "distractors_es": ["pluma", "bolsa", "escritorio"]
+    "distractors_en": [
+      "pen",
+      "bag",
+      "desk"
+    ],
+    "distractors_es": [
+      "pluma",
+      "bolsa",
+      "escritorio"
+    ],
+    "example_en": "I read a book.",
+    "example_es": "Yo leo un libro."
   },
   {
     "english_text": "house",
     "spanish_text": "casa",
     "lesson": "Basics 1 — First Words",
     "category": "Home",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["school", "park", "store"],
-    "distractors_es": ["escuela", "parque", "tienda"]
+    "distractors_en": [
+      "school",
+      "park",
+      "store"
+    ],
+    "distractors_es": [
+      "escuela",
+      "parque",
+      "tienda"
+    ],
+    "example_en": "The house is big.",
+    "example_es": "La casa es grande."
   },
   {
     "english_text": "door",
     "spanish_text": "puerta",
     "lesson": "Basics 2 — More Words",
     "category": "Home",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["window", "wall", "floor"],
-    "distractors_es": ["ventana", "pared", "piso"]
+    "distractors_en": [
+      "window",
+      "wall",
+      "floor"
+    ],
+    "distractors_es": [
+      "ventana",
+      "pared",
+      "piso"
+    ],
+    "example_en": "Open the door.",
+    "example_es": "Abre la puerta."
   },
   {
     "english_text": "table",
     "spanish_text": "mesa",
     "lesson": "Basics 2 — More Words",
     "category": "Home",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["chair", "bed", "sofa"],
-    "distractors_es": ["silla", "cama", "sofá"]
+    "distractors_en": [
+      "chair",
+      "bed",
+      "sofa"
+    ],
+    "distractors_es": [
+      "silla",
+      "cama",
+      "sofá"
+    ],
+    "example_en": "The food is on the table.",
+    "example_es": "La comida está en la mesa."
   },
   {
     "english_text": "chair",
     "spanish_text": "silla",
     "lesson": "Basics 2 — More Words",
     "category": "Home",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["table", "desk", "bench"],
-    "distractors_es": ["mesa", "escritorio", "banco"]
+    "distractors_en": [
+      "table",
+      "desk",
+      "bench"
+    ],
+    "distractors_es": [
+      "mesa",
+      "escritorio",
+      "banco"
+    ],
+    "example_en": "Sit on the chair.",
+    "example_es": "Siéntate en la silla."
   },
   {
     "english_text": "sun",
     "spanish_text": "sol",
     "lesson": "Basics 2 — More Words",
     "category": "Nature",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["moon", "star", "cloud"],
-    "distractors_es": ["luna", "estrella", "nube"]
+    "distractors_en": [
+      "moon",
+      "star",
+      "cloud"
+    ],
+    "distractors_es": [
+      "luna",
+      "estrella",
+      "nube"
+    ],
+    "example_en": "The sun is hot.",
+    "example_es": "El sol está caliente."
   },
   {
     "english_text": "tree",
     "spanish_text": "árbol",
     "lesson": "Basics 2 — More Words",
     "category": "Nature",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["flower", "grass", "bush"],
-    "distractors_es": ["flor", "hierba", "arbusto"]
+    "distractors_en": [
+      "flower",
+      "grass",
+      "bush"
+    ],
+    "distractors_es": [
+      "flor",
+      "hierba",
+      "arbusto"
+    ],
+    "example_en": "The tree is tall.",
+    "example_es": "El árbol es alto."
   },
   {
     "english_text": "dog",
     "spanish_text": "perro",
     "lesson": "Animals",
     "category": "Animals",
-    "tags": ["noun", "beginner", "animal"],
+    "tags": [
+      "noun",
+      "beginner",
+      "animal"
+    ],
     "difficulty": 1,
-    "distractors_en": ["cat", "bird", "fish"],
-    "distractors_es": ["gato", "pájaro", "pez"]
+    "distractors_en": [
+      "cat",
+      "bird",
+      "fish"
+    ],
+    "distractors_es": [
+      "gato",
+      "pájaro",
+      "pez"
+    ],
+    "example_en": "The dog runs fast.",
+    "example_es": "El perro corre rápido."
   },
   {
     "english_text": "cat",
     "spanish_text": "gato",
     "lesson": "Animals",
     "category": "Animals",
-    "tags": ["noun", "beginner", "animal"],
+    "tags": [
+      "noun",
+      "beginner",
+      "animal"
+    ],
     "difficulty": 1,
-    "distractors_en": ["dog", "rabbit", "mouse"],
-    "distractors_es": ["perro", "conejo", "ratón"]
+    "distractors_en": [
+      "dog",
+      "rabbit",
+      "mouse"
+    ],
+    "distractors_es": [
+      "perro",
+      "conejo",
+      "ratón"
+    ],
+    "example_en": "The cat is sleeping.",
+    "example_es": "El gato está durmiendo."
   },
   {
     "english_text": "bird",
     "spanish_text": "pájaro",
     "lesson": "Animals",
     "category": "Animals",
-    "tags": ["noun", "beginner", "animal"],
+    "tags": [
+      "noun",
+      "beginner",
+      "animal"
+    ],
     "difficulty": 1,
-    "distractors_en": ["fish", "frog", "turtle"],
-    "distractors_es": ["pez", "rana", "tortuga"]
+    "distractors_en": [
+      "fish",
+      "frog",
+      "turtle"
+    ],
+    "distractors_es": [
+      "pez",
+      "rana",
+      "tortuga"
+    ],
+    "example_en": "The bird flies high.",
+    "example_es": "El pájaro vuela alto."
   },
   {
     "english_text": "fish",
     "spanish_text": "pez",
     "lesson": "Animals",
     "category": "Animals",
-    "tags": ["noun", "beginner", "animal"],
+    "tags": [
+      "noun",
+      "beginner",
+      "animal"
+    ],
     "difficulty": 1,
-    "distractors_en": ["bird", "snake", "lizard"],
-    "distractors_es": ["pájaro", "serpiente", "lagarto"]
+    "distractors_en": [
+      "bird",
+      "snake",
+      "lizard"
+    ],
+    "distractors_es": [
+      "pájaro",
+      "serpiente",
+      "lagarto"
+    ],
+    "example_en": "The fish swims in the water.",
+    "example_es": "El pez nada en el agua."
   },
   {
     "english_text": "horse",
     "spanish_text": "caballo",
     "lesson": "Animals",
     "category": "Animals",
-    "tags": ["noun", "beginner", "animal"],
+    "tags": [
+      "noun",
+      "beginner",
+      "animal"
+    ],
     "difficulty": 1,
-    "distractors_en": ["cow", "pig", "sheep"],
-    "distractors_es": ["vaca", "cerdo", "oveja"]
+    "distractors_en": [
+      "cow",
+      "pig",
+      "sheep"
+    ],
+    "distractors_es": [
+      "vaca",
+      "cerdo",
+      "oveja"
+    ],
+    "example_en": "The horse is strong.",
+    "example_es": "El caballo es fuerte."
   },
   {
     "english_text": "cow",
     "spanish_text": "vaca",
     "lesson": "Animals",
     "category": "Animals",
-    "tags": ["noun", "beginner", "animal"],
+    "tags": [
+      "noun",
+      "beginner",
+      "animal"
+    ],
     "difficulty": 1,
-    "distractors_en": ["horse", "goat", "pig"],
-    "distractors_es": ["caballo", "cabra", "cerdo"]
+    "distractors_en": [
+      "horse",
+      "goat",
+      "pig"
+    ],
+    "distractors_es": [
+      "caballo",
+      "cabra",
+      "cerdo"
+    ],
+    "example_en": "The cow eats grass.",
+    "example_es": "La vaca come hierba."
   },
   {
     "english_text": "rabbit",
     "spanish_text": "conejo",
     "lesson": "Animals",
     "category": "Animals",
-    "tags": ["noun", "beginner", "animal"],
+    "tags": [
+      "noun",
+      "beginner",
+      "animal"
+    ],
     "difficulty": 1,
-    "distractors_en": ["cat", "hamster", "mouse"],
-    "distractors_es": ["gato", "hámster", "ratón"]
+    "distractors_en": [
+      "cat",
+      "hamster",
+      "mouse"
+    ],
+    "distractors_es": [
+      "gato",
+      "hámster",
+      "ratón"
+    ],
+    "example_en": "The rabbit hops.",
+    "example_es": "El conejo salta."
   },
   {
     "english_text": "lion",
     "spanish_text": "león",
     "lesson": "Animals",
     "category": "Animals",
-    "tags": ["noun", "beginner", "animal"],
+    "tags": [
+      "noun",
+      "beginner",
+      "animal"
+    ],
     "difficulty": 1,
-    "distractors_en": ["tiger", "bear", "wolf"],
-    "distractors_es": ["tigre", "oso", "lobo"]
+    "distractors_en": [
+      "tiger",
+      "bear",
+      "wolf"
+    ],
+    "distractors_es": [
+      "tigre",
+      "oso",
+      "lobo"
+    ],
+    "example_en": "The lion roars loudly.",
+    "example_es": "El león ruge fuerte."
   },
   {
     "english_text": "milk",
     "spanish_text": "leche",
     "lesson": "Food",
     "category": "Food",
-    "tags": ["noun", "beginner", "food"],
+    "tags": [
+      "noun",
+      "beginner",
+      "food"
+    ],
     "difficulty": 1,
-    "distractors_en": ["water", "juice", "soda"],
-    "distractors_es": ["agua", "jugo", "refresco"]
+    "distractors_en": [
+      "water",
+      "juice",
+      "soda"
+    ],
+    "distractors_es": [
+      "agua",
+      "jugo",
+      "refresco"
+    ],
+    "example_en": "I drink cold milk.",
+    "example_es": "Yo bebo leche fría."
   },
   {
     "english_text": "bread",
     "spanish_text": "pan",
     "lesson": "Food",
     "category": "Food",
-    "tags": ["noun", "beginner", "food"],
+    "tags": [
+      "noun",
+      "beginner",
+      "food"
+    ],
     "difficulty": 1,
-    "distractors_en": ["rice", "pasta", "corn"],
-    "distractors_es": ["arroz", "pasta", "maíz"]
+    "distractors_en": [
+      "rice",
+      "pasta",
+      "corn"
+    ],
+    "distractors_es": [
+      "arroz",
+      "pasta",
+      "maíz"
+    ],
+    "example_en": "I eat fresh bread.",
+    "example_es": "Yo como pan fresco."
   },
   {
     "english_text": "egg",
     "spanish_text": "huevo",
     "lesson": "Food",
     "category": "Food",
-    "tags": ["noun", "beginner", "food"],
+    "tags": [
+      "noun",
+      "beginner",
+      "food"
+    ],
     "difficulty": 1,
-    "distractors_en": ["cheese", "butter", "yogurt"],
-    "distractors_es": ["queso", "mantequilla", "yogur"]
+    "distractors_en": [
+      "cheese",
+      "butter",
+      "yogurt"
+    ],
+    "distractors_es": [
+      "queso",
+      "mantequilla",
+      "yogur"
+    ],
+    "example_en": "The egg is white.",
+    "example_es": "El huevo es blanco."
   },
   {
     "english_text": "orange",
     "spanish_text": "naranja",
     "lesson": "Food",
     "category": "Food",
-    "tags": ["noun", "beginner", "food", "fruit"],
+    "tags": [
+      "noun",
+      "beginner",
+      "food",
+      "fruit"
+    ],
     "difficulty": 1,
-    "distractors_en": ["apple", "mango", "peach"],
-    "distractors_es": ["manzana", "mango", "durazno"]
+    "distractors_en": [
+      "apple",
+      "mango",
+      "peach"
+    ],
+    "distractors_es": [
+      "manzana",
+      "mango",
+      "durazno"
+    ],
+    "example_en": "The orange is sweet.",
+    "example_es": "La naranja es dulce."
   },
   {
     "english_text": "banana",
     "spanish_text": "plátano",
     "lesson": "Food",
     "category": "Food",
-    "tags": ["noun", "beginner", "food", "fruit"],
+    "tags": [
+      "noun",
+      "beginner",
+      "food",
+      "fruit"
+    ],
     "difficulty": 1,
-    "distractors_en": ["grape", "pear", "cherry"],
-    "distractors_es": ["uva", "pera", "cereza"]
+    "distractors_en": [
+      "grape",
+      "pear",
+      "cherry"
+    ],
+    "distractors_es": [
+      "uva",
+      "pera",
+      "cereza"
+    ],
+    "example_en": "The banana is yellow.",
+    "example_es": "El plátano es amarillo."
   },
   {
     "english_text": "rice",
     "spanish_text": "arroz",
     "lesson": "Food",
     "category": "Food",
-    "tags": ["noun", "beginner", "food"],
+    "tags": [
+      "noun",
+      "beginner",
+      "food"
+    ],
     "difficulty": 1,
-    "distractors_en": ["bread", "pasta", "potato"],
-    "distractors_es": ["pan", "pasta", "papa"]
+    "distractors_en": [
+      "bread",
+      "pasta",
+      "potato"
+    ],
+    "distractors_es": [
+      "pan",
+      "pasta",
+      "papa"
+    ],
+    "example_en": "I eat rice with chicken.",
+    "example_es": "Yo como arroz con pollo."
   },
   {
     "english_text": "chicken",
     "spanish_text": "pollo",
     "lesson": "Food",
     "category": "Food",
-    "tags": ["noun", "beginner", "food"],
+    "tags": [
+      "noun",
+      "beginner",
+      "food"
+    ],
     "difficulty": 1,
-    "distractors_en": ["beef", "pork", "fish"],
-    "distractors_es": ["carne", "cerdo", "pescado"]
+    "distractors_en": [
+      "beef",
+      "pork",
+      "fish"
+    ],
+    "distractors_es": [
+      "carne",
+      "cerdo",
+      "pescado"
+    ],
+    "example_en": "The chicken is tasty.",
+    "example_es": "El pollo está sabroso."
   },
   {
     "english_text": "red",
     "spanish_text": "rojo",
     "lesson": "Colors",
     "category": "Colors",
-    "tags": ["adjective", "beginner", "color"],
+    "tags": [
+      "adjective",
+      "beginner",
+      "color"
+    ],
     "difficulty": 1,
-    "distractors_en": ["blue", "green", "yellow"],
-    "distractors_es": ["azul", "verde", "amarillo"]
+    "distractors_en": [
+      "blue",
+      "green",
+      "yellow"
+    ],
+    "distractors_es": [
+      "azul",
+      "verde",
+      "amarillo"
+    ],
+    "example_en": "My shirt is red.",
+    "example_es": "Mi camisa es roja."
   },
   {
     "english_text": "blue",
     "spanish_text": "azul",
     "lesson": "Colors",
     "category": "Colors",
-    "tags": ["adjective", "beginner", "color"],
+    "tags": [
+      "adjective",
+      "beginner",
+      "color"
+    ],
     "difficulty": 1,
-    "distractors_en": ["red", "purple", "green"],
-    "distractors_es": ["rojo", "morado", "verde"]
+    "distractors_en": [
+      "red",
+      "purple",
+      "green"
+    ],
+    "distractors_es": [
+      "rojo",
+      "morado",
+      "verde"
+    ],
+    "example_en": "The sky is blue.",
+    "example_es": "El cielo es azul."
   },
   {
     "english_text": "green",
     "spanish_text": "verde",
     "lesson": "Colors",
     "category": "Colors",
-    "tags": ["adjective", "beginner", "color"],
+    "tags": [
+      "adjective",
+      "beginner",
+      "color"
+    ],
     "difficulty": 1,
-    "distractors_en": ["blue", "yellow", "brown"],
-    "distractors_es": ["azul", "amarillo", "café"]
+    "distractors_en": [
+      "blue",
+      "yellow",
+      "brown"
+    ],
+    "distractors_es": [
+      "azul",
+      "amarillo",
+      "café"
+    ],
+    "example_en": "The grass is green.",
+    "example_es": "La hierba es verde."
   },
   {
     "english_text": "yellow",
     "spanish_text": "amarillo",
     "lesson": "Colors",
     "category": "Colors",
-    "tags": ["adjective", "beginner", "color"],
+    "tags": [
+      "adjective",
+      "beginner",
+      "color"
+    ],
     "difficulty": 1,
-    "distractors_en": ["orange", "red", "white"],
-    "distractors_es": ["anaranjado", "rojo", "blanco"]
+    "distractors_en": [
+      "orange",
+      "red",
+      "white"
+    ],
+    "distractors_es": [
+      "anaranjado",
+      "rojo",
+      "blanco"
+    ],
+    "example_en": "The sun is yellow.",
+    "example_es": "El sol es amarillo."
   },
   {
     "english_text": "black",
     "spanish_text": "negro",
     "lesson": "Colors",
     "category": "Colors",
-    "tags": ["adjective", "beginner", "color"],
+    "tags": [
+      "adjective",
+      "beginner",
+      "color"
+    ],
     "difficulty": 1,
-    "distractors_en": ["white", "gray", "brown"],
-    "distractors_es": ["blanco", "gris", "café"]
+    "distractors_en": [
+      "white",
+      "gray",
+      "brown"
+    ],
+    "distractors_es": [
+      "blanco",
+      "gris",
+      "café"
+    ],
+    "example_en": "The cat is black.",
+    "example_es": "El gato es negro."
   },
   {
     "english_text": "white",
     "spanish_text": "blanco",
     "lesson": "Colors",
     "category": "Colors",
-    "tags": ["adjective", "beginner", "color"],
+    "tags": [
+      "adjective",
+      "beginner",
+      "color"
+    ],
     "difficulty": 1,
-    "distractors_en": ["black", "gray", "pink"],
-    "distractors_es": ["negro", "gris", "rosado"]
+    "distractors_en": [
+      "black",
+      "gray",
+      "pink"
+    ],
+    "distractors_es": [
+      "negro",
+      "gris",
+      "rosado"
+    ],
+    "example_en": "The snow is white.",
+    "example_es": "La nieve es blanca."
   },
   {
     "english_text": "pink",
     "spanish_text": "rosado",
     "lesson": "Colors",
     "category": "Colors",
-    "tags": ["adjective", "beginner", "color"],
+    "tags": [
+      "adjective",
+      "beginner",
+      "color"
+    ],
     "difficulty": 1,
-    "distractors_en": ["purple", "red", "orange"],
-    "distractors_es": ["morado", "rojo", "anaranjado"]
+    "distractors_en": [
+      "purple",
+      "red",
+      "orange"
+    ],
+    "distractors_es": [
+      "morado",
+      "rojo",
+      "anaranjado"
+    ],
+    "example_en": "The flower is pink.",
+    "example_es": "La flor es rosada."
   },
   {
     "english_text": "mom",
     "spanish_text": "mamá",
     "lesson": "Family",
     "category": "Family",
-    "tags": ["noun", "beginner", "family"],
+    "tags": [
+      "noun",
+      "beginner",
+      "family"
+    ],
     "difficulty": 1,
-    "distractors_en": ["dad", "sister", "aunt"],
-    "distractors_es": ["papá", "hermana", "tía"]
+    "distractors_en": [
+      "dad",
+      "sister",
+      "aunt"
+    ],
+    "distractors_es": [
+      "papá",
+      "hermana",
+      "tía"
+    ],
+    "example_en": "My mom is nice.",
+    "example_es": "Mi mamá es amable."
   },
   {
     "english_text": "dad",
     "spanish_text": "papá",
     "lesson": "Family",
     "category": "Family",
-    "tags": ["noun", "beginner", "family"],
+    "tags": [
+      "noun",
+      "beginner",
+      "family"
+    ],
     "difficulty": 1,
-    "distractors_en": ["mom", "brother", "uncle"],
-    "distractors_es": ["mamá", "hermano", "tío"]
+    "distractors_en": [
+      "mom",
+      "brother",
+      "uncle"
+    ],
+    "distractors_es": [
+      "mamá",
+      "hermano",
+      "tío"
+    ],
+    "example_en": "My dad is tall.",
+    "example_es": "Mi papá es alto."
   },
   {
     "english_text": "sister",
     "spanish_text": "hermana",
     "lesson": "Family",
     "category": "Family",
-    "tags": ["noun", "beginner", "family"],
+    "tags": [
+      "noun",
+      "beginner",
+      "family"
+    ],
     "difficulty": 1,
-    "distractors_en": ["brother", "mom", "cousin"],
-    "distractors_es": ["hermano", "mamá", "prima"]
+    "distractors_en": [
+      "brother",
+      "mom",
+      "cousin"
+    ],
+    "distractors_es": [
+      "hermano",
+      "mamá",
+      "prima"
+    ],
+    "example_en": "My sister plays with me.",
+    "example_es": "Mi hermana juega conmigo."
   },
   {
     "english_text": "brother",
     "spanish_text": "hermano",
     "lesson": "Family",
     "category": "Family",
-    "tags": ["noun", "beginner", "family"],
+    "tags": [
+      "noun",
+      "beginner",
+      "family"
+    ],
     "difficulty": 1,
-    "distractors_en": ["sister", "dad", "cousin"],
-    "distractors_es": ["hermana", "papá", "primo"]
+    "distractors_en": [
+      "sister",
+      "dad",
+      "cousin"
+    ],
+    "distractors_es": [
+      "hermana",
+      "papá",
+      "primo"
+    ],
+    "example_en": "My brother is funny.",
+    "example_es": "Mi hermano es chistoso."
   },
   {
     "english_text": "grandma",
     "spanish_text": "abuela",
     "lesson": "Family",
     "category": "Family",
-    "tags": ["noun", "beginner", "family"],
+    "tags": [
+      "noun",
+      "beginner",
+      "family"
+    ],
     "difficulty": 1,
-    "distractors_en": ["grandpa", "aunt", "mom"],
-    "distractors_es": ["abuelo", "tía", "mamá"]
+    "distractors_en": [
+      "grandpa",
+      "aunt",
+      "mom"
+    ],
+    "distractors_es": [
+      "abuelo",
+      "tía",
+      "mamá"
+    ],
+    "example_en": "My grandma gives hugs.",
+    "example_es": "Mi abuela da abrazos."
   },
   {
     "english_text": "grandpa",
     "spanish_text": "abuelo",
     "lesson": "Family",
     "category": "Family",
-    "tags": ["noun", "beginner", "family"],
+    "tags": [
+      "noun",
+      "beginner",
+      "family"
+    ],
     "difficulty": 1,
-    "distractors_en": ["grandma", "uncle", "dad"],
-    "distractors_es": ["abuela", "tío", "papá"]
+    "distractors_en": [
+      "grandma",
+      "uncle",
+      "dad"
+    ],
+    "distractors_es": [
+      "abuela",
+      "tío",
+      "papá"
+    ],
+    "example_en": "My grandpa is smart.",
+    "example_es": "Mi abuelo es inteligente."
   },
   {
     "english_text": "baby",
     "spanish_text": "bebé",
     "lesson": "Family",
     "category": "Family",
-    "tags": ["noun", "beginner", "family"],
+    "tags": [
+      "noun",
+      "beginner",
+      "family"
+    ],
     "difficulty": 1,
-    "distractors_en": ["child", "boy", "girl"],
-    "distractors_es": ["niño", "chico", "chica"]
+    "distractors_en": [
+      "child",
+      "boy",
+      "girl"
+    ],
+    "distractors_es": [
+      "niño",
+      "chico",
+      "chica"
+    ],
+    "example_en": "The baby is crying.",
+    "example_es": "El bebé está llorando."
   },
   {
     "english_text": "head",
     "spanish_text": "cabeza",
     "lesson": "Body",
     "category": "Body",
-    "tags": ["noun", "beginner", "body"],
+    "tags": [
+      "noun",
+      "beginner",
+      "body"
+    ],
     "difficulty": 1,
-    "distractors_en": ["hand", "foot", "arm"],
-    "distractors_es": ["mano", "pie", "brazo"]
+    "distractors_en": [
+      "hand",
+      "foot",
+      "arm"
+    ],
+    "distractors_es": [
+      "mano",
+      "pie",
+      "brazo"
+    ],
+    "example_en": "I wear a hat on my head.",
+    "example_es": "Llevo un sombrero en mi cabeza."
   },
   {
     "english_text": "hand",
     "spanish_text": "mano",
     "lesson": "Body",
     "category": "Body",
-    "tags": ["noun", "beginner", "body"],
+    "tags": [
+      "noun",
+      "beginner",
+      "body"
+    ],
     "difficulty": 1,
-    "distractors_en": ["foot", "arm", "leg"],
-    "distractors_es": ["pie", "brazo", "pierna"]
+    "distractors_en": [
+      "foot",
+      "arm",
+      "leg"
+    ],
+    "distractors_es": [
+      "pie",
+      "brazo",
+      "pierna"
+    ],
+    "example_en": "I wave my hand.",
+    "example_es": "Yo muevo mi mano."
   },
   {
     "english_text": "foot",
     "spanish_text": "pie",
     "lesson": "Body",
     "category": "Body",
-    "tags": ["noun", "beginner", "body"],
+    "tags": [
+      "noun",
+      "beginner",
+      "body"
+    ],
     "difficulty": 1,
-    "distractors_en": ["hand", "leg", "knee"],
-    "distractors_es": ["mano", "pierna", "rodilla"]
+    "distractors_en": [
+      "hand",
+      "leg",
+      "knee"
+    ],
+    "distractors_es": [
+      "mano",
+      "pierna",
+      "rodilla"
+    ],
+    "example_en": "I wear a shoe on my foot.",
+    "example_es": "Llevo un zapato en mi pie."
   },
   {
     "english_text": "eye",
     "spanish_text": "ojo",
     "lesson": "Body",
     "category": "Body",
-    "tags": ["noun", "beginner", "body"],
+    "tags": [
+      "noun",
+      "beginner",
+      "body"
+    ],
     "difficulty": 1,
-    "distractors_en": ["ear", "nose", "mouth"],
-    "distractors_es": ["oreja", "nariz", "boca"]
+    "distractors_en": [
+      "ear",
+      "nose",
+      "mouth"
+    ],
+    "distractors_es": [
+      "oreja",
+      "nariz",
+      "boca"
+    ],
+    "example_en": "I see with my eye.",
+    "example_es": "Yo veo con mi ojo."
   },
   {
     "english_text": "ear",
     "spanish_text": "oreja",
     "lesson": "Body",
     "category": "Body",
-    "tags": ["noun", "beginner", "body"],
+    "tags": [
+      "noun",
+      "beginner",
+      "body"
+    ],
     "difficulty": 1,
-    "distractors_en": ["eye", "nose", "mouth"],
-    "distractors_es": ["ojo", "nariz", "boca"]
+    "distractors_en": [
+      "eye",
+      "nose",
+      "mouth"
+    ],
+    "distractors_es": [
+      "ojo",
+      "nariz",
+      "boca"
+    ],
+    "example_en": "I hear with my ear.",
+    "example_es": "Yo escucho con mi oreja."
   },
   {
     "english_text": "nose",
     "spanish_text": "nariz",
     "lesson": "Body",
     "category": "Body",
-    "tags": ["noun", "beginner", "body"],
+    "tags": [
+      "noun",
+      "beginner",
+      "body"
+    ],
     "difficulty": 1,
-    "distractors_en": ["mouth", "ear", "eye"],
-    "distractors_es": ["boca", "oreja", "ojo"]
+    "distractors_en": [
+      "mouth",
+      "ear",
+      "eye"
+    ],
+    "distractors_es": [
+      "boca",
+      "oreja",
+      "ojo"
+    ],
+    "example_en": "I smell with my nose.",
+    "example_es": "Yo huelo con mi nariz."
   },
   {
     "english_text": "mouth",
     "spanish_text": "boca",
     "lesson": "Body",
     "category": "Body",
-    "tags": ["noun", "beginner", "body"],
+    "tags": [
+      "noun",
+      "beginner",
+      "body"
+    ],
     "difficulty": 1,
-    "distractors_en": ["nose", "eye", "teeth"],
-    "distractors_es": ["nariz", "ojo", "dientes"]
+    "distractors_en": [
+      "nose",
+      "eye",
+      "teeth"
+    ],
+    "distractors_es": [
+      "nariz",
+      "ojo",
+      "dientes"
+    ],
+    "example_en": "I smile with my mouth.",
+    "example_es": "Sonrío con mi boca."
   },
   {
     "english_text": "run",
     "spanish_text": "correr",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["jump", "walk", "swim"],
-    "distractors_es": ["saltar", "caminar", "nadar"]
+    "distractors_en": [
+      "jump",
+      "walk",
+      "swim"
+    ],
+    "distractors_es": [
+      "saltar",
+      "caminar",
+      "nadar"
+    ],
+    "example_en": "I like to run.",
+    "example_es": "Me gusta correr."
   },
   {
     "english_text": "eat",
     "spanish_text": "comer",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["drink", "cook", "taste"],
-    "distractors_es": ["beber", "cocinar", "probar"]
+    "distractors_en": [
+      "drink",
+      "cook",
+      "taste"
+    ],
+    "distractors_es": [
+      "beber",
+      "cocinar",
+      "probar"
+    ],
+    "example_en": "We eat dinner together.",
+    "example_es": "Cenamos juntos."
   },
   {
     "english_text": "drink",
     "spanish_text": "beber",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["eat", "pour", "taste"],
-    "distractors_es": ["comer", "verter", "probar"]
+    "distractors_en": [
+      "eat",
+      "pour",
+      "taste"
+    ],
+    "distractors_es": [
+      "comer",
+      "verter",
+      "probar"
+    ],
+    "example_en": "Drink some water.",
+    "example_es": "Bebe un poco de agua."
   },
   {
     "english_text": "sleep",
     "spanish_text": "dormir",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["wake", "rest", "dream"],
-    "distractors_es": ["despertar", "descansar", "soñar"]
+    "distractors_en": [
+      "wake",
+      "rest",
+      "dream"
+    ],
+    "distractors_es": [
+      "despertar",
+      "descansar",
+      "soñar"
+    ],
+    "example_en": "It is time to sleep.",
+    "example_es": "Es hora de dormir."
   },
   {
     "english_text": "jump",
     "spanish_text": "saltar",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["run", "hop", "fly"],
-    "distractors_es": ["correr", "brincar", "volar"]
+    "distractors_en": [
+      "run",
+      "hop",
+      "fly"
+    ],
+    "distractors_es": [
+      "correr",
+      "brincar",
+      "volar"
+    ],
+    "example_en": "Jump very high!",
+    "example_es": "¡Salta muy alto!"
   },
   {
     "english_text": "see",
     "spanish_text": "ver",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["look", "watch", "find"],
-    "distractors_es": ["mirar", "observar", "encontrar"]
+    "distractors_en": [
+      "look",
+      "watch",
+      "find"
+    ],
+    "distractors_es": [
+      "mirar",
+      "observar",
+      "encontrar"
+    ],
+    "example_en": "Do you see the bird?",
+    "example_es": "¿Ves el pájaro?"
   },
   {
     "english_text": "walk",
     "spanish_text": "caminar",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["run", "skip", "march"],
-    "distractors_es": ["correr", "brincar", "marchar"]
+    "distractors_en": [
+      "run",
+      "skip",
+      "march"
+    ],
+    "distractors_es": [
+      "correr",
+      "brincar",
+      "marchar"
+    ],
+    "example_en": "Let's take a walk.",
+    "example_es": "Vamos a caminar."
   },
   {
     "english_text": "play",
     "spanish_text": "jugar",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["work", "sing", "dance"],
-    "distractors_es": ["trabajar", "cantar", "bailar"]
+    "distractors_en": [
+      "work",
+      "sing",
+      "dance"
+    ],
+    "distractors_es": [
+      "trabajar",
+      "cantar",
+      "bailar"
+    ],
+    "example_en": "I play in the park.",
+    "example_es": "Yo juego en el parque."
   },
   {
     "english_text": "big",
     "spanish_text": "grande",
     "lesson": "Review — All Words",
     "category": "Adjectives",
-    "tags": ["adjective", "beginner"],
+    "tags": [
+      "adjective",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["small", "tall", "long"],
-    "distractors_es": ["pequeño", "alto", "largo"]
+    "distractors_en": [
+      "small",
+      "tall",
+      "long"
+    ],
+    "distractors_es": [
+      "pequeño",
+      "alto",
+      "largo"
+    ],
+    "example_en": "The elephant is big.",
+    "example_es": "El elefante es grande."
   },
   {
     "english_text": "small",
     "spanish_text": "pequeño",
     "lesson": "Review — All Words",
     "category": "Adjectives",
-    "tags": ["adjective", "beginner"],
+    "tags": [
+      "adjective",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["big", "tiny", "short"],
-    "distractors_es": ["grande", "diminuto", "corto"]
+    "distractors_en": [
+      "big",
+      "tiny",
+      "short"
+    ],
+    "distractors_es": [
+      "grande",
+      "diminuto",
+      "corto"
+    ],
+    "example_en": "The mouse is small.",
+    "example_es": "El ratón es pequeño."
   },
   {
     "english_text": "hot",
     "spanish_text": "caliente",
     "lesson": "Review — All Words",
     "category": "Adjectives",
-    "tags": ["adjective", "beginner"],
+    "tags": [
+      "adjective",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["cold", "warm", "cool"],
-    "distractors_es": ["frío", "tibio", "fresco"]
+    "distractors_en": [
+      "cold",
+      "warm",
+      "cool"
+    ],
+    "distractors_es": [
+      "frío",
+      "tibio",
+      "fresco"
+    ],
+    "example_en": "The coffee is hot.",
+    "example_es": "El café está caliente."
   },
   {
     "english_text": "cold",
     "spanish_text": "frío",
     "lesson": "Review — All Words",
     "category": "Adjectives",
-    "tags": ["adjective", "beginner"],
+    "tags": [
+      "adjective",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["hot", "warm", "cool"],
-    "distractors_es": ["caliente", "tibio", "fresco"]
+    "distractors_en": [
+      "hot",
+      "warm",
+      "cool"
+    ],
+    "distractors_es": [
+      "caliente",
+      "tibio",
+      "fresco"
+    ],
+    "example_en": "The ice is cold.",
+    "example_es": "El hielo está frío."
   },
   {
     "english_text": "happy",
     "spanish_text": "feliz",
     "lesson": "Review — All Words",
     "category": "Feelings",
-    "tags": ["adjective", "beginner"],
+    "tags": [
+      "adjective",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["sad", "angry", "scared"],
-    "distractors_es": ["triste", "enojado", "asustado"]
+    "distractors_en": [
+      "sad",
+      "angry",
+      "scared"
+    ],
+    "distractors_es": [
+      "triste",
+      "enojado",
+      "asustado"
+    ],
+    "example_en": "I feel very happy.",
+    "example_es": "Me siento muy feliz."
   },
   {
     "english_text": "school",
     "spanish_text": "escuela",
     "lesson": "Basics 2 — More Words",
     "category": "Places",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["home", "store", "park"],
-    "distractors_es": ["casa", "tienda", "parque"]
+    "distractors_en": [
+      "home",
+      "store",
+      "park"
+    ],
+    "distractors_es": [
+      "casa",
+      "tienda",
+      "parque"
+    ],
+    "example_en": "I go to school.",
+    "example_es": "Voy a la escuela."
   },
   {
     "english_text": "friend",
     "spanish_text": "amigo",
     "lesson": "Basics 2 — More Words",
     "category": "People",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["teacher", "student", "boy"],
-    "distractors_es": ["maestro", "estudiante", "chico"]
+    "distractors_en": [
+      "teacher",
+      "student",
+      "boy"
+    ],
+    "distractors_es": [
+      "maestro",
+      "estudiante",
+      "chico"
+    ],
+    "example_en": "He is my best friend.",
+    "example_es": "Él es mi mejor amigo."
   },
   {
     "english_text": "yes",
     "spanish_text": "sí",
     "lesson": "Basics 1 — First Words",
     "category": "Basics",
-    "tags": ["word", "beginner"],
+    "tags": [
+      "word",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["no", "maybe", "ok"],
-    "distractors_es": ["no", "tal vez", "está bien"]
+    "distractors_en": [
+      "no",
+      "maybe",
+      "ok"
+    ],
+    "distractors_es": [
+      "no",
+      "tal vez",
+      "está bien"
+    ],
+    "example_en": "Yes, I like it.",
+    "example_es": "Sí, me gusta."
   },
   {
     "english_text": "no",
     "spanish_text": "no",
     "lesson": "Basics 1 — First Words",
     "category": "Basics",
-    "tags": ["word", "beginner"],
+    "tags": [
+      "word",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["yes", "stop", "go"],
-    "distractors_es": ["sí", "para", "ve"]
+    "distractors_en": [
+      "yes",
+      "stop",
+      "go"
+    ],
+    "distractors_es": [
+      "sí",
+      "para",
+      "ve"
+    ],
+    "example_en": "No, thank you.",
+    "example_es": "No, gracias."
   },
   {
     "english_text": "hello",
     "spanish_text": "hola",
     "lesson": "Basics 1 — First Words",
     "category": "Basics",
-    "tags": ["phrase", "beginner"],
+    "tags": [
+      "phrase",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["goodbye", "hi", "hey"],
-    "distractors_es": ["adiós", "buenos días", "buenas"]
+    "distractors_en": [
+      "goodbye",
+      "hi",
+      "hey"
+    ],
+    "distractors_es": [
+      "adiós",
+      "buenos días",
+      "buenas"
+    ],
+    "example_en": "Hello, how are you?",
+    "example_es": "Hola, ¿cómo estás?"
   },
   {
     "english_text": "goodbye",
     "spanish_text": "adiós",
     "lesson": "Basics 1 — First Words",
     "category": "Basics",
-    "tags": ["phrase", "beginner"],
+    "tags": [
+      "phrase",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["hello", "bye", "see you"],
-    "distractors_es": ["hola", "hasta luego", "chao"]
+    "distractors_en": [
+      "hello",
+      "bye",
+      "see you"
+    ],
+    "distractors_es": [
+      "hola",
+      "hasta luego",
+      "chao"
+    ],
+    "example_en": "Goodbye, see you later.",
+    "example_es": "Adiós, nos vemos luego."
   },
   {
     "english_text": "thank you",
     "spanish_text": "gracias",
     "lesson": "Basics 2 — More Words",
     "category": "Basics",
-    "tags": ["phrase", "beginner"],
+    "tags": [
+      "phrase",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["please", "sorry", "excuse me"],
-    "distractors_es": ["por favor", "lo siento", "con permiso"]
+    "distractors_en": [
+      "please",
+      "sorry",
+      "excuse me"
+    ],
+    "distractors_es": [
+      "por favor",
+      "lo siento",
+      "con permiso"
+    ],
+    "example_en": "Thank you for the gift.",
+    "example_es": "Gracias por el regalo."
   },
   {
     "english_text": "please",
     "spanish_text": "por favor",
     "lesson": "Basics 2 — More Words",
     "category": "Basics",
-    "tags": ["phrase", "beginner"],
+    "tags": [
+      "phrase",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["thank you", "sorry", "help"],
-    "distractors_es": ["gracias", "lo siento", "ayuda"]
+    "distractors_en": [
+      "thank you",
+      "sorry",
+      "help"
+    ],
+    "distractors_es": [
+      "gracias",
+      "lo siento",
+      "ayuda"
+    ],
+    "example_en": "More water, please.",
+    "example_es": "Más agua, por favor."
   },
   {
     "english_text": "good morning",
     "spanish_text": "buenos días",
     "lesson": "Basics 2 — More Words",
     "category": "Greetings",
-    "tags": ["phrase", "beginner"],
+    "tags": [
+      "phrase",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["good night", "good afternoon", "hello"],
-    "distractors_es": ["buenas noches", "buenas tardes", "hola"]
+    "distractors_en": [
+      "good night",
+      "good afternoon",
+      "hello"
+    ],
+    "distractors_es": [
+      "buenas noches",
+      "buenas tardes",
+      "hola"
+    ],
+    "example_en": "Good morning, everyone.",
+    "example_es": "Buenos días a todos."
   },
   {
     "english_text": "good night",
     "spanish_text": "buenas noches",
     "lesson": "Basics 2 — More Words",
     "category": "Greetings",
-    "tags": ["phrase", "beginner"],
+    "tags": [
+      "phrase",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["good morning", "good afternoon", "goodbye"],
-    "distractors_es": ["buenos días", "buenas tardes", "adiós"]
+    "distractors_en": [
+      "good morning",
+      "good afternoon",
+      "goodbye"
+    ],
+    "distractors_es": [
+      "buenos días",
+      "buenas tardes",
+      "adiós"
+    ],
+    "example_en": "Good night, sleep well.",
+    "example_es": "Buenas noches, duerme bien."
   },
   {
     "english_text": "one",
     "spanish_text": "uno",
     "lesson": "Basics 1 — First Words",
     "category": "Numbers",
-    "tags": ["number", "beginner"],
+    "tags": [
+      "number",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["two", "three", "four"],
-    "distractors_es": ["dos", "tres", "cuatro"]
+    "distractors_en": [
+      "two",
+      "three",
+      "four"
+    ],
+    "distractors_es": [
+      "dos",
+      "tres",
+      "cuatro"
+    ],
+    "example_en": "I have one apple.",
+    "example_es": "Tengo una manzana."
   },
   {
     "english_text": "two",
     "spanish_text": "dos",
     "lesson": "Basics 1 — First Words",
     "category": "Numbers",
-    "tags": ["number", "beginner"],
+    "tags": [
+      "number",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["one", "three", "five"],
-    "distractors_es": ["uno", "tres", "cinco"]
+    "distractors_en": [
+      "one",
+      "three",
+      "five"
+    ],
+    "distractors_es": [
+      "uno",
+      "tres",
+      "cinco"
+    ],
+    "example_en": "There are two cats.",
+    "example_es": "Hay dos gatos."
   },
   {
     "english_text": "three",
     "spanish_text": "tres",
     "lesson": "Basics 1 — First Words",
     "category": "Numbers",
-    "tags": ["number", "beginner"],
+    "tags": [
+      "number",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["two", "four", "six"],
-    "distractors_es": ["dos", "cuatro", "seis"]
+    "distractors_en": [
+      "two",
+      "four",
+      "six"
+    ],
+    "distractors_es": [
+      "dos",
+      "cuatro",
+      "seis"
+    ],
+    "example_en": "I see three birds.",
+    "example_es": "Veo tres pájaros."
   },
   {
     "english_text": "four",
     "spanish_text": "cuatro",
     "lesson": "Basics 2 — More Words",
     "category": "Numbers",
-    "tags": ["number", "beginner"],
+    "tags": [
+      "number",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["three", "five", "seven"],
-    "distractors_es": ["tres", "cinco", "siete"]
+    "distractors_en": [
+      "three",
+      "five",
+      "seven"
+    ],
+    "distractors_es": [
+      "tres",
+      "cinco",
+      "siete"
+    ],
+    "example_en": "Four dogs are playing.",
+    "example_es": "Cuatro perros están jugando."
   },
   {
     "english_text": "five",
     "spanish_text": "cinco",
     "lesson": "Basics 2 — More Words",
     "category": "Numbers",
-    "tags": ["number", "beginner"],
+    "tags": [
+      "number",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["four", "six", "eight"],
-    "distractors_es": ["cuatro", "seis", "ocho"]
+    "distractors_en": [
+      "four",
+      "six",
+      "eight"
+    ],
+    "distractors_es": [
+      "cuatro",
+      "seis",
+      "ocho"
+    ],
+    "example_en": "I have five fingers.",
+    "example_es": "Tengo cinco dedos."
   },
   {
     "english_text": "ten",
     "spanish_text": "diez",
     "lesson": "Basics 2 — More Words",
     "category": "Numbers",
-    "tags": ["number", "beginner"],
+    "tags": [
+      "number",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["five", "nine", "twenty"],
-    "distractors_es": ["cinco", "nueve", "veinte"]
+    "distractors_en": [
+      "five",
+      "nine",
+      "twenty"
+    ],
+    "distractors_es": [
+      "cinco",
+      "nueve",
+      "veinte"
+    ],
+    "example_en": "Count to ten.",
+    "example_es": "Cuenta hasta diez."
   },
   {
     "english_text": "elephant",
     "spanish_text": "elefante",
     "lesson": "Animals",
     "category": "Animals",
-    "tags": ["noun", "beginner", "animal"],
+    "tags": [
+      "noun",
+      "beginner",
+      "animal"
+    ],
     "difficulty": 1,
-    "distractors_en": ["giraffe", "hippo", "rhino"],
-    "distractors_es": ["jirafa", "hipopótamo", "rinoceronte"]
+    "distractors_en": [
+      "giraffe",
+      "hippo",
+      "rhino"
+    ],
+    "distractors_es": [
+      "jirafa",
+      "hipopótamo",
+      "rinoceronte"
+    ],
+    "example_en": "The elephant is gray.",
+    "example_es": "El elefante es gris."
   },
   {
     "english_text": "frog",
     "spanish_text": "rana",
     "lesson": "Animals",
     "category": "Animals",
-    "tags": ["noun", "beginner", "animal"],
+    "tags": [
+      "noun",
+      "beginner",
+      "animal"
+    ],
     "difficulty": 1,
-    "distractors_en": ["toad", "lizard", "snake"],
-    "distractors_es": ["sapo", "lagarto", "serpiente"]
+    "distractors_en": [
+      "toad",
+      "lizard",
+      "snake"
+    ],
+    "distractors_es": [
+      "sapo",
+      "lagarto",
+      "serpiente"
+    ],
+    "example_en": "The frog jumps in the pond.",
+    "example_es": "La rana salta en el estanque."
   },
   {
     "english_text": "butterfly",
     "spanish_text": "mariposa",
     "lesson": "Animals",
     "category": "Animals",
-    "tags": ["noun", "beginner", "animal"],
+    "tags": [
+      "noun",
+      "beginner",
+      "animal"
+    ],
     "difficulty": 1,
-    "distractors_en": ["bee", "ant", "dragonfly"],
-    "distractors_es": ["abeja", "hormiga", "libélula"]
+    "distractors_en": [
+      "bee",
+      "ant",
+      "dragonfly"
+    ],
+    "distractors_es": [
+      "abeja",
+      "hormiga",
+      "libélula"
+    ],
+    "example_en": "The butterfly has pretty wings.",
+    "example_es": "La mariposa tiene alas bonitas."
   },
   {
     "english_text": "soup",
     "spanish_text": "sopa",
     "lesson": "Food",
     "category": "Food",
-    "tags": ["noun", "beginner", "food"],
+    "tags": [
+      "noun",
+      "beginner",
+      "food"
+    ],
     "difficulty": 1,
-    "distractors_en": ["salad", "sandwich", "stew"],
-    "distractors_es": ["ensalada", "sándwich", "guiso"]
+    "distractors_en": [
+      "salad",
+      "sandwich",
+      "stew"
+    ],
+    "distractors_es": [
+      "ensalada",
+      "sándwich",
+      "guiso"
+    ],
+    "example_en": "The soup is hot.",
+    "example_es": "La sopa está caliente."
   },
   {
     "english_text": "pizza",
     "spanish_text": "pizza",
     "lesson": "Food",
     "category": "Food",
-    "tags": ["noun", "beginner", "food"],
+    "tags": [
+      "noun",
+      "beginner",
+      "food"
+    ],
     "difficulty": 1,
-    "distractors_en": ["taco", "burger", "noodles"],
-    "distractors_es": ["taco", "hamburguesa", "fideos"]
+    "distractors_en": [
+      "taco",
+      "burger",
+      "noodles"
+    ],
+    "distractors_es": [
+      "taco",
+      "hamburguesa",
+      "fideos"
+    ],
+    "example_en": "We eat pizza on Fridays.",
+    "example_es": "Comemos pizza los viernes."
   },
   {
     "english_text": "cake",
     "spanish_text": "pastel",
     "lesson": "Food",
     "category": "Food",
-    "tags": ["noun", "beginner", "food"],
+    "tags": [
+      "noun",
+      "beginner",
+      "food"
+    ],
     "difficulty": 1,
-    "distractors_en": ["cookie", "candy", "pie"],
-    "distractors_es": ["galleta", "dulce", "tarta"]
+    "distractors_en": [
+      "cookie",
+      "candy",
+      "pie"
+    ],
+    "distractors_es": [
+      "galleta",
+      "dulce",
+      "tarta"
+    ],
+    "example_en": "The cake is here.",
+    "example_es": "El/La pastel está aquí."
   },
   {
     "english_text": "purple",
     "spanish_text": "morado",
     "lesson": "Colors",
     "category": "Colors",
-    "tags": ["adjective", "beginner", "color"],
+    "tags": [
+      "adjective",
+      "beginner",
+      "color"
+    ],
     "difficulty": 1,
-    "distractors_en": ["pink", "blue", "red"],
-    "distractors_es": ["rosado", "azul", "rojo"]
+    "distractors_en": [
+      "pink",
+      "blue",
+      "red"
+    ],
+    "distractors_es": [
+      "rosado",
+      "azul",
+      "rojo"
+    ],
+    "example_en": "The purple is here.",
+    "example_es": "El/La morado está aquí."
   },
   {
     "english_text": "orange",
     "spanish_text": "anaranjado",
     "lesson": "Colors",
     "category": "Colors",
-    "tags": ["adjective", "beginner", "color"],
+    "tags": [
+      "adjective",
+      "beginner",
+      "color"
+    ],
     "difficulty": 1,
-    "distractors_en": ["red", "yellow", "pink"],
-    "distractors_es": ["rojo", "amarillo", "rosado"]
+    "distractors_en": [
+      "red",
+      "yellow",
+      "pink"
+    ],
+    "distractors_es": [
+      "rojo",
+      "amarillo",
+      "rosado"
+    ],
+    "example_en": "The orange is sweet.",
+    "example_es": "La naranja es dulce."
   },
   {
     "english_text": "arm",
     "spanish_text": "brazo",
     "lesson": "Body",
     "category": "Body",
-    "tags": ["noun", "beginner", "body"],
+    "tags": [
+      "noun",
+      "beginner",
+      "body"
+    ],
     "difficulty": 1,
-    "distractors_en": ["leg", "hand", "shoulder"],
-    "distractors_es": ["pierna", "mano", "hombro"]
+    "distractors_en": [
+      "leg",
+      "hand",
+      "shoulder"
+    ],
+    "distractors_es": [
+      "pierna",
+      "mano",
+      "hombro"
+    ],
+    "example_en": "The arm is here.",
+    "example_es": "El/La brazo está aquí."
   },
   {
     "english_text": "leg",
     "spanish_text": "pierna",
     "lesson": "Body",
     "category": "Body",
-    "tags": ["noun", "beginner", "body"],
+    "tags": [
+      "noun",
+      "beginner",
+      "body"
+    ],
     "difficulty": 1,
-    "distractors_en": ["arm", "foot", "knee"],
-    "distractors_es": ["brazo", "pie", "rodilla"]
+    "distractors_en": [
+      "arm",
+      "foot",
+      "knee"
+    ],
+    "distractors_es": [
+      "brazo",
+      "pie",
+      "rodilla"
+    ],
+    "example_en": "The leg is here.",
+    "example_es": "El/La pierna está aquí."
   },
   {
     "english_text": "dance",
     "spanish_text": "bailar",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["sing", "play", "clap"],
-    "distractors_es": ["cantar", "jugar", "aplaudir"]
+    "distractors_en": [
+      "sing",
+      "play",
+      "clap"
+    ],
+    "distractors_es": [
+      "cantar",
+      "jugar",
+      "aplaudir"
+    ],
+    "example_en": "The dance is here.",
+    "example_es": "El/La bailar está aquí."
   },
   {
     "english_text": "sing",
     "spanish_text": "cantar",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["dance", "hum", "shout"],
-    "distractors_es": ["bailar", "tararear", "gritar"]
+    "distractors_en": [
+      "dance",
+      "hum",
+      "shout"
+    ],
+    "distractors_es": [
+      "bailar",
+      "tararear",
+      "gritar"
+    ],
+    "example_en": "The sing is here.",
+    "example_es": "El/La cantar está aquí."
   },
   {
     "english_text": "open",
     "spanish_text": "abrir",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["close", "lock", "push"],
-    "distractors_es": ["cerrar", "bloquear", "empujar"]
+    "distractors_en": [
+      "close",
+      "lock",
+      "push"
+    ],
+    "distractors_es": [
+      "cerrar",
+      "bloquear",
+      "empujar"
+    ],
+    "example_en": "The open is here.",
+    "example_es": "El/La abrir está aquí."
   },
   {
     "english_text": "close",
     "spanish_text": "cerrar",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["open", "lock", "shut"],
-    "distractors_es": ["abrir", "bloquear", "tapar"]
+    "distractors_en": [
+      "open",
+      "lock",
+      "shut"
+    ],
+    "distractors_es": [
+      "abrir",
+      "bloquear",
+      "tapar"
+    ],
+    "example_en": "The close is here.",
+    "example_es": "El/La cerrar está aquí."
   },
   {
     "english_text": "give",
     "spanish_text": "dar",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["take", "share", "hold"],
-    "distractors_es": ["tomar", "compartir", "sostener"]
+    "distractors_en": [
+      "take",
+      "share",
+      "hold"
+    ],
+    "distractors_es": [
+      "tomar",
+      "compartir",
+      "sostener"
+    ],
+    "example_en": "The give is here.",
+    "example_es": "El/La dar está aquí."
   },
   {
     "english_text": "want",
     "spanish_text": "querer",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["need", "have", "like"],
-    "distractors_es": ["necesitar", "tener", "gustar"]
+    "distractors_en": [
+      "need",
+      "have",
+      "like"
+    ],
+    "distractors_es": [
+      "necesitar",
+      "tener",
+      "gustar"
+    ],
+    "example_en": "The want is here.",
+    "example_es": "El/La querer está aquí."
   },
   {
     "english_text": "have",
     "spanish_text": "tener",
     "lesson": "Simple Verbs",
     "category": "Verbs",
-    "tags": ["verb", "beginner"],
+    "tags": [
+      "verb",
+      "beginner"
+    ],
     "difficulty": 2,
-    "distractors_en": ["want", "need", "hold"],
-    "distractors_es": ["querer", "necesitar", "sostener"]
+    "distractors_en": [
+      "want",
+      "need",
+      "hold"
+    ],
+    "distractors_es": [
+      "querer",
+      "necesitar",
+      "sostener"
+    ],
+    "example_en": "The have is here.",
+    "example_es": "El/La tener está aquí."
   },
   {
     "english_text": "flower",
     "spanish_text": "flor",
     "lesson": "Basics 2 — More Words",
     "category": "Nature",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["tree", "grass", "leaf"],
-    "distractors_es": ["árbol", "hierba", "hoja"]
+    "distractors_en": [
+      "tree",
+      "grass",
+      "leaf"
+    ],
+    "distractors_es": [
+      "árbol",
+      "hierba",
+      "hoja"
+    ],
+    "example_en": "The flower is here.",
+    "example_es": "El/La flor está aquí."
   },
   {
     "english_text": "star",
     "spanish_text": "estrella",
     "lesson": "Basics 2 — More Words",
     "category": "Nature",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["moon", "sun", "cloud"],
-    "distractors_es": ["luna", "sol", "nube"]
+    "distractors_en": [
+      "moon",
+      "sun",
+      "cloud"
+    ],
+    "distractors_es": [
+      "luna",
+      "sol",
+      "nube"
+    ],
+    "example_en": "The star is here.",
+    "example_es": "El/La estrella está aquí."
   },
   {
     "english_text": "moon",
     "spanish_text": "luna",
     "lesson": "Basics 2 — More Words",
     "category": "Nature",
-    "tags": ["noun", "beginner"],
+    "tags": [
+      "noun",
+      "beginner"
+    ],
     "difficulty": 1,
-    "distractors_en": ["sun", "star", "sky"],
-    "distractors_es": ["sol", "estrella", "cielo"]
+    "distractors_en": [
+      "sun",
+      "star",
+      "sky"
+    ],
+    "distractors_es": [
+      "sol",
+      "estrella",
+      "cielo"
+    ],
+    "example_en": "The moon is here.",
+    "example_es": "El/La luna está aquí."
   }
 ]

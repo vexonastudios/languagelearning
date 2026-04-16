@@ -107,12 +107,34 @@
 }
 
 .promptText {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: #1e293b;
+  margin-bottom: 0.5rem;
   text-align: center;
-  max-width: 300px;
-  line-height: 1.4;
+}
+
+.exampleSentenceBox {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  border: 2px dashed #bae6fd;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+  animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.exampleEs {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0369a1;
+  margin-bottom: 0.25rem;
+}
+
+.exampleEn {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #64748b;
 }
 
 /* ── Choices ─────────────────────────────── */

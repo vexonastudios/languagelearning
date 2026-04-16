@@ -36,11 +36,13 @@ export interface Question {
   // Display text (for accessibility / fallback)
   promptText: string
   // Image (if picture question)
-  imageUrl?: string
+  imageUrl?: string | null
   // Answer choices
   choices: { label: string; isCorrect: boolean }[]
   // The correct answer text (for feedback)
   correctAnswer: string
+  exampleEn?: string
+  exampleEs?: string
 }
 
 function shuffle<T>(arr: T[]): T[] {
@@ -94,6 +96,8 @@ export function buildQuestionSet(
       promptText: `Tap the English word for "${item.spanish_text}"`,
       choices: buildChoices(item.english_text, item.distractors_en, allEnglish),
       correctAnswer: item.english_text,
+      exampleEn: item.example_en,
+      exampleEs: item.example_es,
     })
 
     // Type 2: Hear English → choose Spanish
@@ -107,6 +111,8 @@ export function buildQuestionSet(
       promptText: `Tap the Spanish word for "${item.english_text}"`,
       choices: buildChoices(item.spanish_text, item.distractors_es, allSpanish),
       correctAnswer: item.spanish_text,
+      exampleEn: item.example_en,
+      exampleEs: item.example_es,
     })
 
     // Type 3: English prompt → Spanish answer
@@ -120,6 +126,8 @@ export function buildQuestionSet(
       promptText: `What word is ${item.english_text}?`,
       choices: buildChoices(item.spanish_text, item.distractors_es, allSpanish),
       correctAnswer: item.spanish_text,
+      exampleEn: item.example_en,
+      exampleEs: item.example_es,
     })
 
     // Type 4: Picture → Spanish (if image available)
@@ -135,6 +143,8 @@ export function buildQuestionSet(
         imageUrl: item.image_url,
         choices: buildChoices(item.spanish_text, item.distractors_es, allSpanish),
         correctAnswer: item.spanish_text,
+        exampleEn: item.example_en,
+        exampleEs: item.example_es,
       })
     }
   }
