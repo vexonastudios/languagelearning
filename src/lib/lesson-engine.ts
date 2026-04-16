@@ -1,4 +1,5 @@
 export type QuestionType =
+  | 'introduce_word'
   | 'hear_es_choose_en'
   | 'hear_en_choose_es'
   | 'prompt_en_choose_es'
@@ -186,7 +187,33 @@ export function buildQuestionSet(
     })
   }
 
-  // Shuffle and return target count
-  return shuffle(questions).slice(0, targetCount)
+  // Shuffle and pick target count
+  const selected = shuffle(questions).slice(0, targetCount)
+
+  // Gather unique vocab items used in the selection to introduce them first
+  const usedVocabIds = new Set(selected.filter((q) => q.itemType === 'vocabulary').map((q) => q.itemId))
+  const introductions: Question[] = []
+
+  for (const item of vocab) {
+    if (usedVocabIds.has(item.id)) {
+      introductions.push({
+        id: `${item.id}_intro`,
+        type: 'introduce_word',
+        itemId: item.id,
+        itemType: 'vocabulary',
+        audioText: item.spanish_text,
+        audioLanguage: 'es',
+        promptText: 'New word!',
+        imageUrl: item.image_url,
+        choices: [],
+        correctAnswer: item.spanish_text, // used to display the Spanish word
+        exampleEn: item.english_text, // hijack this field to display the English translation on the intro card
+        exampleEs: item.example_es,
+      })
+    }
+  }
+
+  // Prepend introductions
+  return [...introductions, ...selected]
 }
 

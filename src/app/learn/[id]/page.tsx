@@ -53,6 +53,39 @@ function playBuzz() {
   osc.stop(ctx.currentTime + 0.3)
 }
 
+function playFanfare() {
+  const ctx = new (window.AudioContext || (window as any).webkitAudioContext)()
+  const osc1 = ctx.createOscillator()
+  const osc2 = ctx.createOscillator()
+  const osc3 = ctx.createOscillator()
+  const gain = ctx.createGain()
+  osc1.connect(gain)
+  osc2.connect(gain)
+  osc3.connect(gain)
+  gain.connect(ctx.destination)
+  
+  osc1.type = 'square'
+  osc2.type = 'square'
+  osc3.type = 'square'
+  
+  const t = ctx.currentTime
+  gain.gain.setValueAtTime(0, t)
+  gain.gain.linearRampToValueAtTime(0.5, t + 0.05)
+  
+  osc1.frequency.setValueAtTime(523.25, t) 
+  osc2.frequency.setValueAtTime(659.25, t + 0.15)
+  osc3.frequency.setValueAtTime(783.99, t + 0.3)
+  
+  osc1.start(t)
+  osc2.start(t + 0.15)
+  osc3.start(t + 0.3)
+  
+  gain.gain.exponentialRampToValueAtTime(0.01, t + 1)
+  osc1.stop(t + 1.2)
+  osc2.stop(t + 1.2)
+  osc3.stop(t + 1.2)
+}
+
 export default function LessonPlayPage() {
   const router = useRouter()
   const params = useParams()
@@ -67,6 +100,7 @@ export default function LessonPlayPage() {
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null)
   const [feedbackMsg, setFeedbackMsg] = useState('')
   const [showExample, setShowExample] = useState(false)
+  const [isStarted, setIsStarted] = useState(false)
   const [score, setScore] = useState(0)
   const [totalAnswered, setTotalAnswered] = useState(0)
   const [finished, setFinished] = useState(false)
@@ -118,12 +152,12 @@ export default function LessonPlayPage() {
 
   // Auto-play question audio on mount and question change
   useEffect(() => {
-    if (currentQuestion && answerState === 'idle') {
+    if (isStarted && currentQuestion && answerState === 'idle') {
       setTimeout(() => {
         play(currentQuestion.audioText, currentQuestion.audioLanguage)
       }, 300)
     }
-  }, [currentIndex, questions, answerState])
+  }, [isStarted, currentIndex, questions, answerState])
 
   async function handleAnswer(choice: { label: string; isCorrect: boolean }) {
     if (answerState === 'correct') return
@@ -187,6 +221,8 @@ export default function LessonPlayPage() {
       setWrongChoices((prev) => [...prev, choice.label])
       setFeedbackMsg(randomPick(FEEDBACK_MESSAGES.wrong))
       playBuzz()
+      // Synthesize immediate TTS error using English voice
+      setTimeout(() => play('Try again.', 'en'), 300)
 
       // Record wrong
       if (profile && currentQuestion && wrongChoices.length === 0) {
@@ -237,6 +273,7 @@ export default function LessonPlayPage() {
       }
       
       setFinished(true)
+      setTimeout(playFanfare, 400)
     } else {
       setCurrentIndex((n) => n + 1)
       setAnswerState('idle')
@@ -333,6 +370,18 @@ export default function LessonPlayPage() {
     )
   }
 
+  if (!isStarted) {
+    return (
+      <div className={styles.startShield}>
+        <div className={styles.loadingEmoji}>🌟</div>
+        <h2 className={styles.startShieldTitle}>Ready?</h2>
+        <button className="btn btn-primary" onClick={() => setIsStarted(true)} style={{ fontSize: '1.5rem', padding: '1rem 3rem' }}>
+          Start
+        </button>
+      </div>
+    )
+  }
+
   const progress = ((currentIndex) / questions.length) * 100
 
   return (
@@ -378,7 +427,16 @@ export default function LessonPlayPage() {
         )}
       </div>
 
-      {currentQuestion.type === 'sentence_build' ? (
+      {currentQuestion.type === 'introduce_word' ? (
+        <div className={styles.introCard}>
+          <h1 className={styles.introEs}>{currentQuestion.correctAnswer}</h1>
+          <p className={styles.introEn}>{currentQuestion.exampleEn}</p>
+          
+          <button className="btn btn-primary" onClick={advance} style={{ marginTop: '2rem', width: '100%' }}>
+            Got it!
+          </button>
+        </div>
+      ) : currentQuestion.type === 'sentence_build' ? (
         <div className={styles.sentenceBuilderArea}>
           <div className={styles.dropZone}>
             {builtSentence.length === 0 && <span className={styles.dropPlaceholder}>Tap words below to build the sentence...</span>}

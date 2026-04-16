@@ -137,6 +137,50 @@
   color: #64748b;
 }
 
+.introCard {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  margin: 1rem;
+  animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.introEs {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #0369a1;
+  margin-bottom: 0.5rem;
+}
+
+.introEn {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+.startShield {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(5px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  animation: pop-in 0.3s forwards;
+}
+
+.startShieldTitle {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #1e293b;
+}
+
 /* ── Choices ─────────────────────────────── */
 .choicesGrid {
   display: grid;
