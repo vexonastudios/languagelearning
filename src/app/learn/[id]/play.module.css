@@ -137,7 +137,6 @@
   transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   animation: pop-in 0.3s ease forwards;
-  opacity: 0;
   min-height: 4rem;
   line-height: 1.3;
 }

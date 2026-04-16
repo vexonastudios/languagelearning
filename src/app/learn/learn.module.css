@@ -98,7 +98,6 @@
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   animation: bounce-in 0.4s ease forwards;
-  opacity: 0;
 }
 
 .lessonCard:hover {
