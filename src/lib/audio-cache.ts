@@ -122,13 +122,19 @@ export async function prerenderLessonAudio(lessonId: string): Promise<{
     if (v.example_en) tasks.push({ text: v.example_en, language: 'en' })
     if (v.example_es) tasks.push({ text: v.example_es, language: 'es' })
     
-    tasks.push({ text: `What word is ${v.english_text}?`, language: 'en' })
+    // Add prompt variants ALL flagged as 'es' so the voice logic properly maps it
+    tasks.push({ text: `Tap the Spanish word for "${v.english_text}"`, language: 'es' })
+    tasks.push({ text: `Tap the English word for "${v.spanish_text}"`, language: 'es' })
+    tasks.push({ text: `What word is ${v.english_text}?`, language: 'es' })
+    tasks.push({ text: `What is this in Spanish?`, language: 'es' })
     tasks.push({ text: `¿Qué palabra es ${v.spanish_text}?`, language: 'es' })
   }
 
   for (const s of sentences) {
     tasks.push({ text: s.english_text, language: 'en' })
     tasks.push({ text: s.spanish_text, language: 'es' })
+    tasks.push({ text: `What does this mean in English?`, language: 'es' })
+    tasks.push({ text: `Translate this into English:`, language: 'es' })
   }
 
   // Feedback phrases

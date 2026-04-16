@@ -17,6 +17,8 @@ export interface VocabItem {
   distractors_en: string[]
   distractors_es: string[]
   category: string
+  example_en: string | null
+  example_es: string | null
 }
 
 export interface SentenceItem {
@@ -91,7 +93,7 @@ export function buildQuestionSet(
       type: 'hear_es_choose_en',
       itemId: item.id,
       itemType: 'vocabulary',
-      audioText: item.spanish_text,
+      audioText: `Tap the English word for "${item.spanish_text}"`,
       audioLanguage: 'es',
       promptText: `Tap the English word for "${item.spanish_text}"`,
       choices: buildChoices(item.english_text, item.distractors_en, allEnglish),
@@ -106,8 +108,8 @@ export function buildQuestionSet(
       type: 'hear_en_choose_es',
       itemId: item.id,
       itemType: 'vocabulary',
-      audioText: item.english_text,
-      audioLanguage: 'en',
+      audioText: `Tap the Spanish word for "${item.english_text}"`,
+      audioLanguage: 'es',
       promptText: `Tap the Spanish word for "${item.english_text}"`,
       choices: buildChoices(item.spanish_text, item.distractors_es, allSpanish),
       correctAnswer: item.spanish_text,
@@ -122,7 +124,7 @@ export function buildQuestionSet(
       itemId: item.id,
       itemType: 'vocabulary',
       audioText: `What word is ${item.english_text}?`,
-      audioLanguage: 'en',
+      audioLanguage: 'es',
       promptText: `What word is ${item.english_text}?`,
       choices: buildChoices(item.spanish_text, item.distractors_es, allSpanish),
       correctAnswer: item.spanish_text,
@@ -138,7 +140,7 @@ export function buildQuestionSet(
         itemId: item.id,
         itemType: 'vocabulary',
         audioText: `What is this in Spanish?`,
-        audioLanguage: 'en',
+        audioLanguage: 'es',
         promptText: 'What is this in Spanish?',
         imageUrl: item.image_url,
         choices: buildChoices(item.spanish_text, item.distractors_es, allSpanish),
