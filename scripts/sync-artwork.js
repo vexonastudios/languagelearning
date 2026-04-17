@@ -11,7 +11,7 @@ const mappings = [];
 
 files.forEach(file => {
     if (file.includes('_vector_art_') && file.endsWith('.png')) {
-        // airplane_vector_art_1776375086357.png -> airplane
+        // pattern: item_vector_art_v5_TIMESTAMP.png
         let word = file.split('_vector_art_')[0];
         
         // Handle special cases if any
