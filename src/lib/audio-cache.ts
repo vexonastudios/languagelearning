@@ -27,14 +27,20 @@ export async function getCachedAudioUrl(
     .single()
 
   if (data?.status === 'ready' && data.file_url) {
+    // Guard: if the stored URL is a bare filename (legacy bad data), re-route via proxy
+    let url = data.file_url
+    if (!url.startsWith('http') && !url.startsWith('/')) {
+      url = `/api/audio/serve/${encodeURIComponent(`audio/${url}`)}`
+    }
     // Update last_used_at
     await db
       .from('audio_cache')
       .update({ last_used_at: new Date().toISOString() })
       .eq('cache_key', cacheKey)
-    return data.file_url
+    return url
   }
   return null
+
 }
 
 // ── Generate + store audio, return public URL ────────────────
@@ -78,7 +84,21 @@ export async function generateAndCacheAudio(
     if (uploadError) throw uploadError
 
     const { data: urlData } = db.storage.from('audio-cache').getPublicUrl(fileName)
-    const fileUrl = urlData.publicUrl
+    // Validate the returned URL is absolute — if the bucket is private or misconfigured,
+    // getPublicUrl may return a relative path or just the filename.
+    let fileUrl = urlData.publicUrl
+    if (!fileUrl || !fileUrl.startsWith('http')) {
+      // Fall back: generate a long-lived signed URL (7 days)
+      const { data: signedData, error: signError } = await db.storage
+        .from('audio-cache')
+        .createSignedUrl(fileName, 60 * 60 * 24 * 7) // 7 days
+      if (signError || !signedData?.signedUrl) {
+        // Last resort: use our internal proxy
+        fileUrl = `/api/audio/serve/${encodeURIComponent(fileName)}`
+      } else {
+        fileUrl = signedData.signedUrl
+      }
+    }
 
     // Mark as ready
     await db.from('audio_cache').update({
