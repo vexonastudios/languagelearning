@@ -24,6 +24,10 @@
     "url": "/images/vocab/banana.png"
   },
   {
+    "word": "big",
+    "url": "/images/vocab/big.png"
+  },
+  {
     "word": "bird",
     "url": "/images/vocab/bird.png"
   },
@@ -148,8 +152,20 @@
     "url": "/images/vocab/fish.png"
   },
   {
+    "word": "five",
+    "url": "/images/vocab/five.png"
+  },
+  {
     "word": "flower",
     "url": "/images/vocab/flower.png"
+  },
+  {
+    "word": "four",
+    "url": "/images/vocab/four.png"
+  },
+  {
+    "word": "friend",
+    "url": "/images/vocab/friend.png"
   },
   {
     "word": "frog",
@@ -160,12 +176,28 @@
     "url": "/images/vocab/give.png"
   },
   {
+    "word": "goodbye",
+    "url": "/images/vocab/goodbye.png"
+  },
+  {
+    "word": "good_morning",
+    "url": "/images/vocab/good_morning.png"
+  },
+  {
+    "word": "good_night",
+    "url": "/images/vocab/good_night.png"
+  },
+  {
     "word": "grandma",
     "url": "/images/vocab/grandma.png"
   },
   {
     "word": "grandpa",
     "url": "/images/vocab/grandpa.png"
+  },
+  {
+    "word": "hello",
+    "url": "/images/vocab/hello.png"
   },
   {
     "word": "horse",
@@ -204,6 +236,14 @@
     "url": "/images/vocab/nose.png"
   },
   {
+    "word": "no",
+    "url": "/images/vocab/no.png"
+  },
+  {
+    "word": "one",
+    "url": "/images/vocab/one.png"
+  },
+  {
     "word": "open",
     "url": "/images/vocab/open.png"
   },
@@ -218,6 +258,10 @@
   {
     "word": "play",
     "url": "/images/vocab/play.png"
+  },
+  {
+    "word": "please",
+    "url": "/images/vocab/please.png"
   },
   {
     "word": "rabbit",
@@ -252,6 +296,10 @@
     "url": "/images/vocab/sleep.png"
   },
   {
+    "word": "small",
+    "url": "/images/vocab/small.png"
+  },
+  {
     "word": "soup",
     "url": "/images/vocab/soup.png"
   },
@@ -268,8 +316,24 @@
     "url": "/images/vocab/table.png"
   },
   {
+    "word": "ten",
+    "url": "/images/vocab/ten.png"
+  },
+  {
+    "word": "thank_you",
+    "url": "/images/vocab/thank_you.png"
+  },
+  {
+    "word": "three",
+    "url": "/images/vocab/three.png"
+  },
+  {
     "word": "tree",
     "url": "/images/vocab/tree.png"
+  },
+  {
+    "word": "two",
+    "url": "/images/vocab/two.png"
   },
   {
     "word": "walk",
@@ -282,5 +346,9 @@
   {
     "word": "water",
     "url": "/images/vocab/water.png"
+  },
+  {
+    "word": "yes",
+    "url": "/images/vocab/yes.png"
   }
 ]
