@@ -530,9 +530,13 @@ export default function LessonPlayPage() {
         </div>
 
         {/* Image if picture question */}
-        {currentQuestion.imageUrl && (
+        {(currentQuestion.imageUrl || (currentQuestion.itemType === 'vocabulary' && !currentQuestion.promptText.includes('?'))) && (
           <div className={styles.questionImage}>
-            <img src={currentQuestion.imageUrl} alt="question" />
+            <img 
+              src={currentQuestion.imageUrl || `/images/vocab/${currentQuestion.correctAnswer.toLowerCase()}.png`} 
+              alt="question" 
+              onError={(e) => (e.currentTarget.style.display = 'none')}
+            />
           </div>
         )}
 
