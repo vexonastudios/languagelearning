@@ -55,6 +55,7 @@ export default function LearnPage() {
   const [siblings, setSiblings] = useState<Profile[]>([])
   const [quests, setQuests] = useState<any[]>([])
   const [stories, setStories] = useState<any[]>([])
+  const [questsOpen, setQuestsOpen] = useState(false)
 
   const QUEST_TEMPLATES = [
     { id: 'q_perfect', title: 'Perfect Round', icon: '🎯', desc: 'Score 100% on a lesson', goal: 1, reward: 50 },
@@ -187,59 +188,84 @@ export default function LearnPage() {
       </div>
 
       {/* Streak banner */}
-      {(profile.streak ?? 0) > 0 && (
-        <div className={styles.streakBanner}>
-          🔥 {profile.streak} day streak! Keep it up!
-        </div>
-      )}
+      {(() => {
+        const streak = profile.streak ?? 0
+        if (streak === 0) return null
+        const now = new Date()
+        const midnight = new Date(now)
+        midnight.setHours(23, 59, 59, 999)
+        const hoursLeft = Math.floor((midnight.getTime() - now.getTime()) / (1000 * 60 * 60))
+        const minsLeft = Math.floor(((midnight.getTime() - now.getTime()) % (1000 * 60 * 60)) / (1000 * 60))
+        const lastActive = (profile as any).last_active_at
+        const todayStr = new Date().toISOString().split('T')[0]
+        const doneToday = lastActive === todayStr
+        return (
+          <div className={styles.streakBanner} style={{ flexDirection: 'column', gap: '0.3rem', alignItems: 'center' }}>
+            <div>🔥 <strong>{streak} day streak!</strong> {doneToday ? 'Streak secured for today ✅' : `Complete a lesson in ${hoursLeft}h ${minsLeft}m to keep it!`}</div>
+            {!doneToday && (
+              <div style={{ width: '100%', maxWidth: '300px', height: '6px', background: 'rgba(255,255,255,0.3)', borderRadius: '3px', overflow: 'hidden' }}>
+                <div style={{ width: `${Math.round(((23 - hoursLeft) / 23) * 100)}%`, height: '100%', background: hoursLeft < 3 ? '#ef4444' : '#fbbf24', borderRadius: '3px', transition: 'width 1s' }} />
+              </div>
+            )}
+          </div>
+        )
+      })()}
 
-      {/* Daily Quests Box */}
-      <div style={{ maxWidth: '600px', margin: '1rem auto', padding: '1.5rem', background: 'white', borderRadius: '1.5rem', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', border: '2px solid #e2e8f0' }}>
-        <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#334155', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <span>📜</span> Daily Quests
-        </h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-          {quests.map(q => {
-             const progress = Math.min((q.current / q.goal) * 100, 100)
-             const isComplete = q.current >= q.goal
-             
-             return (
-               <div key={q.id} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', background: q.claimed ? '#f8fafc' : isComplete ? '#f0fdf4' : '#f8fafc', borderRadius: '1rem', border: `2px solid ${q.claimed ? '#e2e8f0' : isComplete ? '#4ade80' : '#e2e8f0'}` }}>
-                 <div style={{ fontSize: '2rem' }}>{q.icon}</div>
-                 <div style={{ flex: 1 }}>
-                   <div style={{ fontWeight: 700, color: '#334155' }}>{q.title} <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 500, display: 'block' }}>{q.desc}</span></div>
-                   <div style={{ width: '100%', height: '8px', background: '#e2e8f0', borderRadius: '4px', marginTop: '0.5rem', overflow: 'hidden' }}>
-                     <div style={{ width: `${progress}%`, height: '100%', background: isComplete ? '#22c55e' : '#3b82f6', transition: 'width 0.3s' }} />
-                   </div>
-                   <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.2rem', fontWeight: 600 }}>{q.current} / {q.goal}</div>
-                 </div>
-                 {isComplete && !q.claimed && (
-                   <button className="btn btn-primary" style={{ background: '#ca8a04', borderColor: '#a16207', padding: '0.5rem 1rem' }} onClick={() => claimQuest(q.id)}>
-                     Claim ⭐{q.reward}
-                   </button>
-                 )}
-                 {q.claimed && (
-                   <div style={{ color: '#94a3b8', fontWeight: 800 }}>✅ Checked Out</div>
-                 )}
-               </div>
-             )
-          })}
-        </div>
-      </div>
-
-
-      {/* Gym Banner */}
-      <div style={{ display: 'flex', justifyContent: 'center', width: '100%', maxWidth: '600px', margin: '1rem auto 0 auto' }}>
-        <button 
-          className="btn" 
-          style={{ background: '#f43f5e', color: 'white', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.8rem', fontWeight: 800, padding: '1rem', borderRadius: '1.5rem', boxShadow: '0 4px 14px rgba(244,63,94,0.4)', transition: 'transform 0.1s' }}
-          onClick={() => {
-            playPop();
-            setTimeout(() => router.push('/learn/review'), 100);
-          }}
+      {/* Daily Quests + Gym — collapsible card */}
+      <div style={{ maxWidth: '600px', margin: '1rem auto', background: 'white', borderRadius: '1.5rem', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', border: '2px solid #e2e8f0', overflow: 'hidden' }}>
+        {/* Header / toggle */}
+        <button
+          onClick={() => setQuestsOpen(o => !o)}
+          style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.2rem 1.5rem', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 800, fontSize: '1.1rem', color: '#334155' }}
         >
-          <span style={{ fontSize: '1.5rem' }}>🏋️</span> Target Review Gym
+          <span style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <span>📜</span> Daily Quests &amp; Gym
+            {quests.some(q => q.current >= q.goal && !q.claimed) && (
+              <span style={{ background: '#ef4444', color: 'white', fontSize: '0.7rem', fontWeight: 900, borderRadius: '999px', padding: '0.1rem 0.5rem' }}>!</span>
+            )}
+          </span>
+          <span style={{ fontSize: '1.2rem', transition: 'transform 0.3s', display: 'inline-block', transform: questsOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
         </button>
+
+        {/* Collapsible body */}
+        {questsOpen && (
+          <div style={{ padding: '0 1.5rem 1.5rem' }}>
+            {/* Gym button */}
+            <button
+              className="btn"
+              style={{ width: '100%', background: '#f43f5e', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.8rem', fontWeight: 800, padding: '1rem', borderRadius: '1.2rem', boxShadow: '0 4px 14px rgba(244,63,94,0.35)', marginBottom: '1rem' }}
+              onClick={() => { playPop(); setTimeout(() => router.push('/learn/review'), 100) }}
+            >
+              <span style={{ fontSize: '1.5rem' }}>🏋️</span> Target Review Gym
+            </button>
+
+            {/* Quest list */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+              {quests.map(q => {
+                const progress = Math.min((q.current / q.goal) * 100, 100)
+                const isComplete = q.current >= q.goal
+                return (
+                  <div key={q.id} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', background: q.claimed ? '#f8fafc' : isComplete ? '#f0fdf4' : '#f8fafc', borderRadius: '1rem', border: `2px solid ${q.claimed ? '#e2e8f0' : isComplete ? '#4ade80' : '#e2e8f0'}` }}>
+                    <div style={{ fontSize: '2rem' }}>{q.icon}</div>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontWeight: 700, color: '#334155' }}>{q.title} <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: 500, display: 'block' }}>{q.desc}</span></div>
+                      <div style={{ width: '100%', height: '8px', background: '#e2e8f0', borderRadius: '4px', marginTop: '0.5rem', overflow: 'hidden' }}>
+                        <div style={{ width: `${progress}%`, height: '100%', background: isComplete ? '#22c55e' : '#3b82f6', transition: 'width 0.3s' }} />
+                      </div>
+                      <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.2rem', fontWeight: 600 }}>{q.current} / {q.goal}</div>
+                    </div>
+                    {isComplete && !q.claimed && (
+                      <button className="btn btn-primary" style={{ background: '#ca8a04', borderColor: '#a16207', padding: '0.5rem 1rem', whiteSpace: 'nowrap' }} onClick={() => claimQuest(q.id)}>
+                        Claim ⭐{q.reward}
+                      </button>
+                    )}
+                    {q.claimed && <div style={{ color: '#94a3b8', fontWeight: 800, whiteSpace: 'nowrap' }}>✅ Done</div>}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
       <h2 className={styles.pageTitle}>Choose a Lesson</h2>
@@ -253,11 +279,13 @@ export default function LearnPage() {
       )}
 
       <div className={styles.lessonList}>
-        {lessons.map((lesson, i) => {
+        {(() => {
+          // ✅ FIX: Read completedIds ONCE, outside the map, so it's consistent for all lock checks
+          const completedIds: string[] = profile ? JSON.parse(localStorage.getItem(`spanishkids_completed_${profile.id}`) || '[]') : []
+          return lessons.map((lesson, i) => {
           const color = CATEGORY_COLORS[lesson.category] ?? '#94a3b8'
           const emoji = CATEGORY_EMOJIS[lesson.category] ?? '📚'
           
-          const completedIds = profile ? JSON.parse(localStorage.getItem(`spanishkids_completed_${profile.id}`) || '[]') : []
           const isCompleted = completedIds.includes(lesson.id)
           
           let isLocked = false
@@ -306,8 +334,8 @@ export default function LearnPage() {
               </div>
             </button>
           )
-        })}
-      </div>
+        })})()
+      }</div>
 
       {stories.length > 0 && (
         <>
