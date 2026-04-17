@@ -80,13 +80,27 @@ export default function StoryPage({ params }: { params: Promise<{ id: string }> 
       body: JSON.stringify({ profileId: profile.id, score: 50, isReview: false })
     })
 
-    // Store completion
+    // Store completion — localStorage + server for cross-device sync
     const completedKey = `spanishkids_completed_stories_${profile.id}`
     const completed = JSON.parse(localStorage.getItem(completedKey) || '[]')
     if (!completed.includes(story.id)) {
       completed.push(story.id)
       localStorage.setItem(completedKey, JSON.stringify(completed))
     }
+
+    // ✅ Persist story completion to Supabase
+    fetch('/api/progress/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: profile.id,
+        lessonId: story.id, // stories share the same completions endpoint
+        accuracy: 1,
+        xpEarned: 50,
+        questionsTotal: 1,
+        questionsCorrect: 1,
+      }),
+    })
 
     const todayStr = new Date().toISOString().split('T')[0]
 

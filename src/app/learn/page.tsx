@@ -96,6 +96,30 @@ export default function LearnPage() {
   }, [])
 
   async function fetchLessons() {
+    const p = localStorage.getItem('spanishkids_active_profile')
+    const activeProfile = p ? JSON.parse(p) : null
+
+    // ✅ Step 1: Pull server-side completions and merge into localStorage
+    // This ensures cross-device progress is always accurate
+    if (activeProfile?.id) {
+      try {
+        const cRes = await fetch(`/api/progress/completions?userId=${activeProfile.id}`)
+        if (cRes.ok) {
+          const { completedLessonIds } = await cRes.json()
+          if (Array.isArray(completedLessonIds) && completedLessonIds.length > 0) {
+            const key = `spanishkids_completed_${activeProfile.id}`
+            const local: string[] = JSON.parse(localStorage.getItem(key) || '[]')
+            // Merge: union of server IDs + local IDs (so we never lose offline work)
+            const merged = [...new Set([...local, ...completedLessonIds])]
+            localStorage.setItem(key, JSON.stringify(merged))
+          }
+        }
+      } catch (e) {
+        // Network offline — local data is still used as fallback
+      }
+    }
+
+    // ✅ Step 2: Load lessons (now localStorage is fully in sync with server)
     const res = await fetch('/api/lessons')
     const data = await res.json()
     setLessons(Array.isArray(data) ? data : [])

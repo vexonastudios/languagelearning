@@ -301,7 +301,7 @@ export default function LessonPlayPage() {
         })
         localStorage.setItem('spanishkids_profiles', JSON.stringify(updatedList))
         
-        // Save completion
+        // Save completion — to localStorage AND the server (cross-device sync)
         if (lessonId !== 'review') {
           const completedKey = `spanishkids_completed_${profile.id}`
           const completed = JSON.parse(localStorage.getItem(completedKey) || '[]')
@@ -309,6 +309,19 @@ export default function LessonPlayPage() {
             completed.push(lesson.id)
             localStorage.setItem(completedKey, JSON.stringify(completed))
           }
+          // ✅ Persist to Supabase so other devices see this completion
+          fetch('/api/progress/completions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              userId: profile.id,
+              lessonId: lesson?.id,
+              accuracy,
+              xpEarned,
+              questionsTotal: questions.length,
+              questionsCorrect: score,
+            }),
+          })
         }
 
         // Apply Streak Logic (Only triggers on FULL LESSON COMPLETION)
