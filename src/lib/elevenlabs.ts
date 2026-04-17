@@ -29,5 +29,16 @@ export async function generateAudio(text: string, voiceId: string): Promise<Buff
   // Convert ReadableStream to Buffer via Response helper
   const response = new Response(audioStream)
   const arrayBuffer = await response.arrayBuffer()
-  return Buffer.from(arrayBuffer)
+  const buffer = Buffer.from(arrayBuffer)
+
+  // Validate: real MP3 audio should be at least 1KB.
+  // If it's smaller, ElevenLabs likely returned an error JSON body instead of audio.
+  if (buffer.byteLength < 1024) {
+    const preview = buffer.toString('utf8', 0, Math.min(200, buffer.byteLength))
+    throw new Error(
+      `ElevenLabs returned invalid audio (${buffer.byteLength} bytes). Response: ${preview}`
+    )
+  }
+
+  return buffer
 }
