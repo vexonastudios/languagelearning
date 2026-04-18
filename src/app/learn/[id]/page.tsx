@@ -350,20 +350,22 @@ export default function LessonPlayPage() {
         }
 
         let updatedProfile = { ...profile }
+        const lastActiveDb = profile.last_active_at ? profile.last_active_at.split('T')[0] : null
 
         // If today is Sunday (0), we freeze streak logic. Don't increment, don't break.
-        if (todayDate.getDay() !== 0) {
-          if (profile.last_active_at) {
+        // Use UTC methods because new Date('YYYY-MM-DD') parses as UTC midnight
+        if (todayDate.getUTCDay() !== 0) {
+          if (lastActiveDb) {
             let reqPrevDate = new Date(todayStr)
-            reqPrevDate.setDate(reqPrevDate.getDate() - 1)
+            reqPrevDate.setUTCDate(reqPrevDate.getUTCDate() - 1)
             // If yesterday was Sunday, the "required previous day" is actually Saturday
-            if (reqPrevDate.getDay() === 0) {
-              reqPrevDate.setDate(reqPrevDate.getDate() - 1)
+            if (reqPrevDate.getUTCDay() === 0) {
+              reqPrevDate.setUTCDate(reqPrevDate.getUTCDate() - 1)
             }
             const requiredPrevStr = reqPrevDate.toISOString().split('T')[0]
 
-            if (profile.last_active_at === requiredPrevStr || profile.last_active_at === todayStr) {
-               if (profile.last_active_at !== todayStr) {
+            if (lastActiveDb === requiredPrevStr || lastActiveDb === todayStr) {
+               if (lastActiveDb !== todayStr) {
                  updatedProfile.streak = (profile.streak || 0) + 1
                }
             } else {

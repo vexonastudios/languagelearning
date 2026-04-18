@@ -220,7 +220,8 @@ export default function LearnPage() {
         midnight.setHours(23, 59, 59, 999)
         const hoursLeft = Math.floor((midnight.getTime() - now.getTime()) / (1000 * 60 * 60))
         const minsLeft = Math.floor(((midnight.getTime() - now.getTime()) % (1000 * 60 * 60)) / (1000 * 60))
-        const lastActive = (profile as any).last_active_at
+        const passedLastActive = (profile as any).last_active_at
+        const lastActive = passedLastActive ? passedLastActive.split('T')[0] : null
         const todayStr = new Date().toISOString().split('T')[0]
         const doneToday = lastActive === todayStr
         return (
