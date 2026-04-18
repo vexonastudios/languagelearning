@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useAudio } from '@/hooks/useAudio'
 import type { Question } from '@/lib/lesson-engine'
@@ -110,6 +110,10 @@ export default function LessonPlayPage() {
   const [xpEarned, setXpEarned] = useState(0)
   const [reportingAudio, setReportingAudio] = useState(false)
 
+  // ✅ Use refs for score/xp so advance() always has the live value, not stale closure
+  const scoreRef = React.useRef(0)
+  const xpEarnedRef = React.useRef(0)
+
   // Phase 2: Sentence Builder state
   const [builtSentence, setBuiltSentence] = useState<string[]>([])
   const [wordBank, setWordBank] = useState<{ id: string; word: string }[]>([])
@@ -209,9 +213,11 @@ export default function LessonPlayPage() {
       // Calculate score only if they answered right on the very first try
       if (wrongChoices.length === 0) {
         setScore((n) => n + 1)
+        scoreRef.current += 1
       }
       setTotalAnswered((n) => n + 1)
       setXpEarned((n) => n + 10)
+      xpEarnedRef.current += 10
       setFeedbackMsg(randomPick(FEEDBACK_MESSAGES.correct))
       
       // Play ding immediately
@@ -282,8 +288,10 @@ export default function LessonPlayPage() {
 
   function advance() {
     if (currentIndex + 1 >= questions.length) {
-      // Calculate stars based on FIRST-TRY correct answers
-      const accuracy = score / questions.length
+      // ✅ FIX: Use refs for live values — state vars are stale in setTimeout callbacks
+      const finalScore = scoreRef.current
+      const finalXp = xpEarnedRef.current
+      const accuracy = finalScore / questions.length
       const earned = accuracy >= 0.9 ? 3 : accuracy >= 0.7 ? 2 : 1
       setStars(earned)
       
@@ -293,7 +301,7 @@ export default function LessonPlayPage() {
         const list = JSON.parse(stored)
         const updatedList = list.map((p: any) => {
           if (p.id === profile.id) {
-            const newTotal = (p.total_xp || 0) + xpEarned
+            const newTotal = (p.total_xp || 0) + finalXp
             setProfile({ ...p, total_xp: newTotal })
             return { ...p, total_xp: newTotal }
           }
@@ -317,9 +325,9 @@ export default function LessonPlayPage() {
               userId: profile.id,
               lessonId: lesson?.id,
               accuracy,
-              xpEarned,
+              xpEarned: finalXp,
               questionsTotal: questions.length,
-              questionsCorrect: score,
+              questionsCorrect: finalScore,
             }),
           })
         }
@@ -335,7 +343,7 @@ export default function LessonPlayPage() {
           activeQuests.quests.forEach((q: any) => {
              if (q.id === 'q_perfect' && accuracy === 1) q.current += 1
              if (q.id === 'q_gym' && lessonId === 'review') q.current += 1
-             if (q.id === 'q_volume') q.current += score
+             if (q.id === 'q_volume') q.current += finalScore
              if (q.current > q.goal) q.current = q.goal
           })
           localStorage.setItem(questKey, JSON.stringify(activeQuests))
@@ -399,13 +407,15 @@ export default function LessonPlayPage() {
       setFinished(true)
       setTimeout(playFanfare, 400)
     } else {
-      setCurrentIndex((n) => n + 1)
+      // ✅ FIX: Clear answer state FIRST (removes green border immediately),
+      // then update currentIndex after a micro-tick so React batches correctly
       setAnswerState('idle')
-      setWrongChoices([])
       setSelectedChoice(null)
+      setWrongChoices([])
       setFeedbackMsg('')
       setShowExample(false)
       setReportingAudio(false)
+      setCurrentIndex((n) => n + 1)
     }
   }
 
