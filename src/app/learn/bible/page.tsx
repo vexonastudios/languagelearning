@@ -5,13 +5,14 @@ import styles from './bible.module.css'
 
 interface BiblicalTerm {
   id: string
-  term: string
-  definition: string
+  term: string           // English: "Grace"
+  spanish_text: string   // Spanish: "Gracia"
+  definition: string     // Kid-friendly English explanation
   scripture_ref: string | null
   scripture_text: string | null
   category: string
   emoji: string
-  distractor_1: string
+  distractor_1: string   // Wrong Spanish answers for quiz
   distractor_2: string
   distractor_3: string
   difficulty: number
@@ -184,8 +185,9 @@ export default function BibleTermsPage() {
   }
 
   function getQuizChoices(term: BiblicalTerm): string[] {
+    // Quiz tests Spanish word knowledge — all choices are Spanish words
     const choices = [
-      term.definition,
+      term.spanish_text,
       term.distractor_1,
       term.distractor_2,
       term.distractor_3,
@@ -196,7 +198,7 @@ export default function BibleTermsPage() {
   function handleAnswer(choice: string) {
     if (selectedAnswer !== null) return
     const currentTerm = quizTerms[quizIndex]
-    const isCorrect = choice === currentTerm.definition
+    const isCorrect = choice === currentTerm.spanish_text  // correct = matching Spanish word
     setSelectedAnswer(choice)
     setShowExplanation(true)
     const newAnswers = [...quizAnswers, isCorrect]
@@ -328,13 +330,14 @@ export default function BibleTermsPage() {
             <div className={styles.quizCard}>
               <div className={styles.quizEmoji}>{currentQuizTerm.emoji}</div>
               <h2 className={styles.quizTerm}>{currentQuizTerm.term}</h2>
-              <p className={styles.quizInstruction}>What does this word mean?</p>
+              <p className={styles.quizInstruction}>How do you say this in Spanish? 🇪🇸</p>
+              <p className={styles.quizDefinitionHint}>{currentQuizTerm.definition}</p>
             </div>
 
             <div className={styles.choiceGrid}>
               {quizChoices.map((choice, i) => {
                 const isSelected = selectedAnswer === choice
-                const isCorrect = choice === currentQuizTerm.definition
+                const isCorrect = choice === currentQuizTerm.spanish_text
                 let choiceClass = styles.choiceBtn
                 if (selectedAnswer !== null) {
                   if (isCorrect) choiceClass = `${styles.choiceBtn} ${styles.choiceCorrect}`
@@ -355,10 +358,10 @@ export default function BibleTermsPage() {
             </div>
 
             {showExplanation && (
-              <div className={`${styles.explanation} ${selectedAnswer === currentQuizTerm.definition ? styles.explanationCorrect : styles.explanationWrong}`}>
-                {selectedAnswer === currentQuizTerm.definition ? (
+              <div className={`${styles.explanation} ${selectedAnswer === currentQuizTerm.spanish_text ? styles.explanationCorrect : styles.explanationWrong}`}>
+                {selectedAnswer === currentQuizTerm.spanish_text ? (
                   <>
-                    <strong>✅ Correct!</strong> {currentQuizTerm.definition}
+                    <strong>✅ ¡Correcto!</strong> <strong>{currentQuizTerm.term}</strong> = <strong style={{fontSize:'1.1rem'}}>{currentQuizTerm.spanish_text}</strong>
                     {currentQuizTerm.scripture_ref && (
                       <div className={styles.verseRef}>
                         📖 <em>"{currentQuizTerm.scripture_text}"</em> — {currentQuizTerm.scripture_ref}
@@ -367,7 +370,7 @@ export default function BibleTermsPage() {
                   </>
                 ) : (
                   <>
-                    <strong>❌ Not quite.</strong> "{currentQuizTerm.term}" means: {currentQuizTerm.definition}
+                    <strong>❌ Not quite!</strong> <strong>{currentQuizTerm.term}</strong> in Spanish is <strong style={{fontSize:'1.1rem', color:'#7c3aed'}}>{currentQuizTerm.spanish_text}</strong>
                   </>
                 )}
                 <button
@@ -409,16 +412,19 @@ export default function BibleTermsPage() {
                 {/* Front */}
                 <div className={styles.flashcardFront}>
                   <div className={styles.fcEmoji}>{currentCard.emoji}</div>
+                  <p className={styles.tapHint} style={{ marginBottom: '0.25rem', fontSize: '0.75rem' }}>How do you say this in Spanish?</p>
                   <h2 className={styles.fcTerm}>{currentCard.term}</h2>
+                  <p className={styles.termDefPreview}>{currentCard.definition}</p>
                   <span className={styles.fcCategory} style={{ background: (CATEGORY_COLORS[currentCard.category] ?? CATEGORY_COLORS.Default) + '22', color: CATEGORY_COLORS[currentCard.category] ?? CATEGORY_COLORS.Default }}>
                     {CATEGORY_EMOJIS[currentCard.category] ?? '📖'} {currentCard.category}
                   </span>
-                  <p className={styles.tapHint}>Tap to reveal definition ↓</p>
+                  <p className={styles.tapHint}>Tap to see the Spanish word ↓</p>
                 </div>
                 {/* Back */}
                 <div className={styles.flashcardBack}>
                   <div className={styles.fcEmoji}>{currentCard.emoji}</div>
-                  <p className={styles.fcDefinition}>{currentCard.definition}</p>
+                  <p className={styles.fcSpanishWord}>{currentCard.spanish_text}</p>
+                  <p className={styles.fcEnglishLabel}>{currentCard.term} = {currentCard.spanish_text}</p>
                   {currentCard.scripture_ref && (
                     <div className={styles.fcVerse}>
                       <div className={styles.fcVerseText}>"{currentCard.scripture_text}"</div>
@@ -518,6 +524,7 @@ export default function BibleTermsPage() {
                       {isMastered && <span className={styles.masteredBadge}>✅</span>}
                     </div>
                     <div className={styles.termWord}>{term.term}</div>
+                    <div className={styles.termSpanish}>{term.spanish_text}</div>
                     <p className={styles.termDef}>{term.definition}</p>
                     {term.scripture_ref && (
                       <div className={styles.termRef}>📖 {term.scripture_ref}</div>

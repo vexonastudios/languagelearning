@@ -265,6 +265,14 @@
   font-size: 1.05rem;
   font-weight: 900;
   color: #1e293b;
+  margin-bottom: 0.15rem;
+}
+
+/* Spanish translation — prominently displayed */
+.termSpanish {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #7c3aed;
   margin-bottom: 0.3rem;
 }
 
@@ -428,6 +436,32 @@
   color: rgba(255,255,255,0.95);
 }
 
+/* Spanish word — big and bold on card back */
+.fcSpanishWord {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: white;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.fcEnglishLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+}
+
+/* Small definition hint shown on flashcard front */
+.termDefPreview {
+  font-size: 0.8rem;
+  color: #64748b;
+  text-align: center;
+  font-weight: 600;
+  line-height: 1.4;
+  max-width: 90%;
+}
+
 .fcVerse {
   margin-top: 0.5rem;
   background: rgba(255,255,255,0.15);
@@ -582,6 +616,18 @@
   font-size: 0.9rem;
   opacity: 0.8;
   font-weight: 600;
+}
+
+/* Definition shown as a hint under the quiz prompt */
+.quizDefinitionHint {
+  font-size: 0.82rem;
+  background: rgba(255,255,255,0.15);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  opacity: 0.9;
+  line-height: 1.4;
 }
 
 .choiceGrid {

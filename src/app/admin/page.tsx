@@ -45,7 +45,7 @@ export default function AdminPage() {
   // Biblical Terms
   const [bibleTerms, setBibleTerms] = useState<any[]>([])
   const [newBibleTerm, setNewBibleTerm] = useState({
-    term: '', definition: '', scripture_ref: '', scripture_text: '',
+    term: '', spanish_text: '', definition: '', scripture_ref: '', scripture_text: '',
     category: 'Faith', emoji: '✝️',
     distractor_1: '', distractor_2: '', distractor_3: '',
     difficulty: 1,
@@ -155,7 +155,7 @@ export default function AdminPage() {
       body: JSON.stringify(newBibleTerm),
     })
     if (res.ok) {
-      setNewBibleTerm({ term: '', definition: '', scripture_ref: '', scripture_text: '', category: 'Faith', emoji: '✝️', distractor_1: '', distractor_2: '', distractor_3: '', difficulty: 1 })
+      setNewBibleTerm({ term: '', spanish_text: '', definition: '', scripture_ref: '', scripture_text: '', category: 'Faith', emoji: '✝️', distractor_1: '', distractor_2: '', distractor_3: '', difficulty: 1 })
       await fetchBibleTerms()
       showStatus('Biblical term added ✅')
     }
@@ -908,9 +908,15 @@ export default function AdminPage() {
               <div className={styles.vocabFormGrid}>
                 <input
                   className={styles.input}
-                  placeholder="Term (e.g. Grace)"
+                  placeholder="Term in English (e.g. Grace)"
                   value={newBibleTerm.term}
                   onChange={(e) => setNewBibleTerm({ ...newBibleTerm, term: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  placeholder="Spanish translation (e.g. Gracia) "
+                  value={newBibleTerm.spanish_text}
+                  onChange={(e) => setNewBibleTerm({ ...newBibleTerm, spanish_text: e.target.value })}
                 />
                 <input
                   className={styles.input}
@@ -978,6 +984,8 @@ export default function AdminPage() {
                   <div className={styles.vocabPair}>
                     <span style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>{bt.emoji}</span>
                     <span className={styles.vocabEn}>{bt.term}</span>
+                    <span className={styles.vocabArrow}>→</span>
+                    <span className={styles.vocabEs}>{bt.spanish_text}</span>
                   </div>
                   <div className={styles.vocabMeta} style={{ marginTop: '0.4rem' }}>
                     {bt.definition}
