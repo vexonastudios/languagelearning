@@ -18,7 +18,7 @@ async function run() {
     // Call the audio rendering service
     const result = await prerenderLessonAudio(lesson.id);
     
-    console.log(`✅ Audio render complete for ${lesson.title}. Success: ${result.successes}, Errors: ${result.errors.length}`);
+    console.log(`✅ Audio render complete for ${lesson.title}. Success: ${result.success}, Errors: ${result.errors.length}`);
     if (result.errors.length > 0) {
       console.error("Some audio failed to render:", result.errors);
     }
