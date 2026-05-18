@@ -58,5 +58,35 @@
     "order": 10,
     "category": "Review",
     "difficulty": 2
+  },
+  {
+    "title": "Clothes",
+    "order": 11,
+    "category": "Clothes",
+    "difficulty": 1
+  },
+  {
+    "title": "Shapes",
+    "order": 12,
+    "category": "Shapes",
+    "difficulty": 1
+  },
+  {
+    "title": "Home",
+    "order": 13,
+    "category": "Home",
+    "difficulty": 2
+  },
+  {
+    "title": "Nature",
+    "order": 14,
+    "category": "Nature",
+    "difficulty": 2
+  },
+  {
+    "title": "Feelings",
+    "order": 15,
+    "category": "Feelings",
+    "difficulty": 2
   }
 ]

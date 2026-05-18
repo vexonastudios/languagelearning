@@ -86,16 +86,25 @@ function buildChoices(
   ])
 }
 
+export interface ProgressEntry {
+  mastery: number
+  nextReview: Date | null
+}
+
 /**
  * Build a mixed question set for a lesson from its vocabulary and sentences.
  * Returns 6–12 questions per call, mixing types based on what's available.
+ *
+ * progressMap: Maps item_id → { mastery, nextReview } for true SRS prioritization.
+ * Items whose nextReview date is <= now are "due" and are surfaced first.
+ * Items with high mastery that aren't yet due are heavily deprioritized.
  */
 export function buildQuestionSet(
   vocab: VocabItem[],
   sentences: SentenceItem[],
   verbs: VerbItem[],
   targetCount: number = 10,
-  progressMap?: Map<string, number>
+  progressMap?: Map<string, ProgressEntry | number>
 ): Question[] {
   const allEnglish = vocab.map((v) => v.english_text)
   const allSpanish = vocab.map((v) => v.spanish_text)
@@ -237,12 +246,48 @@ export function buildQuestionSet(
     }
   }
 
-  // Spacer Repetition Logic: 
-  // Base shuffle but weighted. Lower mastery items bubble to the top. Items with mastery > 3 get strongly penalized.
+  // ── True Spaced Repetition Sorting ──────────────────────────────────────────
+  // Priority bands (lower sortWeight = shown sooner):
+  //   BAND 0  (−100 ... −98): Due items with low mastery (≤2) — highest priority
+  //   BAND 1  (−97  ... −95): Due items with medium-high mastery (3-5)
+  //   BAND 2  (0    ...   3): Unseen items (no progress record)
+  //   BAND 3  (10   ...  15): Not-yet-due items with low mastery
+  //   BAND 4  (20   ...  25): Not-yet-due items with high mastery (≥3)
+  // Within each band, Math.random() adds jitter to shuffle items of similar priority.
+  const now = new Date()
+
   const mapped = questions.map((q) => {
-    let m = progressMap?.get(q.itemId) ?? 0
-    if (m >= 3) m += 5 // Penalize heavily if already mastered 3+ times
-    return { q, sortWeight: m + (Math.random() * 2) } 
+    const entry = progressMap?.get(q.itemId)
+
+    // Normalize: accept either legacy number or new ProgressEntry shape
+    let mastery = 0
+    let nextReview: Date | null = null
+    if (entry !== undefined) {
+      if (typeof entry === 'number') {
+        mastery = entry
+      } else {
+        mastery = entry.mastery
+        nextReview = entry.nextReview
+      }
+    }
+
+    const isDue = nextReview !== null && nextReview <= now
+    const isUnseen = entry === undefined
+
+    let band: number
+    if (isUnseen) {
+      band = 0 + Math.random() * 3           // Band 2 (0..3)
+    } else if (isDue && mastery <= 2) {
+      band = -100 + Math.random() * 3        // Band 0 (−100..−97) — highest priority
+    } else if (isDue) {
+      band = -97 + Math.random() * 3         // Band 1 (−97..−94)
+    } else if (mastery <= 2) {
+      band = 10 + mastery + Math.random() * 2 // Band 3 (10..15)
+    } else {
+      band = 20 + mastery + Math.random() * 2 // Band 4 (20..27) — lowest priority
+    }
+
+    return { q, sortWeight: band }
   })
 
   mapped.sort((a, b) => a.sortWeight - b.sortWeight)

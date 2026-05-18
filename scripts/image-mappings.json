@@ -1,354 +1,966 @@
 [
   {
     "word": "airplane",
-    "url": "/images/vocab/airplane.png"
+    "url": "/images/vocab/airplane.webp"
   },
   {
     "word": "apple",
-    "url": "/images/vocab/apple.png"
+    "url": "/images/vocab/apple.webp"
   },
   {
     "word": "arm",
-    "url": "/images/vocab/arm.png"
+    "url": "/images/vocab/arm.webp"
   },
   {
     "word": "baby",
-    "url": "/images/vocab/baby.png"
+    "url": "/images/vocab/baby.webp"
   },
   {
     "word": "ball",
-    "url": "/images/vocab/ball.png"
+    "url": "/images/vocab/ball.webp"
   },
   {
     "word": "banana",
-    "url": "/images/vocab/banana.png"
+    "url": "/images/vocab/banana.webp"
   },
   {
     "word": "big",
-    "url": "/images/vocab/big.png"
+    "url": "/images/vocab/big.webp"
   },
   {
     "word": "bird",
-    "url": "/images/vocab/bird.png"
+    "url": "/images/vocab/bird.webp"
   },
   {
     "word": "boat",
-    "url": "/images/vocab/boat.png"
+    "url": "/images/vocab/boat.webp"
   },
   {
     "word": "book",
-    "url": "/images/vocab/book.png"
+    "url": "/images/vocab/book.webp"
   },
   {
     "word": "bread",
-    "url": "/images/vocab/bread.png"
+    "url": "/images/vocab/bread.webp"
   },
   {
     "word": "butterfly",
-    "url": "/images/vocab/butterfly.png"
+    "url": "/images/vocab/butterfly.webp"
   },
   {
     "word": "cake",
-    "url": "/images/vocab/cake.png"
+    "url": "/images/vocab/cake.webp"
   },
   {
     "word": "car",
-    "url": "/images/vocab/car.png"
+    "url": "/images/vocab/car.webp"
   },
   {
     "word": "cat",
-    "url": "/images/vocab/cat.png"
+    "url": "/images/vocab/cat.webp"
   },
   {
     "word": "chair",
-    "url": "/images/vocab/chair.png"
+    "url": "/images/vocab/chair.webp"
   },
   {
     "word": "chicken",
-    "url": "/images/vocab/chicken.png"
+    "url": "/images/vocab/chicken.webp"
   },
   {
     "word": "close",
-    "url": "/images/vocab/close.png"
+    "url": "/images/vocab/close.webp"
   },
   {
     "word": "cloud",
-    "url": "/images/vocab/cloud.png"
+    "url": "/images/vocab/cloud.webp"
   },
   {
     "word": "black",
-    "url": "/images/vocab/black.png"
+    "url": "/images/vocab/black.webp"
   },
   {
     "word": "blue",
-    "url": "/images/vocab/blue.png"
+    "url": "/images/vocab/blue.webp"
   },
   {
     "word": "green",
-    "url": "/images/vocab/green.png"
+    "url": "/images/vocab/green.webp"
   },
   {
     "word": "pink",
-    "url": "/images/vocab/pink.png"
+    "url": "/images/vocab/pink.webp"
   },
   {
     "word": "purple",
-    "url": "/images/vocab/purple.png"
+    "url": "/images/vocab/purple.webp"
   },
   {
     "word": "red",
-    "url": "/images/vocab/red.png"
+    "url": "/images/vocab/red.webp"
   },
   {
     "word": "white",
-    "url": "/images/vocab/white.png"
+    "url": "/images/vocab/white.webp"
   },
   {
     "word": "yellow",
-    "url": "/images/vocab/yellow.png"
+    "url": "/images/vocab/yellow.webp"
   },
   {
     "word": "cow",
-    "url": "/images/vocab/cow.png"
+    "url": "/images/vocab/cow.webp"
   },
   {
     "word": "dad",
-    "url": "/images/vocab/dad.png"
+    "url": "/images/vocab/dad.webp"
   },
   {
     "word": "dance",
-    "url": "/images/vocab/dance.png"
+    "url": "/images/vocab/dance.webp"
   },
   {
     "word": "dog",
-    "url": "/images/vocab/dog.png"
+    "url": "/images/vocab/dog.webp"
   },
   {
     "word": "door",
-    "url": "/images/vocab/door.png"
+    "url": "/images/vocab/door.webp"
   },
   {
     "word": "drink",
-    "url": "/images/vocab/drink.png"
+    "url": "/images/vocab/drink.webp"
   },
   {
     "word": "ear",
-    "url": "/images/vocab/ear.png"
+    "url": "/images/vocab/ear.webp"
   },
   {
     "word": "eat",
-    "url": "/images/vocab/eat.png"
+    "url": "/images/vocab/eat.webp"
   },
   {
     "word": "egg",
-    "url": "/images/vocab/egg.png"
+    "url": "/images/vocab/egg.webp"
   },
   {
     "word": "elephant",
-    "url": "/images/vocab/elephant.png"
+    "url": "/images/vocab/elephant.webp"
   },
   {
     "word": "fish",
-    "url": "/images/vocab/fish.png"
+    "url": "/images/vocab/fish.webp"
   },
   {
     "word": "five",
-    "url": "/images/vocab/five.png"
+    "url": "/images/vocab/five.webp"
   },
   {
     "word": "flower",
-    "url": "/images/vocab/flower.png"
+    "url": "/images/vocab/flower.webp"
   },
   {
     "word": "four",
-    "url": "/images/vocab/four.png"
+    "url": "/images/vocab/four.webp"
   },
   {
     "word": "friend",
-    "url": "/images/vocab/friend.png"
+    "url": "/images/vocab/friend.webp"
   },
   {
     "word": "frog",
-    "url": "/images/vocab/frog.png"
+    "url": "/images/vocab/frog.webp"
   },
   {
     "word": "give",
-    "url": "/images/vocab/give.png"
+    "url": "/images/vocab/give.webp"
   },
   {
     "word": "goodbye",
-    "url": "/images/vocab/goodbye.png"
+    "url": "/images/vocab/goodbye.webp"
   },
   {
     "word": "good_morning",
-    "url": "/images/vocab/good_morning.png"
+    "url": "/images/vocab/good_morning.webp"
   },
   {
     "word": "good_night",
-    "url": "/images/vocab/good_night.png"
+    "url": "/images/vocab/good_night.webp"
   },
   {
     "word": "grandma",
-    "url": "/images/vocab/grandma.png"
+    "url": "/images/vocab/grandma.webp"
   },
   {
     "word": "grandpa",
-    "url": "/images/vocab/grandpa.png"
+    "url": "/images/vocab/grandpa.webp"
   },
   {
     "word": "hello",
-    "url": "/images/vocab/hello.png"
+    "url": "/images/vocab/hello.webp"
   },
   {
     "word": "horse",
-    "url": "/images/vocab/horse.png"
+    "url": "/images/vocab/horse.webp"
   },
   {
     "word": "house",
-    "url": "/images/vocab/house.png"
+    "url": "/images/vocab/house.webp"
   },
   {
     "word": "jump",
-    "url": "/images/vocab/jump.png"
+    "url": "/images/vocab/jump.webp"
   },
   {
     "word": "leg",
-    "url": "/images/vocab/leg.png"
+    "url": "/images/vocab/leg.webp"
   },
   {
     "word": "lion",
-    "url": "/images/vocab/lion.png"
+    "url": "/images/vocab/lion.webp"
   },
   {
     "word": "milk",
-    "url": "/images/vocab/milk.png"
+    "url": "/images/vocab/milk.webp"
   },
   {
     "word": "mom",
-    "url": "/images/vocab/mom.png"
+    "url": "/images/vocab/mom.webp"
   },
   {
     "word": "moon",
-    "url": "/images/vocab/moon.png"
+    "url": "/images/vocab/moon.webp"
   },
   {
     "word": "nose",
-    "url": "/images/vocab/nose.png"
+    "url": "/images/vocab/nose.webp"
   },
   {
     "word": "no",
-    "url": "/images/vocab/no.png"
+    "url": "/images/vocab/no.webp"
   },
   {
     "word": "one",
-    "url": "/images/vocab/one.png"
+    "url": "/images/vocab/one.webp"
   },
   {
     "word": "open",
-    "url": "/images/vocab/open.png"
+    "url": "/images/vocab/open.webp"
   },
   {
     "word": "orange",
-    "url": "/images/vocab/orange.png"
+    "url": "/images/vocab/orange.webp"
   },
   {
     "word": "pizza",
-    "url": "/images/vocab/pizza.png"
+    "url": "/images/vocab/pizza.webp"
   },
   {
     "word": "play",
-    "url": "/images/vocab/play.png"
+    "url": "/images/vocab/play.webp"
   },
   {
     "word": "please",
-    "url": "/images/vocab/please.png"
+    "url": "/images/vocab/please.webp"
   },
   {
     "word": "rabbit",
-    "url": "/images/vocab/rabbit.png"
+    "url": "/images/vocab/rabbit.webp"
   },
   {
     "word": "rice",
-    "url": "/images/vocab/rice.png"
+    "url": "/images/vocab/rice.webp"
   },
   {
     "word": "run",
-    "url": "/images/vocab/run.png"
+    "url": "/images/vocab/run.webp"
   },
   {
     "word": "school",
-    "url": "/images/vocab/school.png"
+    "url": "/images/vocab/school.webp"
   },
   {
     "word": "shoes",
-    "url": "/images/vocab/shoes.png"
+    "url": "/images/vocab/shoes.webp"
   },
   {
     "word": "silla",
-    "url": "/images/vocab/silla.png"
+    "url": "/images/vocab/silla.webp"
   },
   {
     "word": "sing",
-    "url": "/images/vocab/sing.png"
+    "url": "/images/vocab/sing.webp"
   },
   {
     "word": "sleep",
-    "url": "/images/vocab/sleep.png"
+    "url": "/images/vocab/sleep.webp"
   },
   {
     "word": "small",
-    "url": "/images/vocab/small.png"
+    "url": "/images/vocab/small.webp"
   },
   {
     "word": "soup",
-    "url": "/images/vocab/soup.png"
+    "url": "/images/vocab/soup.webp"
   },
   {
     "word": "star",
-    "url": "/images/vocab/star.png"
+    "url": "/images/vocab/star.webp"
   },
   {
     "word": "sun",
-    "url": "/images/vocab/sun.png"
+    "url": "/images/vocab/sun.webp"
   },
   {
     "word": "table",
-    "url": "/images/vocab/table.png"
+    "url": "/images/vocab/table.webp"
   },
   {
     "word": "ten",
-    "url": "/images/vocab/ten.png"
+    "url": "/images/vocab/ten.webp"
   },
   {
     "word": "thank_you",
-    "url": "/images/vocab/thank_you.png"
+    "url": "/images/vocab/thank_you.webp"
   },
   {
     "word": "three",
-    "url": "/images/vocab/three.png"
+    "url": "/images/vocab/three.webp"
   },
   {
     "word": "tree",
-    "url": "/images/vocab/tree.png"
+    "url": "/images/vocab/tree.webp"
   },
   {
     "word": "two",
-    "url": "/images/vocab/two.png"
+    "url": "/images/vocab/two.webp"
   },
   {
     "word": "walk",
-    "url": "/images/vocab/walk.png"
+    "url": "/images/vocab/walk.webp"
   },
   {
     "word": "want",
-    "url": "/images/vocab/want.png"
+    "url": "/images/vocab/want.webp"
   },
   {
     "word": "water",
-    "url": "/images/vocab/water.png"
+    "url": "/images/vocab/water.webp"
   },
   {
     "word": "yes",
-    "url": "/images/vocab/yes.png"
+    "url": "/images/vocab/yes.webp"
+  },
+  {
+    "word": "sister",
+    "url": "/images/vocab/sister.webp"
+  },
+  {
+    "word": "brother",
+    "url": "/images/vocab/brother.webp"
+  },
+  {
+    "word": "head",
+    "url": "/images/vocab/head.webp"
+  },
+  {
+    "word": "hand",
+    "url": "/images/vocab/hand.webp"
+  },
+  {
+    "word": "foot",
+    "url": "/images/vocab/foot.webp"
+  },
+  {
+    "word": "eye",
+    "url": "/images/vocab/eye.webp"
+  },
+  {
+    "word": "mouth",
+    "url": "/images/vocab/mouth.webp"
+  },
+  {
+    "word": "see",
+    "url": "/images/vocab/see.webp"
+  },
+  {
+    "word": "hot",
+    "url": "/images/vocab/hot.webp"
+  },
+  {
+    "word": "cold",
+    "url": "/images/vocab/cold.webp"
+  },
+  {
+    "word": "happy",
+    "url": "/images/vocab/happy.webp"
+  },
+  {
+    "word": "have",
+    "url": "/images/vocab/have.webp"
+  },
+  {
+    "word": "six",
+    "url": "/images/vocab/six.webp"
+  },
+  {
+    "word": "seven",
+    "url": "/images/vocab/seven.webp"
+  },
+  {
+    "word": "eight",
+    "url": "/images/vocab/eight.webp"
+  },
+  {
+    "word": "nine",
+    "url": "/images/vocab/nine.webp"
+  },
+  {
+    "word": "monkey",
+    "url": "/images/vocab/monkey.webp"
+  },
+  {
+    "word": "tiger",
+    "url": "/images/vocab/tiger.webp"
+  },
+  {
+    "word": "giraffe",
+    "url": "/images/vocab/giraffe.webp"
+  },
+  {
+    "word": "zebra",
+    "url": "/images/vocab/zebra.webp"
+  },
+  {
+    "word": "shirt",
+    "url": "/images/vocab/shirt.webp"
+  },
+  {
+    "word": "pants",
+    "url": "/images/vocab/pants.webp"
+  },
+  {
+    "word": "hat",
+    "url": "/images/vocab/hat.webp"
+  },
+  {
+    "word": "grapes",
+    "url": "/images/vocab/grapes.webp"
+  },
+  {
+    "word": "pear",
+    "url": "/images/vocab/pear.webp"
+  },
+  {
+    "word": "strawberry",
+    "url": "/images/vocab/strawberry.webp"
+  },
+  {
+    "word": "burger",
+    "url": "/images/vocab/burger.webp"
+  },
+  {
+    "word": "circle",
+    "url": "/images/vocab/circle.webp"
+  },
+  {
+    "word": "square",
+    "url": "/images/vocab/square.webp"
+  },
+  {
+    "word": "triangle",
+    "url": "/images/vocab/triangle.webp"
+  },
+  {
+    "word": "heart",
+    "url": "/images/vocab/heart.webp"
+  },
+  {
+    "word": "mango",
+    "url": "/images/vocab/mango.webp"
+  },
+  {
+    "word": "peach",
+    "url": "/images/vocab/peach.webp"
+  },
+  {
+    "word": "cherry",
+    "url": "/images/vocab/cherry.webp"
+  },
+  {
+    "word": "salad",
+    "url": "/images/vocab/salad.webp"
+  },
+  {
+    "word": "sandwich",
+    "url": "/images/vocab/sandwich.webp"
+  },
+  {
+    "word": "taco",
+    "url": "/images/vocab/taco.webp"
+  },
+  {
+    "word": "mouse",
+    "url": "/images/vocab/mouse.webp"
+  },
+  {
+    "word": "turtle",
+    "url": "/images/vocab/turtle.webp"
+  },
+  {
+    "word": "snake",
+    "url": "/images/vocab/snake.webp"
+  },
+  {
+    "word": "stew",
+    "url": "/images/vocab/stew.webp"
+  },
+  {
+    "word": "pig",
+    "url": "/images/vocab/pig.webp"
+  },
+  {
+    "word": "sheep",
+    "url": "/images/vocab/sheep.webp"
+  },
+  {
+    "word": "goat",
+    "url": "/images/vocab/goat.webp"
+  },
+  {
+    "word": "hamster",
+    "url": "/images/vocab/hamster.webp"
+  },
+  {
+    "word": "bear",
+    "url": "/images/vocab/bear.webp"
+  },
+  {
+    "word": "wolf",
+    "url": "/images/vocab/wolf.webp"
+  },
+  {
+    "word": "window",
+    "url": "/images/vocab/window.webp"
+  },
+  {
+    "word": "wall",
+    "url": "/images/vocab/wall.webp"
+  },
+  {
+    "word": "floor",
+    "url": "/images/vocab/floor.webp"
+  },
+  {
+    "word": "bed",
+    "url": "/images/vocab/bed.webp"
+  },
+  {
+    "word": "sofa",
+    "url": "/images/vocab/sofa.webp"
+  },
+  {
+    "word": "bench",
+    "url": "/images/vocab/bench.webp"
+  },
+  {
+    "word": "hop",
+    "url": "/images/vocab/hop.webp"
+  },
+  {
+    "word": "fly",
+    "url": "/images/vocab/fly.webp"
+  },
+  {
+    "word": "look",
+    "url": "/images/vocab/look.webp"
+  },
+  {
+    "word": "find",
+    "url": "/images/vocab/find.webp"
+  },
+  {
+    "word": "hippo",
+    "url": "/images/vocab/hippo.webp"
+  },
+  {
+    "word": "rhino",
+    "url": "/images/vocab/rhino.webp"
+  },
+  {
+    "word": "toad",
+    "url": "/images/vocab/toad.webp"
+  },
+  {
+    "word": "bee",
+    "url": "/images/vocab/bee.webp"
+  },
+  {
+    "word": "ant",
+    "url": "/images/vocab/ant.webp"
+  },
+  {
+    "word": "dragonfly",
+    "url": "/images/vocab/dragonfly.webp"
+  },
+  {
+    "word": "noodles",
+    "url": "/images/vocab/noodles.webp"
+  },
+  {
+    "word": "cookie",
+    "url": "/images/vocab/cookie.webp"
+  },
+  {
+    "word": "candy",
+    "url": "/images/vocab/candy.webp"
+  },
+  {
+    "word": "pie",
+    "url": "/images/vocab/pie.webp"
+  },
+  {
+    "word": "aunt",
+    "url": "/images/vocab/aunt.webp"
+  },
+  {
+    "word": "uncle",
+    "url": "/images/vocab/uncle.webp"
+  },
+  {
+    "word": "cousin",
+    "url": "/images/vocab/cousin.webp"
+  },
+  {
+    "word": "child",
+    "url": "/images/vocab/child.webp"
+  },
+  {
+    "word": "boy",
+    "url": "/images/vocab/boy.webp"
+  },
+  {
+    "word": "girl",
+    "url": "/images/vocab/girl.webp"
+  },
+  {
+    "word": "teacher",
+    "url": "/images/vocab/teacher.webp"
+  },
+  {
+    "word": "student",
+    "url": "/images/vocab/student.webp"
+  },
+  {
+    "word": "leaf",
+    "url": "/images/vocab/leaf.webp"
+  },
+  {
+    "word": "sky",
+    "url": "/images/vocab/sky.webp"
+  },
+  {
+    "word": "twenty",
+    "url": "/images/vocab/twenty.webp"
+  },
+  {
+    "word": "maybe",
+    "url": "/images/vocab/maybe.webp"
+  },
+  {
+    "word": "ok",
+    "url": "/images/vocab/ok.webp"
+  },
+  {
+    "word": "stop",
+    "url": "/images/vocab/stop.webp"
+  },
+  {
+    "word": "go",
+    "url": "/images/vocab/go.webp"
+  },
+  {
+    "word": "hi",
+    "url": "/images/vocab/hi.webp"
+  },
+  {
+    "word": "hello",
+    "url": "/images/vocab/hi.webp"
+  },
+  {
+    "word": "sorry",
+    "url": "/images/vocab/sorry.webp"
+  },
+  {
+    "word": "help",
+    "url": "/images/vocab/help.webp"
+  },
+  {
+    "word": "swim",
+    "url": "/images/vocab/swim.webp"
+  },
+  {
+    "word": "cook",
+    "url": "/images/vocab/cook.webp"
+  },
+  {
+    "word": "wake",
+    "url": "/images/vocab/wake.webp"
+  },
+  {
+    "word": "rest",
+    "url": "/images/vocab/rest.webp"
+  },
+  {
+    "word": "juice",
+    "url": "/images/vocab/juice.webp"
+  },
+  {
+    "word": "tea",
+    "url": "/images/vocab/tea.webp"
+  },
+  {
+    "word": "soda",
+    "url": "/images/vocab/soda.webp"
+  },
+  {
+    "word": "pasta",
+    "url": "/images/vocab/pasta.webp"
+  },
+  {
+    "word": "corn",
+    "url": "/images/vocab/corn.webp"
+  },
+  {
+    "word": "potato",
+    "url": "/images/vocab/potato.webp"
+  },
+  {
+    "word": "cheese",
+    "url": "/images/vocab/cheese.webp"
+  },
+  {
+    "word": "butter",
+    "url": "/images/vocab/butter.webp"
+  },
+  {
+    "word": "yogurt",
+    "url": "/images/vocab/yogurt.webp"
+  },
+  {
+    "word": "grape",
+    "url": "/images/vocab/grape.webp"
+  },
+  {
+    "word": "toy",
+    "url": "/images/vocab/toy.webp"
+  },
+  {
+    "word": "shoe",
+    "url": "/images/vocab/shoe.webp"
+  },
+  {
+    "word": "pen",
+    "url": "/images/vocab/pen.webp"
+  },
+  {
+    "word": "bag",
+    "url": "/images/vocab/bag.webp"
+  },
+  {
+    "word": "desk",
+    "url": "/images/vocab/desk.webp"
+  },
+  {
+    "word": "park",
+    "url": "/images/vocab/park.webp"
+  },
+  {
+    "word": "grass",
+    "url": "/images/vocab/grass.webp"
+  },
+  {
+    "word": "bush",
+    "url": "/images/vocab/bush.webp"
+  },
+  {
+    "word": "lizard",
+    "url": "/images/vocab/lizard.webp"
+  },
+  {
+    "word": "tall",
+    "url": "/images/vocab/tall.webp"
+  },
+  {
+    "word": "tiny",
+    "url": "/images/vocab/tiny.webp"
+  },
+  {
+    "word": "sad",
+    "url": "/images/vocab/sad.webp"
+  },
+  {
+    "word": "angry",
+    "url": "/images/vocab/angry.webp"
+  },
+  {
+    "word": "scared",
+    "url": "/images/vocab/scared.webp"
+  },
+  {
+    "word": "brown",
+    "url": "/images/vocab/brown.webp"
+  },
+  {
+    "word": "gray",
+    "url": "/images/vocab/gray.webp"
+  },
+  {
+    "word": "store",
+    "url": "/images/vocab/store.webp"
+  },
+  {
+    "word": "beef",
+    "url": "/images/vocab/beef.webp"
+  },
+  {
+    "word": "pork",
+    "url": "/images/vocab/pork.webp"
+  },
+  {
+    "word": "knee",
+    "url": "/images/vocab/knee.webp"
+  },
+  {
+    "word": "teeth",
+    "url": "/images/vocab/teeth.webp"
+  },
+  {
+    "word": "taste",
+    "url": "/images/vocab/taste.webp"
+  },
+  {
+    "word": "pour",
+    "url": "/images/vocab/pour.webp"
+  },
+  {
+    "word": "dream",
+    "url": "/images/vocab/dream.webp"
+  },
+  {
+    "word": "watch",
+    "url": "/images/vocab/watch.webp"
+  },
+  {
+    "word": "skip",
+    "url": "/images/vocab/skip.webp"
+  },
+  {
+    "word": "march",
+    "url": "/images/vocab/march.webp"
+  },
+  {
+    "word": "work",
+    "url": "/images/vocab/work.webp"
+  },
+  {
+    "word": "long",
+    "url": "/images/vocab/long.webp"
+  },
+  {
+    "word": "short",
+    "url": "/images/vocab/short.webp"
+  },
+  {
+    "word": "warm",
+    "url": "/images/vocab/warm.webp"
+  },
+  {
+    "word": "cool",
+    "url": "/images/vocab/cool.webp"
+  },
+  {
+    "word": "home",
+    "url": "/images/vocab/home.webp"
+  },
+  {
+    "word": "hey",
+    "url": "/images/vocab/hey.webp"
+  },
+  {
+    "word": "bye",
+    "url": "/images/vocab/bye.webp"
+  },
+  {
+    "word": "see you",
+    "url": "/images/vocab/see_you.webp"
+  },
+  {
+    "word": "excuse me",
+    "url": "/images/vocab/excuse_me.webp"
+  },
+  {
+    "word": "thank you",
+    "url": "/images/vocab/thank_you.webp"
+  },
+  {
+    "word": "good night",
+    "url": "/images/vocab/good_night.webp"
+  },
+  {
+    "word": "good afternoon",
+    "url": "/images/vocab/good_afternoon.webp"
+  },
+  {
+    "word": "good morning",
+    "url": "/images/vocab/good_morning.webp"
+  },
+  {
+    "word": "shoulder",
+    "url": "/images/vocab/shoulder.webp"
+  },
+  {
+    "word": "clap",
+    "url": "/images/vocab/clap.webp"
+  },
+  {
+    "word": "hum",
+    "url": "/images/vocab/hum.webp"
+  },
+  {
+    "word": "shout",
+    "url": "/images/vocab/shout.webp"
+  },
+  {
+    "word": "lock",
+    "url": "/images/vocab/lock.webp"
+  },
+  {
+    "word": "push",
+    "url": "/images/vocab/push.webp"
+  },
+  {
+    "word": "shut",
+    "url": "/images/vocab/shut.webp"
+  },
+  {
+    "word": "take",
+    "url": "/images/vocab/take.webp"
+  },
+  {
+    "word": "share",
+    "url": "/images/vocab/share.webp"
+  },
+  {
+    "word": "hold",
+    "url": "/images/vocab/hold.webp"
+  },
+  {
+    "word": "need",
+    "url": "/images/vocab/need.webp"
+  },
+  {
+    "word": "like",
+    "url": "/images/vocab/like.webp"
   }
 ]

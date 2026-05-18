@@ -5,15 +5,15 @@ async function run() {
   const { data, error } = await db
     .from("vocabulary_items")
     .select("id, english_text")
-    .filter("image_url", "is", null)
-    .limit(10);
+    .filter("image_url", "is", null);
 
   if (error) {
     console.error(error);
     process.exit(1);
   }
 
-  console.log(JSON.stringify(data));
+  console.log(data.map(d => d.english_text).join(', '));
+  console.log('Total missing:', data?.length);
 }
 
 run();

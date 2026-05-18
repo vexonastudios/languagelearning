@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getServiceClient } from '@/lib/supabase'
-import { buildQuestionSet } from '@/lib/lesson-engine'
+import { buildQuestionSet, ProgressEntry } from '@/lib/lesson-engine'
 
 export async function GET(
   req: Request,
@@ -22,11 +22,23 @@ export async function GET(
     return NextResponse.json({ error: 'Lesson not found' }, { status: 404 })
   }
 
-  // Enhance: Fetch user mastery from progress table
-  let progressMap = new Map<string, number>()
+  // Build true SRS progress map from user_progress table
+  const progressMap = new Map<string, ProgressEntry>()
   if (userId) {
-    const { data: prog } = await db.from('user_progress').select('item_id, mastery_level').eq('child_id', userId)
-    if (prog) prog.forEach((p: any) => progressMap.set(p.item_id, p.mastery_level))
+    // FIX: was incorrectly using 'child_id' — correct column is 'user_id'
+    const { data: prog } = await db
+      .from('user_progress')
+      .select('item_id, mastery_level, next_review_at')
+      .eq('user_id', userId)
+
+    if (prog) {
+      for (const p of prog) {
+        progressMap.set(p.item_id, {
+          mastery: p.mastery_level,
+          nextReview: p.next_review_at ? new Date(p.next_review_at) : null,
+        })
+      }
+    }
   }
 
   const questions = buildQuestionSet(

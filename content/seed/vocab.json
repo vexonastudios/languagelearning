@@ -2233,5 +2233,980 @@
     ],
     "example_en": "The moon is here.",
     "example_es": "El/La luna está aquí."
+  },
+  {
+    "english_text": "six",
+    "spanish_text": "seis",
+    "lesson": "Basics 2 — More Words",
+    "example_en": "This is a six.",
+    "example_es": "Esto es un/una seis.",
+    "category": "Basics",
+    "tags": [
+      "basics",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "seven",
+    "spanish_text": "siete",
+    "lesson": "Basics 2 — More Words",
+    "example_en": "This is a seven.",
+    "example_es": "Esto es un/una siete.",
+    "category": "Basics",
+    "tags": [
+      "basics",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "eight",
+    "spanish_text": "ocho",
+    "lesson": "Basics 2 — More Words",
+    "example_en": "This is a eight.",
+    "example_es": "Esto es un/una ocho.",
+    "category": "Basics",
+    "tags": [
+      "basics",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "nine",
+    "spanish_text": "nueve",
+    "lesson": "Basics 2 — More Words",
+    "example_en": "This is a nine.",
+    "example_es": "Esto es un/una nueve.",
+    "category": "Basics",
+    "tags": [
+      "basics",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "monkey",
+    "spanish_text": "mono",
+    "lesson": "Animals",
+    "example_en": "This is a monkey.",
+    "example_es": "Esto es un/una mono.",
+    "category": "Animals",
+    "tags": [
+      "animals",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "tiger",
+    "spanish_text": "tigre",
+    "lesson": "Animals",
+    "example_en": "This is a tiger.",
+    "example_es": "Esto es un/una tigre.",
+    "category": "Animals",
+    "tags": [
+      "animals",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "giraffe",
+    "spanish_text": "jirafa",
+    "lesson": "Animals",
+    "example_en": "This is a giraffe.",
+    "example_es": "Esto es un/una jirafa.",
+    "category": "Animals",
+    "tags": [
+      "animals",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "zebra",
+    "spanish_text": "cebra",
+    "lesson": "Animals",
+    "example_en": "This is a zebra.",
+    "example_es": "Esto es un/una cebra.",
+    "category": "Animals",
+    "tags": [
+      "animals",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "shirt",
+    "spanish_text": "camisa",
+    "lesson": "Clothes",
+    "example_en": "This is a shirt.",
+    "example_es": "Esto es un/una camisa.",
+    "category": "Clothes",
+    "tags": [
+      "clothes",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "pants",
+    "spanish_text": "pantalones",
+    "lesson": "Clothes",
+    "example_en": "This is a pants.",
+    "example_es": "Esto es un/una pantalones.",
+    "category": "Clothes",
+    "tags": [
+      "clothes",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "hat",
+    "spanish_text": "sombrero",
+    "lesson": "Clothes",
+    "example_en": "This is a hat.",
+    "example_es": "Esto es un/una sombrero.",
+    "category": "Clothes",
+    "tags": [
+      "clothes",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "grapes",
+    "spanish_text": "uvas",
+    "lesson": "Food",
+    "example_en": "This is a grapes.",
+    "example_es": "Esto es un/una uvas.",
+    "category": "Food",
+    "tags": [
+      "food",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "pear",
+    "spanish_text": "pera",
+    "lesson": "Food",
+    "example_en": "This is a pear.",
+    "example_es": "Esto es un/una pera.",
+    "category": "Food",
+    "tags": [
+      "food",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "strawberry",
+    "spanish_text": "fresa",
+    "lesson": "Food",
+    "example_en": "This is a strawberry.",
+    "example_es": "Esto es un/una fresa.",
+    "category": "Food",
+    "tags": [
+      "food",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "burger",
+    "spanish_text": "hamburguesa",
+    "lesson": "Food",
+    "example_en": "This is a burger.",
+    "example_es": "Esto es un/una hamburguesa.",
+    "category": "Food",
+    "tags": [
+      "food",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "circle",
+    "spanish_text": "círculo",
+    "lesson": "Shapes",
+    "example_en": "This is a circle.",
+    "example_es": "Esto es un/una círculo.",
+    "category": "Shapes",
+    "tags": [
+      "shapes",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "square",
+    "spanish_text": "cuadrado",
+    "lesson": "Shapes",
+    "example_en": "This is a square.",
+    "example_es": "Esto es un/una cuadrado.",
+    "category": "Shapes",
+    "tags": [
+      "shapes",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "triangle",
+    "spanish_text": "triángulo",
+    "lesson": "Shapes",
+    "example_en": "This is a triangle.",
+    "example_es": "Esto es un/una triángulo.",
+    "category": "Shapes",
+    "tags": [
+      "shapes",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "heart",
+    "spanish_text": "corazón",
+    "lesson": "Shapes",
+    "example_en": "This is a heart.",
+    "example_es": "Esto es un/una corazón.",
+    "category": "Shapes",
+    "tags": [
+      "shapes",
+      "new"
+    ],
+    "difficulty": 1,
+    "distractors_en": [],
+    "distractors_es": []
+  },
+  {
+    "english_text": "wall",
+    "spanish_text": "pared",
+    "lesson": "Home",
+    "category": "Home",
+    "tags": [
+      "noun",
+      "home"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "floor",
+      "door",
+      "window"
+    ],
+    "distractors_es": [
+      "piso",
+      "puerta",
+      "ventana"
+    ],
+    "example_en": "The wall is white.",
+    "example_es": "La pared es blanca."
+  },
+  {
+    "english_text": "floor",
+    "spanish_text": "piso",
+    "lesson": "Home",
+    "category": "Home",
+    "tags": [
+      "noun",
+      "home"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "wall",
+      "ceiling",
+      "carpet"
+    ],
+    "distractors_es": [
+      "pared",
+      "techo",
+      "alfombra"
+    ],
+    "example_en": "The floor is clean.",
+    "example_es": "El piso está limpio."
+  },
+  {
+    "english_text": "roof",
+    "spanish_text": "techo",
+    "lesson": "Home",
+    "category": "Home",
+    "tags": [
+      "noun",
+      "home"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "wall",
+      "floor",
+      "house"
+    ],
+    "distractors_es": [
+      "pared",
+      "piso",
+      "casa"
+    ],
+    "example_en": "The roof is red.",
+    "example_es": "El techo es rojo."
+  },
+  {
+    "english_text": "key",
+    "spanish_text": "llave",
+    "lesson": "Home",
+    "category": "Home",
+    "tags": [
+      "noun",
+      "home"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "lock",
+      "door",
+      "coin"
+    ],
+    "distractors_es": [
+      "cerradura",
+      "puerta",
+      "moneda"
+    ],
+    "example_en": "I have the key.",
+    "example_es": "Tengo la llave."
+  },
+  {
+    "english_text": "mirror",
+    "spanish_text": "espejo",
+    "lesson": "Home",
+    "category": "Home",
+    "tags": [
+      "noun",
+      "home"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "window",
+      "glass",
+      "picture"
+    ],
+    "distractors_es": [
+      "ventana",
+      "vidrio",
+      "cuadro"
+    ],
+    "example_en": "Look in the mirror.",
+    "example_es": "Mira en el espejo."
+  },
+  {
+    "english_text": "lamp",
+    "spanish_text": "lámpara",
+    "lesson": "Home",
+    "category": "Home",
+    "tags": [
+      "noun",
+      "home"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "light",
+      "candle",
+      "sun"
+    ],
+    "distractors_es": [
+      "luz",
+      "vela",
+      "sol"
+    ],
+    "example_en": "Turn on the lamp.",
+    "example_es": "Enciende la lámpara."
+  },
+  {
+    "english_text": "clock",
+    "spanish_text": "reloj",
+    "lesson": "Home",
+    "category": "Home",
+    "tags": [
+      "noun",
+      "home"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "watch",
+      "time",
+      "bell"
+    ],
+    "distractors_es": [
+      "reloj de pulsera",
+      "tiempo",
+      "campana"
+    ],
+    "example_en": "The clock is ticking.",
+    "example_es": "El reloj hace tictac."
+  },
+  {
+    "english_text": "plate",
+    "spanish_text": "plato",
+    "lesson": "Home",
+    "category": "Home",
+    "tags": [
+      "noun",
+      "home"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "bowl",
+      "cup",
+      "fork"
+    ],
+    "distractors_es": [
+      "tazón",
+      "vaso",
+      "tenedor"
+    ],
+    "example_en": "Put the food on the plate.",
+    "example_es": "Pon la comida en el plato."
+  },
+  {
+    "english_text": "cup",
+    "spanish_text": "vaso",
+    "lesson": "Home",
+    "category": "Home",
+    "tags": [
+      "noun",
+      "home"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "plate",
+      "bowl",
+      "spoon"
+    ],
+    "distractors_es": [
+      "plato",
+      "tazón",
+      "cuchara"
+    ],
+    "example_en": "I need a cup of water.",
+    "example_es": "Necesito un vaso de agua."
+  },
+  {
+    "english_text": "towel",
+    "spanish_text": "toalla",
+    "lesson": "Home",
+    "category": "Home",
+    "tags": [
+      "noun",
+      "home"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "blanket",
+      "shirt",
+      "paper"
+    ],
+    "distractors_es": [
+      "manta",
+      "camisa",
+      "papel"
+    ],
+    "example_en": "Dry your hands with a towel.",
+    "example_es": "Sécate las manos con una toalla."
+  },
+  {
+    "english_text": "grass",
+    "spanish_text": "césped",
+    "lesson": "Nature",
+    "category": "Nature",
+    "tags": [
+      "noun",
+      "nature"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "tree",
+      "flower",
+      "leaf"
+    ],
+    "distractors_es": [
+      "árbol",
+      "flor",
+      "hoja"
+    ],
+    "example_en": "The grass is green.",
+    "example_es": "El césped es verde."
+  },
+  {
+    "english_text": "leaf",
+    "spanish_text": "hoja",
+    "lesson": "Nature",
+    "category": "Nature",
+    "tags": [
+      "noun",
+      "nature"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "branch",
+      "tree",
+      "grass"
+    ],
+    "distractors_es": [
+      "rama",
+      "árbol",
+      "césped"
+    ],
+    "example_en": "A leaf fell from the tree.",
+    "example_es": "Una hoja cayó del árbol."
+  },
+  {
+    "english_text": "river",
+    "spanish_text": "río",
+    "lesson": "Nature",
+    "category": "Nature",
+    "tags": [
+      "noun",
+      "nature"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "lake",
+      "sea",
+      "water"
+    ],
+    "distractors_es": [
+      "lago",
+      "mar",
+      "agua"
+    ],
+    "example_en": "The river flows fast.",
+    "example_es": "El río fluye rápido."
+  },
+  {
+    "english_text": "lake",
+    "spanish_text": "lago",
+    "lesson": "Nature",
+    "category": "Nature",
+    "tags": [
+      "noun",
+      "nature"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "river",
+      "pond",
+      "ocean"
+    ],
+    "distractors_es": [
+      "río",
+      "estanque",
+      "océano"
+    ],
+    "example_en": "We swim in the lake.",
+    "example_es": "Nadamos en el lago."
+  },
+  {
+    "english_text": "sea",
+    "spanish_text": "mar",
+    "lesson": "Nature",
+    "category": "Nature",
+    "tags": [
+      "noun",
+      "nature"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "ocean",
+      "river",
+      "beach"
+    ],
+    "distractors_es": [
+      "océano",
+      "río",
+      "playa"
+    ],
+    "example_en": "The sea is deep.",
+    "example_es": "El mar es profundo."
+  },
+  {
+    "english_text": "mountain",
+    "spanish_text": "montaña",
+    "lesson": "Nature",
+    "category": "Nature",
+    "tags": [
+      "noun",
+      "nature"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "hill",
+      "rock",
+      "valley"
+    ],
+    "distractors_es": [
+      "colina",
+      "roca",
+      "valle"
+    ],
+    "example_en": "The mountain is high.",
+    "example_es": "La montaña es alta."
+  },
+  {
+    "english_text": "sky",
+    "spanish_text": "cielo",
+    "lesson": "Nature",
+    "category": "Nature",
+    "tags": [
+      "noun",
+      "nature"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "cloud",
+      "sun",
+      "space"
+    ],
+    "distractors_es": [
+      "nube",
+      "sol",
+      "espacio"
+    ],
+    "example_en": "The sky is blue.",
+    "example_es": "El cielo es azul."
+  },
+  {
+    "english_text": "cloud",
+    "spanish_text": "nube",
+    "lesson": "Nature",
+    "category": "Nature",
+    "tags": [
+      "noun",
+      "nature"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "sky",
+      "rain",
+      "wind"
+    ],
+    "distractors_es": [
+      "cielo",
+      "lluvia",
+      "viento"
+    ],
+    "example_en": "Look at that white cloud.",
+    "example_es": "Mira esa nube blanca."
+  },
+  {
+    "english_text": "rain",
+    "spanish_text": "lluvia",
+    "lesson": "Nature",
+    "category": "Nature",
+    "tags": [
+      "noun",
+      "nature"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "snow",
+      "water",
+      "cloud"
+    ],
+    "distractors_es": [
+      "nieve",
+      "agua",
+      "nube"
+    ],
+    "example_en": "I like the rain.",
+    "example_es": "Me gusta la lluvia."
+  },
+  {
+    "english_text": "snow",
+    "spanish_text": "nieve",
+    "lesson": "Nature",
+    "category": "Nature",
+    "tags": [
+      "noun",
+      "nature"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "rain",
+      "ice",
+      "cold"
+    ],
+    "distractors_es": [
+      "lluvia",
+      "hielo",
+      "frío"
+    ],
+    "example_en": "The snow is cold.",
+    "example_es": "La nieve es fría."
+  },
+  {
+    "english_text": "sad",
+    "spanish_text": "triste",
+    "lesson": "Feelings",
+    "category": "Feelings",
+    "tags": [
+      "adjective",
+      "feeling"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "happy",
+      "angry",
+      "tired"
+    ],
+    "distractors_es": [
+      "feliz",
+      "enojado",
+      "cansado"
+    ],
+    "example_en": "Why are you sad?",
+    "example_es": "¿Por qué estás triste?"
+  },
+  {
+    "english_text": "angry",
+    "spanish_text": "enojado",
+    "lesson": "Feelings",
+    "category": "Feelings",
+    "tags": [
+      "adjective",
+      "feeling"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "sad",
+      "happy",
+      "scared"
+    ],
+    "distractors_es": [
+      "triste",
+      "feliz",
+      "asustado"
+    ],
+    "example_en": "He is very angry.",
+    "example_es": "Él está muy enojado."
+  },
+  {
+    "english_text": "tired",
+    "spanish_text": "cansado",
+    "lesson": "Feelings",
+    "category": "Feelings",
+    "tags": [
+      "adjective",
+      "feeling"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "sleepy",
+      "bored",
+      "sick"
+    ],
+    "distractors_es": [
+      "soñoliento",
+      "aburrido",
+      "enfermo"
+    ],
+    "example_en": "I am tired after work.",
+    "example_es": "Estoy cansado después del trabajo."
+  },
+  {
+    "english_text": "excited",
+    "spanish_text": "emocionado",
+    "lesson": "Feelings",
+    "category": "Feelings",
+    "tags": [
+      "adjective",
+      "feeling"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "happy",
+      "surprised",
+      "scared"
+    ],
+    "distractors_es": [
+      "feliz",
+      "sorprendido",
+      "asustado"
+    ],
+    "example_en": "We are excited for the trip.",
+    "example_es": "Estamos emocionados por el viaje."
+  },
+  {
+    "english_text": "scared",
+    "spanish_text": "asustado",
+    "lesson": "Feelings",
+    "category": "Feelings",
+    "tags": [
+      "adjective",
+      "feeling"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "brave",
+      "angry",
+      "sad"
+    ],
+    "distractors_es": [
+      "valiente",
+      "enojado",
+      "triste"
+    ],
+    "example_en": "The dog is scared.",
+    "example_es": "El perro está asustado."
+  },
+  {
+    "english_text": "hungry",
+    "spanish_text": "hambriento",
+    "lesson": "Feelings",
+    "category": "Feelings",
+    "tags": [
+      "adjective",
+      "feeling"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "thirsty",
+      "full",
+      "tired"
+    ],
+    "distractors_es": [
+      "sediento",
+      "lleno",
+      "cansado"
+    ],
+    "example_en": "I am hungry.",
+    "example_es": "Estoy hambriento."
+  },
+  {
+    "english_text": "thirsty",
+    "spanish_text": "sediento",
+    "lesson": "Feelings",
+    "category": "Feelings",
+    "tags": [
+      "adjective",
+      "feeling"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "hungry",
+      "tired",
+      "sick"
+    ],
+    "distractors_es": [
+      "hambriento",
+      "cansado",
+      "enfermo"
+    ],
+    "example_en": "Drink water if you are thirsty.",
+    "example_es": "Bebe agua si estás sediento."
+  },
+  {
+    "english_text": "bored",
+    "spanish_text": "aburrido",
+    "lesson": "Feelings",
+    "category": "Feelings",
+    "tags": [
+      "adjective",
+      "feeling"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "excited",
+      "happy",
+      "tired"
+    ],
+    "distractors_es": [
+      "emocionado",
+      "feliz",
+      "cansado"
+    ],
+    "example_en": "This movie makes me bored.",
+    "example_es": "Esta película me tiene aburrido."
+  },
+  {
+    "english_text": "sick",
+    "spanish_text": "enfermo",
+    "lesson": "Feelings",
+    "category": "Feelings",
+    "tags": [
+      "adjective",
+      "feeling"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "healthy",
+      "tired",
+      "sad"
+    ],
+    "distractors_es": [
+      "sano",
+      "cansado",
+      "triste"
+    ],
+    "example_en": "She feels sick today.",
+    "example_es": "Ella se siente enferma hoy."
+  },
+  {
+    "english_text": "sleepy",
+    "spanish_text": "soñoliento",
+    "lesson": "Feelings",
+    "category": "Feelings",
+    "tags": [
+      "adjective",
+      "feeling"
+    ],
+    "difficulty": 2,
+    "distractors_en": [
+      "awake",
+      "tired",
+      "bored"
+    ],
+    "distractors_es": [
+      "despierto",
+      "cansado",
+      "aburrido"
+    ],
+    "example_en": "The baby is sleepy.",
+    "example_es": "El bebé está soñoliento."
   }
 ]

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './admin.module.css'
 
-type Tab = 'lessons' | 'vocab' | 'verbs' | 'stories' | 'audio' | 'learners' | 'rewards'
+type Tab = 'lessons' | 'vocab' | 'verbs' | 'stories' | 'audio' | 'learners' | 'rewards' | 'bible'
 
 interface Lesson {
   id: string
@@ -41,6 +41,15 @@ export default function AdminPage() {
   const [purchases, setPurchases] = useState<any[]>([])
   const [flaggedAudio, setFlaggedAudio] = useState<any[]>([])
   const [newReward, setNewReward] = useState({ title: '', cost: 50, icon: '🎁' })
+
+  // Biblical Terms
+  const [bibleTerms, setBibleTerms] = useState<any[]>([])
+  const [newBibleTerm, setNewBibleTerm] = useState({
+    term: '', definition: '', scripture_ref: '', scripture_text: '',
+    category: 'Faith', emoji: '✝️',
+    distractor_1: '', distractor_2: '', distractor_3: '',
+    difficulty: 1,
+  })
 
   // Lesson form
   const [newLesson, setNewLesson] = useState({ title: '', category: 'Basics', difficulty: 1 })
@@ -133,6 +142,32 @@ export default function AdminPage() {
     if (res.ok) setFlaggedAudio(await res.json())
   }
 
+  async function fetchBibleTerms() {
+    const res = await fetch('/api/admin/bible-terms', { headers: getAuthHeader() })
+    if (res.ok) setBibleTerms(await res.json())
+  }
+
+  async function createBibleTerm() {
+    if (!newBibleTerm.term.trim() || !newBibleTerm.definition.trim()) return
+    const res = await fetch('/api/admin/bible-terms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify(newBibleTerm),
+    })
+    if (res.ok) {
+      setNewBibleTerm({ term: '', definition: '', scripture_ref: '', scripture_text: '', category: 'Faith', emoji: '✝️', distractor_1: '', distractor_2: '', distractor_3: '', difficulty: 1 })
+      await fetchBibleTerms()
+      showStatus('Biblical term added ✅')
+    }
+  }
+
+  async function deleteBibleTerm(id: string) {
+    if (!confirm('Delete this biblical term?')) return
+    await fetch(`/api/admin/bible-terms/${id}`, { method: 'DELETE', headers: getAuthHeader() })
+    await fetchBibleTerms()
+    showStatus('Deleted ✅')
+  }
+
   useEffect(() => {
     if (authed && tab === 'vocab') fetchVocab()
     if (authed && tab === 'verbs') fetchVerbs()
@@ -140,6 +175,7 @@ export default function AdminPage() {
     if (authed && tab === 'learners') fetchLearners()
     if (authed && tab === 'rewards') fetchRewards()
     if (authed && tab === 'audio') { fetchLessons(); fetchFlaggedAudio() }
+    if (authed && tab === 'bible') fetchBibleTerms()
   }, [authed, tab])
 
   async function createLesson() {
@@ -367,7 +403,7 @@ export default function AdminPage() {
 
       {/* Tab nav */}
       <div className={styles.tabNav} style={{ overflowX: 'auto', display: 'flex' }}>
-        {(['lessons', 'vocab', 'verbs', 'stories', 'audio', 'learners', 'rewards'] as Tab[]).map((t) => (
+        {(['lessons', 'vocab', 'verbs', 'stories', 'audio', 'learners', 'rewards', 'bible'] as Tab[]).map((t) => (
           <button
             key={t}
             id={`tab-${t}`}
@@ -375,7 +411,7 @@ export default function AdminPage() {
             onClick={() => setTab(t)}
             style={{ whiteSpace: 'nowrap' }}
           >
-            {t === 'lessons' ? '📚 Lessons' : t === 'vocab' ? '📝 Vocab' : t === 'verbs' ? '🏃 Verbs' : t === 'stories' ? '📖 Stories' : t === 'audio' ? '🔊 Audio' : t === 'learners' ? '👤 Learners' : '🎁 Rewards'}
+            {t === 'lessons' ? '📚 Lessons' : t === 'vocab' ? '📝 Vocab' : t === 'verbs' ? '🏃 Verbs' : t === 'stories' ? '📖 Stories' : t === 'audio' ? '🔊 Audio' : t === 'learners' ? '👤 Learners' : t === 'bible' ? '✝️ Bible' : '🎁 Rewards'}
           </button>
         ))}
       </div>
@@ -855,6 +891,103 @@ export default function AdminPage() {
                   <button className={styles.deleteBtn} onClick={() => deleteReward(reward.id)} title="Delete Reward">
                     ✕
                   </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── BIBLICAL TERMS TAB ── */}
+        {tab === 'bible' && (
+          <div>
+            <h2 className={styles.sectionTitle}>✝️ Biblical Terms</h2>
+            <p className={styles.audioHint}>Add faith vocabulary for Christian families — terms like Grace, Covenant, Sanctification, etc.</p>
+
+            <div className={styles.formCard}>
+              <h3 className={styles.formTitle}>Add Biblical Term</h3>
+              <div className={styles.vocabFormGrid}>
+                <input
+                  className={styles.input}
+                  placeholder="Term (e.g. Grace)"
+                  value={newBibleTerm.term}
+                  onChange={(e) => setNewBibleTerm({ ...newBibleTerm, term: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  style={{ width: '4rem' }}
+                  placeholder="Emoji"
+                  value={newBibleTerm.emoji}
+                  onChange={(e) => setNewBibleTerm({ ...newBibleTerm, emoji: e.target.value })}
+                />
+                <textarea
+                  className={styles.input}
+                  style={{ gridColumn: '1 / -1', minHeight: '70px' }}
+                  placeholder="Kid-friendly definition (e.g. God's gift to us that we don't earn...)"
+                  value={newBibleTerm.definition}
+                  onChange={(e) => setNewBibleTerm({ ...newBibleTerm, definition: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  placeholder="Scripture Ref (e.g. Ephesians 2:8)"
+                  value={newBibleTerm.scripture_ref}
+                  onChange={(e) => setNewBibleTerm({ ...newBibleTerm, scripture_ref: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  placeholder="Verse snippet"
+                  value={newBibleTerm.scripture_text}
+                  onChange={(e) => setNewBibleTerm({ ...newBibleTerm, scripture_text: e.target.value })}
+                />
+                <select
+                  className={styles.select}
+                  value={newBibleTerm.category}
+                  onChange={(e) => setNewBibleTerm({ ...newBibleTerm, category: e.target.value })}
+                >
+                  {['Faith', 'Salvation', 'Foundation', 'Worship', 'Promise', 'Sacrament', 'Character of God', 'Growth', 'Scripture'].map(c => (
+                    <option key={c}>{c}</option>
+                  ))}
+                </select>
+                <input
+                  className={styles.input}
+                  placeholder="Wrong Answer 1"
+                  value={newBibleTerm.distractor_1}
+                  onChange={(e) => setNewBibleTerm({ ...newBibleTerm, distractor_1: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  placeholder="Wrong Answer 2"
+                  value={newBibleTerm.distractor_2}
+                  onChange={(e) => setNewBibleTerm({ ...newBibleTerm, distractor_2: e.target.value })}
+                />
+                <input
+                  className={styles.input}
+                  placeholder="Wrong Answer 3"
+                  value={newBibleTerm.distractor_3}
+                  onChange={(e) => setNewBibleTerm({ ...newBibleTerm, distractor_3: e.target.value })}
+                />
+              </div>
+              <button className={`btn btn-primary ${styles.addBtn}`} onClick={createBibleTerm}>
+                Add Term
+              </button>
+            </div>
+
+            <div className={styles.itemList}>
+              {bibleTerms.length === 0 && <p style={{ color: '#94a3b8' }}>No terms yet. Add some above!</p>}
+              {bibleTerms.map((bt) => (
+                <div key={bt.id} className={styles.vocabCard}>
+                  <div className={styles.vocabPair}>
+                    <span style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>{bt.emoji}</span>
+                    <span className={styles.vocabEn}>{bt.term}</span>
+                  </div>
+                  <div className={styles.vocabMeta} style={{ marginTop: '0.4rem' }}>
+                    {bt.definition}
+                  </div>
+                  {bt.scripture_ref && (
+                    <div className={styles.vocabMeta} style={{ marginTop: '0.3rem', fontStyle: 'italic', color: '#7c3aed' }}>
+                      📖 {bt.scripture_ref}
+                    </div>
+                  )}
+                  <button className={styles.deleteBtn} style={{ marginTop: '0.75rem' }} onClick={() => deleteBibleTerm(bt.id)}>✕</button>
                 </div>
               ))}
             </div>

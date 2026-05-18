@@ -219,3 +219,11 @@ create table if not exists stories (
 alter table verbs enable row level security;
 create policy "service_role_all_verbs" on verbs for all using (true);
 create policy "anon_read_verbs" on verbs for select using (true);
+
+-- ============================================================
+-- BIBLICAL TERMS (see supabase/biblical_terms_migration.sql)
+-- ============================================================
+-- Run biblical_terms_migration.sql in Supabase SQL editor to
+-- create the biblical_terms and biblical_terms_progress tables
+-- and seed the starter 20 terms.
+

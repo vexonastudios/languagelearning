@@ -362,6 +362,39 @@ export default function LearnPage() {
         })})()
       }</div>
 
+      {/* ── Biblical Terms Module ── */}
+      <h2 className={styles.pageTitle} style={{ marginTop: '3rem' }}>✝️ Biblical Terms</h2>
+      <div style={{ padding: '0 1rem', marginBottom: '1rem' }}>
+        <button
+          id="bible-terms-module"
+          style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            background: 'linear-gradient(135deg, #6d28d9, #4f46e5)',
+            border: 'none',
+            borderRadius: '1.5rem',
+            padding: '1.25rem 1.5rem',
+            cursor: 'pointer',
+            color: 'white',
+            boxShadow: '0 8px 28px rgba(109,40,217,0.35)',
+            transition: 'transform 0.18s, box-shadow 0.18s',
+            textAlign: 'left',
+          }}
+          onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
+          onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+          onClick={() => { playPop(); setTimeout(() => router.push('/learn/bible'), 100) }}
+        >
+          <span style={{ fontSize: '2.5rem' }}>📖</span>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontWeight: 900, fontSize: '1.1rem', marginBottom: '0.25rem' }}>Learn Biblical Terms</div>
+            <div style={{ fontSize: '0.85rem', opacity: 0.85, fontWeight: 600 }}>Flashcards &amp; quizzes — Faith, Grace, Covenant &amp; more!</div>
+          </div>
+          <div style={{ fontSize: '1.8rem' }}>›</div>
+        </button>
+      </div>
+
       {stories.length > 0 && (
         <>
           <h2 className={styles.pageTitle} style={{ marginTop: '3rem' }}>📖 Story Mode</h2>
