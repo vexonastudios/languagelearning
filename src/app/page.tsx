@@ -1,7 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import styles from './profiles.module.css'
+
+const LAN_MODE = process.env.NEXT_PUBLIC_LAN_MODE === 'true'
 
 const AVATARS = ['🦁', '🐼', '🦊', '🐸', '🦋', '🐧', '🦄', '🐯', '🐻', '🦅']
 
@@ -9,6 +11,7 @@ interface Profile {
   id: string
   child_name: string
   avatar: string
+  color?: string
   streak: number
   total_xp: number
   last_active_at?: string
@@ -16,11 +19,13 @@ interface Profile {
 
 export default function ProfileSelectPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [profiles, setProfiles] = useState<Profile[]>([])
   const [creating, setCreating] = useState(false)
   const [newName, setNewName] = useState('')
   const [newAvatar, setNewAvatar] = useState('🦁')
   const [loading, setLoading] = useState(true)
+  const [autoSelecting, setAutoSelecting] = useState(false)
 
   useEffect(() => {
     fetchProfiles()
@@ -41,6 +46,17 @@ export default function ProfileSelectPage() {
         const data = await res.json()
         setProfiles(data)
         localStorage.setItem('spanishkids_profiles', JSON.stringify(data))
+
+        // Auto-select when BodeeGuard passes ?student_id=xxx in the URL
+        const studentId = searchParams.get('student_id')
+        if (studentId && !autoSelecting) {
+          const match = data.find((p: Profile) => p.id === studentId)
+          if (match) {
+            setAutoSelecting(true)
+            selectProfile(match)
+            return
+          }
+        }
       }
     } catch (e) {
       // Offline fallback
@@ -85,11 +101,11 @@ export default function ProfileSelectPage() {
     router.push('/learn')
   }
 
-  if (loading) {
+  if (loading || autoSelecting) {
     return (
       <div className={styles.loadingScreen}>
         <div className={styles.loadingEmoji}>🌟</div>
-        <p>Loading...</p>
+        <p>{autoSelecting ? '¡Bienvenido! Loading your lessons…' : 'Loading...'}</p>
       </div>
     )
   }
@@ -118,7 +134,10 @@ export default function ProfileSelectPage() {
             key={profile.id}
             className={styles.profileCard}
             onClick={() => selectProfile(profile)}
-            style={{ animationDelay: `${i * 0.08}s` }}
+            style={{
+              animationDelay: `${i * 0.08}s`,
+              ...(profile.color ? { '--profile-color': profile.color } as any : {}),
+            }}
           >
             <div className={styles.profileAvatar}>{profile.avatar}</div>
             <div className={styles.profileName}>{profile.child_name}</div>
@@ -128,8 +147,8 @@ export default function ProfileSelectPage() {
           </button>
         ))}
 
-        {/* Add profile button */}
-        {!creating && (
+        {/* Add profile button — hidden in LAN mode (students come from BodeeGuard) */}
+        {!LAN_MODE && !creating && (
           <button
             className={styles.addProfileCard}
             onClick={() => setCreating(true)}
@@ -140,8 +159,8 @@ export default function ProfileSelectPage() {
         )}
       </div>
 
-      {/* Create profile modal */}
-      {creating && (
+      {/* Create profile modal — disabled in LAN mode */}
+      {!LAN_MODE && creating && (
         <div className={styles.modalOverlay} onClick={() => setCreating(false)}>
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
             <h2 className={styles.modalTitle}>New Learner 🌟</h2>
